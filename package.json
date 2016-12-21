@@ -1,25 +1,24 @@
 {
   "name": "ferveo",
-  "version": "0.0.1",
-  "description": "Grogan Burner Services Web Application",
-  "main": "index.js",
+  "version": "0.0.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./bin/www",
+    "test": "mocha"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/GroganBurners/ferveo.git"
+  "dependencies": {
+    "body-parser": "~1.15.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "express": "~4.14.0",
+    "mongoose": "^4.7.4",
+    "morgan": "~1.7.0",
+    "pug": "^2.0.0-beta6",
+    "serve-favicon": "~2.3.0"
   },
-  "keywords": [
-    "heating",
-    "oil",
-    "gas",
-    "small-business"
-  ],
-  "author": "Neil Grogan",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/GroganBurners/ferveo/issues"
-  },
-  "homepage": "https://github.com/GroganBurners/ferveo#readme"
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.2.0"
+  }
 }
