@@ -1,0 +1,25 @@
+{
+  "name": "ferveo",
+  "version": "0.0.1",
+  "description": "Grogan Burner Services Web Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GroganBurners/ferveo.git"
+  },
+  "keywords": [
+    "heating",
+    "oil",
+    "gas",
+    "small-business"
+  ],
+  "author": "Neil Grogan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GroganBurners/ferveo/issues"
+  },
+  "homepage": "https://github.com/GroganBurners/ferveo#readme"
+}
