@@ -3,3 +3,5 @@ machine:
     GOOGLE_CLIENT_ID: test
     GOOGLE_CLIENT_SECRET: test
     BASE_URL: devbox.example.com
+  pre:
+    - touch .env
