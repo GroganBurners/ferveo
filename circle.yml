@@ -4,4 +4,4 @@ machine:
     GOOGLE_CLIENT_SECRET: test
     BASE_URL: devbox.example.com
   pre:
-    - touch .env
+    - touch ferveo/.env
