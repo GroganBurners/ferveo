@@ -55,10 +55,12 @@ html(lang="en")
 			link(rel="icon",href="/static/images/favicon.ico")
 			title= title
 			block styles
-				link(rel="stylesheet",href="/static/stylesheets/bootstrap.min.css")
+				style
+					include ../public/stylesheets/bootstrap.min.css
 	body(data-spy="scroll",data-target=".scrollspy")
 		block body
 			
 		block scripts
-			script(src="/static/javascripts/jquery.min.js")
-			script(src="/static/javascripts/bootstrap.min.js")
+			script
+				include ../public/javascripts/jquery.min.js
+				include ../public/javascripts/bootstrap.min.js
