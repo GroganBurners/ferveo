@@ -6,7 +6,7 @@ var logger = require('morgan');
 var session = require( 'express-session' );
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
+var flash = require('connect-flash');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
@@ -77,6 +77,7 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }));
+app.use(flash());
 app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -111,17 +112,26 @@ app.get( '/auth/google/callback',
     		failureRedirect: '/login'
 }));
 
+app.get('/flash', function(req, res){
+  req.flash('info', 'Hi there!')
+  res.redirect('/');
+});
+
+app.get('/no-flash', function(req, res){
+  res.redirect('/');
+});
+
+app.get('/multiple-flash', function(req, res){
+    req.flash('info', ['Welcome', 'Please Enjoy']);
+    res.redirect('/');
+});
+
 app.get('/logout', function(req, res){
   req.logout();
   res.redirect('/');
 });
 
-//app.use('/', index);
-app.get('/', function(req, res) {
-  res.sendfile(__dirname + '/public/html/index.html');
-});
-
-app.use('/users', users);
+app.use('/', index);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -140,6 +150,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 // Simple route middleware to ensure user is authenticated.
 //   Use this route middleware on any resource that needs to be protected.  If
