@@ -7,12 +7,17 @@ var session = require( 'express-session' );
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var flash = require('connect-flash');
+var mongoose = require('mongoose');
 
 /**
  * API keys and Passport configuration.
  */
 var passport = require( 'passport' );
 const passportConfig = require('./config/passport');
+
+// connect to Mongo when the app initializes
+mongoose.connect('mongodb://localhost/local');
+
 
 var app = express();
 
