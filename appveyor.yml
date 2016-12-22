@@ -4,6 +4,11 @@ environment:
 
 version: '{build}'
 
+environment:
+  GOOGLE_CLIENT_ID: test
+  GOOGLE_CLIENT_SECRET: test
+  BASE_URL: devbox.example.com
+
 # Install scripts. (runs after repo cloning)
 install:
   - ps: Install-Product node $env:nodejs_version
