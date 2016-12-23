@@ -18,6 +18,7 @@ install:
   - node --version
   - npm --version
   - npm install
+  - echo test>.env 
 
 matrix:
   fast_finish: true
