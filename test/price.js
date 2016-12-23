@@ -21,7 +21,7 @@ describe('Test Prices API', function () {
     it('it should GET all the prices', function (done) {
         chai.request(server)
             .get('/api/prices')
-            .end((err, res) => {
+            .end(function (err, res){
                 res.should.have.status(200);
                 res.body.should.be.a('array');
                 res.body.length.should.be.eql(0);
