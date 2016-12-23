@@ -22,8 +22,15 @@
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
+    "browser-sync": "^2.18.5",
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",
-    "mocha": "^3.2.0"
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.2.1",
+    "imagemin": "^5.2.2",
+    "imagemin-mozjpeg": "^6.0.0",
+    "imagemin-pngquant": "^5.0.0",
+    "mocha": "^3.2.0",
+    "nodemon": "^1.11.0"
   }
 }
