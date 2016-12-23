@@ -6,10 +6,11 @@ var mongoose = require('mongoose')
 
 var priceSchema = new Schema({
     id: ObjectId,
-    item_name: String,
-    added_date: {type: Date, default: Date.now},
-    price: Number,
-    extra_info: String
+    name: String,
+    date: {type: Date, default: Date.now},
+    price: {type: Number, default: 0.00},
+    info: String,
+    summer_offer: {type: Boolean, default: false}
 });
 
 module.exports = mongoose.model('Price', priceSchema);
