@@ -4,7 +4,10 @@ environment:
   GOOGLE_CLIENT_ID: test
   GOOGLE_CLIENT_SECRET: test
   BASE_URL: devbox.example.com
-  
+
+services:
+  - mongodb
+    
 version: '{build}'
 
 # Install scripts. (runs after repo cloning)
