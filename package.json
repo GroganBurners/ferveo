@@ -22,6 +22,7 @@
     "serve-favicon": "~2.3.0"
   },
   "devDependencies": {
+    "bluebird": "^3.4.7",
     "browser-sync": "^2.18.5",
     "chai": "^3.5.0",
     "chai-http": "^3.0.0",

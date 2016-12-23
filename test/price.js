@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
-mongoose.Promise = global.Promise;
+//mongoose.Promise = global.Promise; // ES6
+mongoose.Promise = require('bluebird');
 var Price = require('../models/price');
 
 //Require the dev-dependencies
