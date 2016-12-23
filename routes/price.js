@@ -10,12 +10,23 @@ module.exports = function (app) {
         })
     })
 
-    app.post('/api/prices', function (req, res, next) {       
+    app.post('/api/prices', function (req, res, next) {
         // create price
         Price.create(req.body, function (err, price) {
-            if (err) res.render('error', { error: 'Error creating price' })
-            // reload collection
-            res.redirect('/api/prices');
+            if (err && err.code !== 11000) {
+                console.log(err);
+                console.log(err.code);
+                res.json({ message: 'Error creating price: ' + err });
+                return;
+            }
+
+            //duplicate key
+            if (err && err.code === 11000) {
+                res.json({ message: 'Price Already Exists'});
+                return;
+            }
+
+            res.json({ message: 'Successfully created' });
         });
     })
 
@@ -25,11 +36,10 @@ module.exports = function (app) {
             if (err)
                 res.send(err);
             res.json(price);
-            //res.render('price', { price: price[0] })
         });
     })
 
-    
+
 
     app.delete('/api/prices/:id', function (req, res, next) {
         var id = req.params.id;
@@ -40,7 +50,7 @@ module.exports = function (app) {
     })
 
     app.put('/api/prices/:id', function (req, res, next) {
-        Price.findOneAndUpdate({ _id: req.params.id }, {$set:req.body}, {new: true}, function (err, price) {
+        Price.findOneAndUpdate({ _id: req.params.id }, { $set: req.body }, { new: true }, function (err, price) {
             res.json(price);
         });
     })

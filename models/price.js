@@ -6,10 +6,10 @@ var mongoose = require('mongoose')
 
 var priceSchema = new Schema({
     id: ObjectId,
-    name: String,
+    name: {type: String, unique : true, required: true},
     date: {type: Date, default: Date.now},
     price: {type: Number, default: 0.00},
-    info: String,
+    info: {type: String, default: null},
     summer_offer: {type: Boolean, default: false}
 });
 
