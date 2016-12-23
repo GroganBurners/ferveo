@@ -22,11 +22,12 @@ module.exports = function (app) {
 
             //duplicate key
             if (err && err.code === 11000) {
+                res.status(409);
                 res.json({ message: 'Price Already Exists'});
                 return;
             }
 
-            res.json({ message: 'Successfully created' });
+            res.json({ message: 'Successfully created', price });
         });
     })
 
@@ -45,7 +46,7 @@ module.exports = function (app) {
         var id = req.params.id;
         Price.findByIdAndRemove(id, function (err, price) {
             if (err) res.render('error', { error: 'Error deleting price' });
-            res.json({ message: 'Successfully deleted' });
+            res.json({ message: 'Successfully deleted', price });
         });
     })
 
