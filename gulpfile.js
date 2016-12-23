@@ -20,6 +20,7 @@ gulp.task('nodemon', function (cb) {
 	var started = false;
 	
 	return nodemon({
+		exec: 'node --debug',
 		script: './bin/www'
 	}).on('start', function () {
 		// to avoid nodemon being started multiple times
