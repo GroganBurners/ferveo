@@ -97,6 +97,18 @@ describe('Test Prices API', function () {
         });
     });
 
+    it('it should fail to GET a price by non-existing id', function (done) {
+        chai.request(server)
+            .get('/api/prices/' + 'non-existing-id')
+            .send({})
+            .end(function (err, res) {
+                res.should.have.status(404);
+                res.body.should.be.a('object');
+                res.body.should.have.property('message').eql('Error getting price');
+                done();
+            });
+    });
+
     it('it should UPDATE a price by the given id', function (done) {
         var pr = new Price({ name: "Gas Fire Price" });
 
@@ -108,11 +120,26 @@ describe('Test Prices API', function () {
                 .end(function (err, res) {
                     res.should.have.status(200);
                     res.body.should.be.a('object');
-                    res.body.should.have.property('_id').eql(price._id.toString());
-                    res.body.should.have.property('name').eql('Gas Fire Price');
+                    res.body.price.should.have.property('_id').eql(price._id.toString());
+                    res.body.price.should.have.property('name').eql('Gas Fire Price');
+                    res.body.should.have.property('message').eql('Successfully updated price');
                     done();
                 });
         });
+    });
+
+    it('it should fail to UPDATE a price with a non existant id', function (done) {
+        var pr = new Price({ name: "Gas Fire Price" });
+
+        chai.request(server)
+            .put('/api/prices/' + 'non-existant-id')
+            .send(pr)
+            .end(function (err, res) {
+                res.should.have.status(404);
+                res.body.should.be.a('object');
+                res.body.should.have.property('message').eql('Error updating price');
+                done();
+            });
     });
 
     it('it should DELETE a price by the given id', function (done) {
@@ -131,6 +158,18 @@ describe('Test Prices API', function () {
                     done();
                 });
         });
+    });
+
+    it('it should try to DELETE a price by non-existing id', function (done) {
+        chai.request(server)
+            .delete('/api/prices/' + 'non-existing-id')
+            .send({})
+            .end(function (err, res) {
+                res.should.have.status(404);
+                res.body.should.be.a('object');
+                res.body.should.have.property('message').eql('Error deleting price');
+                done();
+            });
     });
 
 

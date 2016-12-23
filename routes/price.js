@@ -34,8 +34,11 @@ module.exports = function (app) {
     app.get('/api/prices/:id', function (req, res, next) {
         console.log(req.params.id)
         Price.findById(req.params.id, function (err, price) {
-            if (err)
-                res.send(err);
+            if (err){
+                res.status(404);
+                res.json({ message: 'Error getting price', err});
+                return;
+            }
             res.json(price);
         });
     })
@@ -45,14 +48,23 @@ module.exports = function (app) {
     app.delete('/api/prices/:id', function (req, res, next) {
         var id = req.params.id;
         Price.findByIdAndRemove(id, function (err, price) {
-            if (err) res.render('error', { error: 'Error deleting price' });
+            if (err){
+                res.status(404);
+                res.json({ message: 'Error deleting price' });
+                return;
+            }
             res.json({ message: 'Successfully deleted', price });
         });
     })
 
     app.put('/api/prices/:id', function (req, res, next) {
         Price.findOneAndUpdate({ _id: req.params.id }, { $set: req.body }, { new: true }, function (err, price) {
-            res.json(price);
+            if (err){
+                res.status(404);
+                res.json({ message: 'Error updating price' });
+                return;
+            }
+            res.json({ message: 'Successfully updated price', price });
         });
     })
 };
