@@ -1,13 +1,11 @@
 environment:
+  - GOOGLE_CLIENT_ID: test
+  - GOOGLE_CLIENT_SECRET: test
+  - BASE_URL: devbox.example.com
   matrix:
     - nodejs_version: '6'
 
 version: '{build}'
-
-environment:
-  - GOOGLE_CLIENT_ID: test
-  - GOOGLE_CLIENT_SECRET: test
-  - BASE_URL: devbox.example.com
 
 # Install scripts. (runs after repo cloning)
 install:
