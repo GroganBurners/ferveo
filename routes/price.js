@@ -32,7 +32,6 @@ module.exports = function (app) {
     })
 
     app.get('/api/prices/:id', function (req, res, next) {
-        console.log(req.params.id)
         Price.findById(req.params.id, function (err, price) {
             if (err){
                 res.status(404);
