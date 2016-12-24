@@ -19,16 +19,46 @@ describe('Test Prices API', function () {
         });
     });
 
-    it('it should GET all the prices', function (done) {
+    it('it should GET all the prices (none in DB)', function (done) {
         chai.request(server)
             .get('/api/prices')
-            .end(function (err, res){
+            .end(function (err, res) {
                 res.should.have.status(200);
                 res.body.should.be.a('array');
                 res.body.length.should.be.eql(0);
                 done();
             });
     });
+
+    it('it should GET all the prices (one in DB)', function (done) {
+        var pri = new Price({ name: "Gas Service" });
+        pri.save(function (err, price) {
+            chai.request(server)
+                .get('/api/prices')
+                .end(function (err, res) {
+                    res.should.have.status(200);
+                    res.body.should.be.a('array');
+                    res.body.length.should.be.eql(1);
+                    done();
+                });
+        });
+    });
+
+    it('it should GET all the prices (multiple in DB)', function (done) {
+        var pr1 = new Price({ name: "Gas Service" });
+        var pr2 = new Price({ name: "Oil Service" });
+        Price.create(pr1, pr2, function (err, pr1, pr2) {
+            chai.request(server)
+                .get('/api/prices')
+                .end(function (err, res) {
+                    res.should.have.status(200);
+                    res.body.should.be.a('array');
+                    res.body.length.should.be.eql(2);
+                    done();
+                });
+        });
+    });
+
 
     it('it should POST a price with just a name', function (done) {
         var pri = {
@@ -66,10 +96,11 @@ describe('Test Prices API', function () {
 
     it('it should POST a price with same name and it\'s an error', function (done) {
         var pri = new Price({ name: "Gas Service" });
+        var pr2 = { name: "Gas Service" };
         pri.save(function (err, price) {
             chai.request(server)
                 .post('/api/prices')
-                .send(pri)
+                .send(pr2)
                 .end(function (err, res) {
                     res.should.have.status(409);
                     res.body.should.be.a('object');
@@ -114,14 +145,14 @@ describe('Test Prices API', function () {
         var pr = new Price({ name: "Gas Fire Price" });
 
         pr.save(function (err, price) {
-            pri = new Price(price._doc)
+            var pri = price._doc
             chai.request(server)
                 .put('/api/prices/' + price._id)
-                .send(price)
+                .send(pri)
                 .end(function (err, res) {
                     res.should.have.status(200);
                     res.body.should.be.a('object');
-                    res.body.price.should.have.property('_id').eql(price._id.toString());
+                    res.body.price.should.have.property('_id').eql(pri._id.toString());
                     res.body.price.should.have.property('name').eql('Gas Fire Price');
                     res.body.should.have.property('message').eql('Successfully updated price');
                     done();
@@ -130,7 +161,7 @@ describe('Test Prices API', function () {
     });
 
     it('it should fail to UPDATE a price with a non existant id', function (done) {
-        var pr = new Price({ name: "Gas Fire Price" });
+        var pr = { name: "Gas Fire Price" };
 
         chai.request(server)
             .put('/api/prices/' + 'non-existant-id')
