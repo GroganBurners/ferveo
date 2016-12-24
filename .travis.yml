@@ -16,3 +16,6 @@ env:
     - GOOGLE_CLIENT_ID=test
     - GOOGLE_CLIENT_SECRET=test
     - BASE_URL=devbox.example.com
+notifications:
+    on_success: change # default: change
+    on_failure: change # default: always
