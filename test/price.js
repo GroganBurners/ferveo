@@ -142,17 +142,17 @@ describe('Test Prices API', function () {
     });
 
     it('it should UPDATE a price by the given id', function (done) {
-        var pr = new Price({ name: "Gas Fire Price" });
+        var priceToBeUpdated = new Price({ name: "Gas Fire Price" });
 
-        pr.save(function (err, price) {
-            var pri = { name: "Gas Fire Price Updated", _id: price._doc._id } 
+        priceToBeUpdated.save(function (err, price_returned) {
+            var updatesForPrice = { name: "Gas Fire Price Updated", _id: price_returned._doc._id } 
             chai.request(server)
-                .put('/api/prices/' + pri._id)
-                .send(pri)
+                .put('/api/prices/' + updatesForPrice._id)
+                .send(updatesForPrice)
                 .end(function (err, res) {
                     res.should.have.status(200);
                     res.body.should.be.a('object');
-                    res.body.price.should.have.property('_id').eql(pri._id.toString());
+                    res.body.price.should.have.property('_id').eql(updatesForPrice._id.toString());
                     res.body.price.should.have.property('name').eql('Gas Fire Price Updated');
                     res.body.should.have.property('message').eql('Successfully updated price');
                     done();
