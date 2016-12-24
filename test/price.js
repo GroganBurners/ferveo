@@ -150,7 +150,6 @@ describe('Test Prices API', function () {
                 .put('/api/prices/' + pri._id)
                 .send(pri)
                 .end(function (err, res) {
-                    console.log(res)
                     res.should.have.status(200);
                     res.body.should.be.a('object');
                     res.body.price.should.have.property('_id').eql(pri._id.toString());
