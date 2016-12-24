@@ -58,9 +58,9 @@ module.exports = function (app) {
     })
 
     app.put('/api/prices/:id', function (req, res, next) {
-        Price.findOneAndUpdate({ _id: req.params.id }, { $set: req.body }, { new: true }, function (err, price) {
+        var id = req.params.id;
+        Price.findByIdAndUpdate(id, { $set: req.body }, { new: true }, function (err, price) {
             if (err){
-                console.log(err)
                 res.status(404);
                 res.json({ message: 'Error updating price', err });
                 return;
