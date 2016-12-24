@@ -7,3 +7,9 @@ machine:
     BASE_URL: devbox.example.com
   pre:
     - touch ferveo/.env
+    - npm install mocha-junit-reporter
+test:
+  override:
+    - mocha test --reporter mocha-junit-reporter:
+        environment:
+          MOCHA_FILE: $CIRCLE_TEST_REPORTS/junit/test-results.xml
