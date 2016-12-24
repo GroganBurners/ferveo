@@ -119,6 +119,7 @@ describe('Test Prices API', function () {
                 .get('/api/prices/' + price._id)
                 .send(price)
                 .end(function (err, res) {
+                    console.log(res)
                     res.should.have.status(200);
                     res.body.should.be.a('object');
                     res.body.should.have.property('price');
