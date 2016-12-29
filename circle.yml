@@ -5,6 +5,8 @@ machine:
     GOOGLE_CLIENT_ID: test
     GOOGLE_CLIENT_SECRET: test
     BASE_URL: devbox.example.com
+    MAIL_USER: test@example.com
+    MAIL_PASS: test
   pre:
     - touch ferveo/.env
     - npm install mocha-junit-reporter
