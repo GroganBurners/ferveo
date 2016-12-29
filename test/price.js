@@ -163,7 +163,7 @@ describe('Test Prices API', function () {
     })
   })
 
-  xit('it should fail to UPDATE a price with a non existant id', function (done) {
+  it('it should fail to UPDATE a price with a non existant id', function (done) {
     var pr = { name: 'Gas Fire Price' }
 
     chai.request(server)

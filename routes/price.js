@@ -55,9 +55,9 @@ module.exports = function (app) {
   app.put('/api/prices/:id', function (req, res, next) {
     var id = req.params.id
     Price.findByIdAndUpdate(id, { $set: req.body }, { new: true }, function (err, price) {
-      if (err) {
+      if (err === null && price === null) {
         res.status(404)
-        res.json({ message: 'Error updating price', err })
+        res.json({ message: 'Error updating price' })
         return
       }
       res.json({ message: 'Successfully updated price', price })
