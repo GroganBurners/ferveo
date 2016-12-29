@@ -11,6 +11,8 @@ before_script:
   - sleep 15
 before_install:
   - touch .env
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update && brew install mongodb; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then mongod; fi
 env:
   global:
     - GOOGLE_CLIENT_ID=test
