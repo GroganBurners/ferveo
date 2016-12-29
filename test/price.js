@@ -31,6 +31,7 @@ describe('Test Prices API', function () {
   it('it should GET all the prices (one in DB)', function (done) {
     var pri = new Price({ name: 'Gas Service' })
     pri.save(function (err, price) {
+      if (err) console.log(err.stack)
       chai.request(server)
                 .get('/api/prices')
                 .end(function (err, res) {
@@ -47,6 +48,7 @@ describe('Test Prices API', function () {
     var pr1 = new Price({ name: 'Gas Service' })
     var pr2 = new Price({ name: 'Oil Service' })
     Price.create(pr1, pr2, function (err, pr1, pr2) {
+      if (err) console.log(err.stack)
       chai.request(server)
                 .get('/api/prices')
                 .end(function (err, res) {
@@ -99,6 +101,7 @@ describe('Test Prices API', function () {
     var pri = new Price({ name: 'Gas Service' })
     var pr2 = { name: 'Gas Service' }
     pri.save(function (err, price) {
+      if (err) console.log(err.stack)
       chai.request(server)
                 .post('/api/prices')
                 .send(pr2)
@@ -116,6 +119,7 @@ describe('Test Prices API', function () {
     var pr = new Price({ name: 'Oil Price' })
 
     pr.save(function (err, price) {
+      if (err) console.log(err.stack)
       chai.request(server)
                 .get('/api/prices/' + price._id.toString())
                 .send(price)
@@ -148,11 +152,13 @@ describe('Test Prices API', function () {
     var priceToBeUpdated = new Price({ name: 'Gas Fire Price' })
 
     priceToBeUpdated.save(function (err, price) {
-      var updatesForPrice = { name: 'Gas Fire Price Updated'}
+      if (err) console.log(err.stack)
+      var updatesForPrice = { name: 'Gas Fire Price Updated' }
       chai.request(server)
                 .put('/api/prices/' + price._id)
                 .send(updatesForPrice)
                 .end(function (err, res) {
+                  should.not.exist(err)
                   res.should.have.status(200)
                   res.body.should.be.a('object')
                   res.body.price.should.have.property('_id').eql(price._id.toString())
@@ -170,6 +176,7 @@ describe('Test Prices API', function () {
             .put('/api/prices/' + '41224d776a326fb40f000001')
             .send(pr)
             .end(function (err, res) {
+              should.exist(err)
               res.should.have.status(404)
               res.body.should.be.a('object')
               res.body.should.have.property('message').eql('Error updating price')
@@ -181,6 +188,7 @@ describe('Test Prices API', function () {
     var pr = new Price({ name: 'Gas Fire Price' })
 
     pr.save(function (err, price) {
+      if (err) console.log(err.stack)
       chai.request(server)
                 .delete('/api/prices/' + price._id)
                 .send(price)

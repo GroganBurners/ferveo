@@ -1,7 +1,6 @@
 require('dotenv').config()
 var express = require('express')
 var path = require('path')
-var favicon = require('serve-favicon')
 var logger = require('morgan')
 var session = require('express-session')
 var cookieParser = require('cookie-parser')
@@ -13,7 +12,7 @@ var mongoose = require('mongoose')
  * API keys and Passport configuration.
  */
 var passport = require('passport')
-const passportConfig = require('./config/passport')
+require('./config/passport')
 
 // connect to Mongo when the app initializes
 mongoose.connect('mongodb://localhost/local')
