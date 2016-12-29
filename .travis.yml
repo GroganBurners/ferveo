@@ -7,8 +7,6 @@ services:
 language: node_js
 node_js:
   - "6"
-before_script:
-  - sleep 15
 before_install:
   - touch .env
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
