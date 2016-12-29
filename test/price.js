@@ -157,7 +157,7 @@ describe('Test Prices API', function () {
                   console.log('Status for res: ', res.status)
                   //res.should.have.status(200)
                   res.body.should.be.a('object')
-                  res.body.price.should.have.property('_id').eql(updatesForPrice._id.toString())
+                  res.body.price.should.have.property('_id').eql(price._id.toString())
                   res.body.price.should.have.property('name').eql('Gas Fire Price Updated')
                   res.body.should.have.property('message').eql('Successfully updated price')
                   done()
