@@ -153,6 +153,7 @@ describe('Test Prices API', function () {
                 .put('/api/prices/' + updatesForPrice._id)
                 .send(updatesForPrice)
                 .end(function (err, res) {
+                  console.log(err)
                   console.log('Status for res: ', res.status)
                   //res.should.have.status(200)
                   res.body.should.be.a('object')
