@@ -150,7 +150,7 @@ describe('Test Prices API', function () {
     priceToBeUpdated.save(function (err, price) {
       var updatesForPrice = { name: 'Gas Fire Price Updated'}
       chai.request(server)
-                .put('/api/prices/' + updatesForPrice._id)
+                .put('/api/prices/' + price._id)
                 .send(updatesForPrice)
                 .end(function (err, res) {
                   console.log(err)
