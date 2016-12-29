@@ -153,9 +153,7 @@ describe('Test Prices API', function () {
                 .put('/api/prices/' + price._id)
                 .send(updatesForPrice)
                 .end(function (err, res) {
-                  console.log(err)
-                  console.log('Status for res: ', res.status)
-                  //res.should.have.status(200)
+                  res.should.have.status(200)
                   res.body.should.be.a('object')
                   res.body.price.should.have.property('_id').eql(price._id.toString())
                   res.body.price.should.have.property('name').eql('Gas Fire Price Updated')
