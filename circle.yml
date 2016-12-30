@@ -7,6 +7,8 @@ machine:
     BASE_URL: devbox.example.com
     MAIL_USER: test@example.com
     MAIL_PASS: test
+    SMS_USER: test
+    SMS_PASS: test
   pre:
     - touch ferveo/.env
     - npm install mocha-junit-reporter

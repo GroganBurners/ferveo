@@ -27,6 +27,7 @@ module.exports = function (app) {
         // send mail with defined transport object
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
+        res.status(404)
         res.json({ message: 'Error creating message: ' + error })
         return
       }

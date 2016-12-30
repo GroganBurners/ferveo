@@ -20,6 +20,8 @@ env:
     - BASE_URL=devbox.example.com
     - MAIL_USER=test@example.com
     - MAIL_PASS=test
+    - SMS_USER=test
+    - SMS_PASS=test
 notifications:
     on_success: change # default: change
     on_failure: change # default: always
