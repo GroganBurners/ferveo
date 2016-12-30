@@ -8,6 +8,7 @@
 [![Github Issues](https://img.shields.io/github/issues/groganburners/ferveo.svg)](https://github.com/GroganBurners/ferveo/issues)
 [![DavidDM Dependencies](https://img.shields.io/david/groganburners/ferveo.svg)](https://david-dm.org/groganburners/ferveo)
 [![DavidDM Dev Dependencies](https://img.shields.io/david/dev/groganburners/ferveo.svg)](https://david-dm.org/groganburners/ferveo?type=dev)
+[![Known Vulnerabilities](https://snyk.io/test/github/groganburners/ferveo/badge.svg)](https://snyk.io/test/github/groganburners/ferveo)
 
 # Ferveo
 A small business application for Grogan Burners.
