@@ -22,6 +22,8 @@ env:
     - MAIL_PASS=test
     - SMS_USER=test
     - SMS_PASS=test
+after_success:
+    - bash <(curl -s https://codecov.io/bash)
 notifications:
     on_success: change # default: change
     on_failure: change # default: always
