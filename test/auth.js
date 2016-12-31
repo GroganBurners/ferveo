@@ -20,7 +20,7 @@ describe('Auth', function () {
     chai.request(server)
         .get('/auth/google')
         .end(function (err, res) {
-          should.not.exist(err)
+          if (err) console.log(err.stack)
           expect(res.redirects[0]).to.contain('https://accounts.google.com/o/oauth2/auth')
           done()
         })
