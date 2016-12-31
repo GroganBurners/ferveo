@@ -5,7 +5,7 @@ var nock = require('nock')
 /* eslint-disable no-unused-vars */
 var should = chai.should()
 
-describe('Auth', function () {
+describe('Auth logged out', function () {
   it('login page loads correctly', function (done) {
     chai.request(server)
             .get('/auth/login')
@@ -16,12 +16,23 @@ describe('Auth', function () {
             })
   })
 
+  it('Account page logged out redirects', (done) => {
+    chai.request(server)
+        .get('/account').end(function (err, res) {
+          should.not.exist(err)
+          expect(res.redirects[0]).to.match(/\/auth\/login/)
+          expect(res).to.redirect
+          done()
+        })
+  })
+
   it('google endpoint redirects', function (done) {
     chai.request(server)
         .get('/auth/google')
         .end(function (err, res) {
           if (err) console.log(err.stack)
           expect(res.redirects[0]).to.contain('https://accounts.google.com/o/oauth2/auth')
+          expect(res).to.redirect
           done()
         })
   })
@@ -32,6 +43,7 @@ describe('Auth', function () {
             .end(function (err, res) {
               should.not.exist(err)
               expect(res.redirects[0]).to.match(/\/$/)
+              expect(res).to.redirect
                 // If successful layout displays Login links
               // TODO expect(res.text).to.match(/Contact/)
               done()
@@ -56,22 +68,24 @@ describe('GET /auth/google/callback', () => {
           id: '1234567890',
           displayName: 'Test User'
         })
-
-    var passport = require('passport')
-    server.use(passport.initialize())
   })
 
   afterEach(function () {
     nock.cleanAll()
   })
 
-  it('Login works', (done) => {
-    chai.request(server)
+  it('Login works and shows account', (done) => {
+    var agent = chai.request.agent(server)
+    agent
         .get('/auth/google/callback?code=xxxxxxxx&authuser=0&session_state=xxxxxxxx&prompt=consent')
-        .end(function (err, res) {
-          should.not.exist(err)
-          expect(res.redirects[0]).to.match(/\/$/) // redirects to home on success
-          done()
+        .then(function (res) {
+          return agent.get('/account')
+            .then(function (res) {
+              res.should.have.status(200)
+              res.text.should.include('Test User')
+              res.text.should.include('1234567890')
+              done()
+            })
         })
   })
 })

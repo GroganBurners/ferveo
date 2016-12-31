@@ -20,7 +20,7 @@ module.exports = function (app) {
   //   which, in this example, will redirect the user to the home page.
   app.get('/auth/google/callback',
     passport.authenticate('google', {
-      successRedirect: '/',
+      successRedirect: '/account',
       failureRedirect: '/auth/login'
     }))
 
