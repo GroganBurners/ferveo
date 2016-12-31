@@ -21,7 +21,7 @@ module.exports = function (app) {
   app.get('/auth/google/callback',
     passport.authenticate('google', {
       successRedirect: '/',
-      failureRedirect: '/login'
+      failureRedirect: '/auth/login'
     }))
 
   app.get('/account', passportConfig.ensureAuthenticated, function (req, res) {
@@ -29,11 +29,11 @@ module.exports = function (app) {
     res.render('account', { user: req.user })
   })
 
-  app.get('/login', function (req, res) {
+  app.get('/auth/login', function (req, res) {
     res.render('login', { user: req.user })
   })
 
-  app.get('/logout', function (req, res) {
+  app.get('/auth/logout', function (req, res) {
     req.logout()
     res.redirect('/')
   })

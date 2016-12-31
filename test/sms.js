@@ -37,5 +37,4 @@ describe('Test SMS API', function () {
               done()
             })
   })
-
 })
