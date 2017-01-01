@@ -25,7 +25,6 @@ module.exports = function (app) {
     }))
 
   app.get('/account', passportConfig.ensureAuthenticated, function (req, res) {
-    console.log(req)
     res.render('account', { user: req.user })
   })
 
