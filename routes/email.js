@@ -28,10 +28,10 @@ module.exports = function (app) {
     transporter.sendMail(mailOptions, function (error, info) {
       if (error) {
         res.status(404)
-        res.json({ message: 'Error creating message: ' + error })
+        res.json({ message: 'Error creating message', error: error })
         return
       }
-      res.json({ message: 'Message sent: ' + info.response })
+      res.json({ message: 'Message sent', info: info.response })
     })
   })
 }

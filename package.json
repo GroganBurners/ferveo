@@ -43,7 +43,8 @@
     "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
     "nock": "^9.0.2",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "sinon": "^1.17.7"
   },
   "eslintConfig": {
     "env": {
