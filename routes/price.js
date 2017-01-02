@@ -12,9 +12,8 @@ module.exports = function (app) {
     // create price
     Price.create(req.body, function (err, price) {
       if (err && err.code !== 11000) {
-        console.log(err)
-        console.log(err.code)
-        res.json({ message: 'Error creating price: ' + err })
+        res.status(500)
+        res.json({ message: 'Error creating price', error: err })
         return
       }
 

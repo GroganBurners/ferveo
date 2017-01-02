@@ -7,6 +7,7 @@ var chai = require('chai')
 var server = require('../app')
 /* eslint-disable no-unused-vars */
 var should = chai.should()
+var sinon = require('sinon')
 
 describe('Test Prices API', function () {
   beforeEach(function (done) { // Before each test we empty the database
@@ -73,6 +74,28 @@ describe('Test Prices API', function () {
               res.should.have.status(200)
               res.body.should.be.a('object')
               res.body.should.have.property('message').eql('Successfully created')
+              done()
+            })
+  })
+
+  it('it should POST a price and get a DB error', function (done) {
+    var err = new Error('mock error')
+    var createStub = sinon.stub(mongoose.Model, 'create')
+    createStub.yields(err)
+
+    var pri = {
+      name: 'Gas Service'
+    }
+    chai.request(server)
+            .post('/api/prices')
+            .send(pri)
+            .end(function (err, res) {
+              should.exist(err)
+              res.should.have.status(500)
+              res.body.should.be.a('object')
+              res.body.should.have.property('message').eql('Error creating price')
+              res.body.should.have.property('error')
+              createStub.restore()
               done()
             })
   })
