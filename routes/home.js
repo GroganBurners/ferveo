@@ -5,6 +5,6 @@ module.exports = function (app) {
 }); */
 
   app.get('/', function (req, res, next) {
-    res.render('carousel')
+    res.render('carousel', { title: 'Grogan Burner Services'})
   })
 }
