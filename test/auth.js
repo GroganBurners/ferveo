@@ -66,7 +66,9 @@ describe('GET /auth/google/callback', () => {
       .query(true)
       .reply(200, {
         id: '1234567890',
-        displayName: 'Test User'
+        displayName: 'Test User',
+        emails: ['neil@grogan.ie'],
+        username: 'dueyfinster'
       })
   })
 
@@ -84,7 +86,6 @@ describe('GET /auth/google/callback', () => {
             .then(function (res) {
               res.should.have.status(200)
               res.text.should.include('Test User')
-              res.text.should.include('1234567890')
               done()
             })
         })

@@ -8,6 +8,10 @@ var bodyParser = require('body-parser')
 var flash = require('connect-flash')
 var mongoose = require('mongoose')
 
+var app = express()
+
+require('./models')(app)
+
 /**
  * API keys and Passport configuration.
  */
@@ -16,8 +20,6 @@ require('./config/passport')
 
 // connect to Mongo when the app initializes
 mongoose.connect('mongodb://localhost/local')
-
-var app = express()
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
