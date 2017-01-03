@@ -1,10 +1,10 @@
 var mongoose = require('mongoose')
 // mongoose.Promise = global.Promise; // ES6
 mongoose.Promise = require('bluebird')
-var Price = require('../models/price')
+var Price = require('../../models/price')
 
 var chai = require('chai')
-var server = require('../app')
+var server = require('../../app')
 /* eslint-disable no-unused-vars */
 var should = chai.should()
 var sinon = require('sinon')

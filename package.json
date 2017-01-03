@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "mocha",
+    "test": "mocha test/integration",
+    "functest": "./node_modules/.bin/nightwatch --env local --config=config/nightwatch/nightwatch.conf.js",
     "lint": "eslint app.js bin/ config/ models/ routes/ test/"
   },
   "dependencies": {
@@ -43,8 +44,10 @@
     "imagemin-pngquant": "^5.0.0",
     "istanbul": "^0.4.5",
     "mocha": "^3.2.0",
+    "nightwatch": "^0.9.12",
     "nock": "^9.0.2",
     "nodemon": "^1.11.0",
+    "selenium-download": "^2.0.9",
     "sinon": "^1.17.7"
   },
   "eslintConfig": {

@@ -1,5 +1,5 @@
 var chai = require('chai')
-var server = require('../app')
+var server = require('../../app')
 /* eslint-disable no-unused-vars */
 var should = chai.should()
 var nock = require('nock')
