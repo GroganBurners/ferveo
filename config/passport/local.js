@@ -4,9 +4,9 @@ var LocalStrategy = require('passport-local').Strategy
 var User = mongoose.model('User')
 
 module.exports = new LocalStrategy({
-    usernameField: 'email',
-    passwordField: 'password'
-  },
+  usernameField: 'email',
+  passwordField: 'password'
+},
   function (email, password, done) {
     const options = {
       criteria: { email: email },

@@ -15,7 +15,6 @@ var userSchema = new Schema({
   isAdmin: Boolean
 })
 
-
 userSchema.statics = {
 
   /**

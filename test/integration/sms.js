@@ -5,29 +5,28 @@ var should = chai.should()
 var nock = require('nock')
 
 describe('Test SMS API', function () {
-
   it('it should send an sms', function (done) {
     nock('https://www.my-cool-sms.com')
       .get('/api-socket.php')
       .reply(200, {
-        "success": true,
-        "smsid": "ce184cc0a6d1714d1ac763f4fe89f521",
-        "body": "Have a nice day!",
-        "bodyucs2": "0048006100760065002000610020006E00690063006500200064",
-        "bodygsm7": "486176652061206E6963652064617921",
-        "number": "+491234567890",
-        "senderid": "+449876543210",
-        "senderidenabled": true,
-        "unicode": false,
-        "numchars": 321,
-        "escapenumchars": 0,
-        "smscount": 3,
-        "charge": 0.112,
-        "balance": 752.121,
-        "countrycode": "IE",
-        "prefix": "+353",
-        "timestamp": "2017-04-02T22:27:22-07:00",
-        "callbackurl": "https://www.groganburners.ie/api/sms/callback"
+        'success': true,
+        'smsid': 'ce184cc0a6d1714d1ac763f4fe89f521',
+        'body': 'Have a nice day!',
+        'bodyucs2': '0048006100760065002000610020006E00690063006500200064',
+        'bodygsm7': '486176652061206E6963652064617921',
+        'number': '+491234567890',
+        'senderid': '+449876543210',
+        'senderidenabled': true,
+        'unicode': false,
+        'numchars': 321,
+        'escapenumchars': 0,
+        'smscount': 3,
+        'charge': 0.112,
+        'balance': 752.121,
+        'countrycode': 'IE',
+        'prefix': '+353',
+        'timestamp': '2017-04-02T22:27:22-07:00',
+        'callbackurl': 'https://www.groganburners.ie/api/sms/callback'
       })
 
     var mail = {
@@ -52,8 +51,8 @@ describe('Test SMS API', function () {
       .get('/api-socket.php')
       .reply(200, {
         success: false,
-        errorcode: "210",
-        description: "The number seems to be invalid"
+        errorcode: '210',
+        description: 'The number seems to be invalid'
       })
     var mail = {
       number: '+35386',

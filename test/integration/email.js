@@ -32,7 +32,6 @@ describe('Test Email API', function () {
       })
   })
 
-
   it('it should send an email', function (done) {
     var transportStub = { sendMail: function (options, callback) { callback(true, false) } }
     var sendMailSpy = sinon.spy(transportStub, 'sendMail')
