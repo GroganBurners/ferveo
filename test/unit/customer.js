@@ -13,4 +13,13 @@ describe('Unit Test Customer Model', function () {
       done()
     })
   })
+
+  it('should be valid if it has a name', function (done) {
+    var customer = new Customer({ name: 'Neil Grogan' })
+
+    customer.validate(function (err) {
+      expect(err).to.not.exist
+      done()
+    })
+  })
 })

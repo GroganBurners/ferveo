@@ -8,7 +8,7 @@ var companySchema = new mongoose.Schema({
     regNo: { type: String, required: false },
     vatNo: { type: String, required: false },
     addresses: [addressSchema],
-    phone: [ phoneSchema ],
+    phone: [phoneSchema],
     createdOn: { type: Date, default: Date.now },
     updatedOn: { type: Date, default: Date.now }
 })
