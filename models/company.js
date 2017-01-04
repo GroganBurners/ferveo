@@ -3,8 +3,9 @@ var Schema = mongoose.Schema
 var addressSchema = require('./common/address')
 var phoneSchema = require('./common/phone')
 
+
 var companySchema = new mongoose.Schema({
-    name: { type: String, required: true },
+    name: { type: String, required: true, unique: true },
     regNo: { type: String, required: false },
     vatNo: { type: String, required: false },
     addresses: [addressSchema],
