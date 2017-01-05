@@ -1,14 +1,14 @@
 var Price = require('../models/price')
 
 module.exports = function (app) {
-  app.get('/api/prices', function (req, res, next) {
+  app.get('/prices', function (req, res, next) {
     Price.find({}, function (err, prices) {
       if (err) res.send(err)
       res.json(prices)
     })
   })
 
-  app.post('/api/prices', function (req, res, next) {
+  app.post('/prices', function (req, res, next) {
     // create price
     Price.create(req.body, function (err, price) {
       if (err && err.code !== 11000) {
@@ -28,7 +28,7 @@ module.exports = function (app) {
     })
   })
 
-  app.get('/api/prices/:id', function (req, res, next) {
+  app.get('/prices/:id', function (req, res, next) {
     Price.findById(req.params.id, function (err, price) {
       if (err) {
         res.status(404)
@@ -39,7 +39,7 @@ module.exports = function (app) {
     })
   })
 
-  app.delete('/api/prices/:id', function (req, res, next) {
+  app.delete('/prices/:id', function (req, res, next) {
     var id = req.params.id
     Price.findByIdAndRemove(id, function (err, price) {
       if (err) {
@@ -51,7 +51,7 @@ module.exports = function (app) {
     })
   })
 
-  app.put('/api/prices/:id', function (req, res, next) {
+  app.put('/prices/:id', function (req, res, next) {
     var id = req.params.id
     Price.findByIdAndUpdate(id, { $set: req.body }, { new: true }, function (err, price) {
       if (err === null && price === null) {
