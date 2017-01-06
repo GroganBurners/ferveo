@@ -1,7 +1,7 @@
 var nodemailer = require('nodemailer')
 
 module.exports = function (app) {
-  app.post('/api/email', function (req, res, next) {
+  app.post('/email', function (req, res, next) {
         // send an email
 
     var smtpConfig = {

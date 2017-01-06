@@ -1,9 +1,11 @@
 const nodemailer = require('nodemailer')
 const Router = require('express')
+var ok = require('./utils').ok
+var fail = require('./utils').fail
 
 module.exports = class EmailController {
     constructor() {
-        const smtpConfig = {
+        this.smtpConfig = {
             host: 'smtp.gmail.com',
             port: 465,
             secure: true, // use SSL
@@ -12,8 +14,6 @@ module.exports = class EmailController {
                 pass: process.env.MAIL_PASS
             }
         }
-
-        this.transporter = nodemailer.createTransport(smtpConfig)
     }
 
     sendTestEmail(body) {
@@ -24,23 +24,25 @@ module.exports = class EmailController {
             text: body.text, // plaintext body
             html: body.html // html body
         }
-        this.send(mailOptions)
+        return this.send(mailOptions)
     }
 
     send(email) {
-        transporter.sendMail(mailOptions, function (error, info) {
-            if (error) {
-                return new Error('Error creating message: ' + error)
-            }
-            return { message: 'Message sent', info: info.response }
-        })
+        const transporter = nodemailer.createTransport(this.smtpConfig)
+        return transporter.sendMail(email)
+            .then(() => {
+                return { message: 'Message sent' }
+            })
+            /*.catch((err) => {
+                return new Error('Error creating message: ' + err)
+            });*/
     }
 
     route() {
         const router = new Router()
         router.post('/', (req, res) => {
             this
-                .sendTestEmail(req.body)
+                .send(req.body)
                 .then(ok(res))
                 .then(null, fail(res))
         })

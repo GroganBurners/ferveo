@@ -2,6 +2,7 @@ const BaseController = require('./base')
 var mongoose = require('mongoose')
 const Customer = require('../models/customer')
 const Price = require('../models/price')
+const EmailController = require('./email')
 
 module.exports.Customer = class CustomerController extends BaseController {
   constructor () {
@@ -14,3 +15,5 @@ module.exports.Price = class PriceController extends BaseController {
       super(Price, '_id')
     }
 }
+
+module.exports.Email = EmailController

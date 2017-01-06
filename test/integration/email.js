@@ -9,7 +9,12 @@ var expect = require('chai').expect
 
 describe('Test Email API', function () {
   it('it should send an email', function (done) {
-    var transportStub = { sendMail: function (options, callback) { callback(false, true) } }
+    var transportStub = {
+      sendMail: function (options) {
+        return new Promise((resolve, reject) => { resolve(true, false) });
+      }
+    }
+
     var sendMailSpy = sinon.spy(transportStub, 'sendMail')
     var mailerStub = sinon.stub(nodemailer, 'createTransport').returns(transportStub)
 
@@ -33,7 +38,11 @@ describe('Test Email API', function () {
   })
 
   it('it should send an email', function (done) {
-    var transportStub = { sendMail: function (options, callback) { callback(true, false) } }
+    var transportStub = {
+      sendMail: function (options) {
+        return new Promise((resolve, reject) => { reject(new Error('Something went wrong with mail service')) });
+      }
+    }
     var sendMailSpy = sinon.spy(transportStub, 'sendMail')
     var mailerStub = sinon.stub(nodemailer, 'createTransport').returns(transportStub)
 
@@ -50,7 +59,7 @@ describe('Test Email API', function () {
         should.exist(err)
         res.should.have.status(404)
         res.body.should.be.a('object')
-        res.body.should.have.property('message').eql('Error creating message')
+        err.should.have.property('message').eql('Not Found')
         mailerStub.restore()
         done()
       })
