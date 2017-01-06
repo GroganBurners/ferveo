@@ -3,8 +3,8 @@
 */
 module.exports.ok = function (res) {
   return (data) => {
-      res.json(data)
-    }
+    res.json(data)
+  }
 }
 
 /**
@@ -14,9 +14,9 @@ module.exports.ok = function (res) {
   Not enough privileges - 401 Unauthorized
   Unknown error - 500 Internal server error
 */
-module.exports.fail =  function (res) {
+module.exports.fail = function (res) {
   return (error) => {
-      console.log(error)
-      res.sendStatus(404).end()
-    }
+    console.log(error)
+    res.sendStatus(404).end()
+  }
 }

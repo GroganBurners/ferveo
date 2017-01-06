@@ -6,7 +6,6 @@ const AuthController = cont.Auth
 const passportConfig = require('./passport')
 
 module.exports = function (app) {
-
   // API
   app.use('/api/customers', passportConfig.ensureAuthenticated, new CustomerController().route())
   app.use('/api/prices', new PriceController().route())

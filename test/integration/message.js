@@ -41,7 +41,7 @@ describe('Test Email API', function () {
   it('it should send an email', function (done) {
     var transportStub = {
       sendMail: function (options) {
-        return new Promise((resolve, reject) => { reject(new Error('Something went wrong with mail service')) });
+        return new Promise((resolve, reject) => { reject(new Error('Something went wrong with mail service')) })
       }
     }
     var sendMailSpy = sinon.spy(transportStub, 'sendMail')

@@ -15,7 +15,7 @@ describe('Unit Test Company Model', function () {
   })
 
   it('should be valid with just a name', function (done) {
-    var company = new Company({name: "ABC Boiler Parts Co."})
+    var company = new Company({name: 'ABC Boiler Parts Co.'})
 
     company.validate(function (err) {
       expect(err).to.not.exist
