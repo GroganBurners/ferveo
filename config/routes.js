@@ -1,8 +1,7 @@
 const cont = require('../controllers')
 const CustomerController = cont.Customer
 const PriceController = cont.Price
-const EmailController = cont.Email
-const SmsController = cont.Sms
+const MessageController = cont.Message
 const AuthController = cont.Auth
 const passportConfig = require('./passport')
 
@@ -11,8 +10,7 @@ module.exports = function (app) {
   // API
   app.use('/api/customers', passportConfig.ensureAuthenticated, new CustomerController().route())
   app.use('/api/prices', new PriceController().route())
-  app.use('/api/email', new EmailController().route())
-  app.use('/api/sms', new SmsController().route())
+  app.use('/api/messages', new MessageController().route())
 
   app.use('/auth', new AuthController().route())
 

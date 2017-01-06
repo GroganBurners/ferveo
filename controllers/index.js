@@ -1,8 +1,7 @@
 const BaseController = require('./base')
 const Customer = require('../models/customer')
 const Price = require('../models/price')
-const EmailController = require('./email')
-const SmsController = require('./sms')
+const MessageController = require('./message')
 const AuthController = require('./auth')
 
 module.exports.Customer = class CustomerController extends BaseController {
@@ -17,6 +16,5 @@ module.exports.Price = class PriceController extends BaseController {
   }
 }
 
-module.exports.Email = EmailController
-module.exports.Sms = SmsController
+module.exports.Message = MessageController
 module.exports.Auth = AuthController
