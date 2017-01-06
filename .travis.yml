@@ -30,9 +30,7 @@ env:
   - SMS_USER=test
   - SMS_PASS=test
 after_success:
-- "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha --report lcovonly
-  -- -R spec && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
-- codecov
+- npm run lcov && npm run coveralls; npm run codecov
 notifications:
   on_success: change
   on_failure: change
