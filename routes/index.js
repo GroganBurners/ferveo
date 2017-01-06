@@ -2,7 +2,8 @@ const fs = require('fs')
 const cont = require('../controllers')
 const CustomerController = cont.Customer
 const PriceController = cont.Price
-const EmailController =cont.Email
+const EmailController = cont.Email
+const SmsController = cont.Sms
 const passportConfig = require('../config/passport')
 
 module.exports = function (app) {
@@ -11,6 +12,7 @@ module.exports = function (app) {
   app.use('/api/customers', passportConfig.ensureAuthenticated, new CustomerController().route())
   app.use('/api/prices', new PriceController().route())
   app.use('/api/email', new EmailController().route())
+  app.use('/api/sms', new SmsController().route())
 
   // Ordinary web pages
   app.get('/', function (req, res, next) {

@@ -3,6 +3,7 @@ var mongoose = require('mongoose')
 const Customer = require('../models/customer')
 const Price = require('../models/price')
 const EmailController = require('./email')
+const SmsController = require('./sms')
 
 module.exports.Customer = class CustomerController extends BaseController {
   constructor () {
@@ -17,3 +18,4 @@ module.exports.Price = class PriceController extends BaseController {
 }
 
 module.exports.Email = EmailController
+module.exports.Sms = SmsController

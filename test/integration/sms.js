@@ -65,7 +65,7 @@ describe('Test SMS API', function () {
         should.exist(err)
         res.should.have.status(404)
         res.body.should.be.a('object')
-        res.body.should.have.property('message').eql('Error creating message')
+        err.should.have.property('message').eql('Not Found')
         nock.cleanAll()
         done()
       })
