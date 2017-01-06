@@ -1,11 +1,10 @@
-const fs = require('fs')
 const cont = require('../controllers')
 const CustomerController = cont.Customer
 const PriceController = cont.Price
 const EmailController = cont.Email
 const SmsController = cont.Sms
 const AuthController = cont.Auth
-const passportConfig = require('../config/passport')
+const passportConfig = require('./passport')
 
 module.exports = function (app) {
 

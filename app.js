@@ -42,7 +42,7 @@ app.use(flash())
 app.use('/static', express.static(path.join(__dirname, 'public')))
 app.use(passport.initialize())
 app.use(passport.session())
-require('./routes')(app)
+require('./config/routes')(app)
 
 
 // catch 404 and forward to error handler
