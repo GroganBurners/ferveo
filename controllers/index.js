@@ -4,6 +4,7 @@ const Customer = require('../models/customer')
 const Price = require('../models/price')
 const EmailController = require('./email')
 const SmsController = require('./sms')
+const AuthController = require('./auth')
 
 module.exports.Customer = class CustomerController extends BaseController {
   constructor () {
@@ -19,3 +20,4 @@ module.exports.Price = class PriceController extends BaseController {
 
 module.exports.Email = EmailController
 module.exports.Sms = SmsController
+module.exports.Auth = AuthController
