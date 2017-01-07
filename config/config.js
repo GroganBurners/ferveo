@@ -60,7 +60,7 @@ module.exports = {
   test: {
     port: 3000,
     baseUrl: 'http://devbox.example.com:3000',
-    db: 'mongodb://localhost/local',
+    db: 'mongodb://localhost/test',
     google: {
       clientId: 'test',
       clientSecret: 'test',
