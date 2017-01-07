@@ -9,8 +9,8 @@ module.exports = {
       callbackPath: '/auth/google/callback'
     },
     sauceLabs: {
-      username: '',
-      accessKey: ''
+      username: process.env.SAUCE_USERNAME,
+      accessKey: process.env.SAUCE_ACCESS_KEY
     },
     mail: {
       from: {
@@ -38,8 +38,8 @@ module.exports = {
       callbackPath: '/auth/google/callback'
     },
     sauceLabs: {
-      username: '',
-      accessKey: ''
+      username: process.env.SAUCE_USERNAME,
+      accessKey: process.env.SAUCE_ACCESS_KEY
     },
     mail: {
       from: {
@@ -62,28 +62,28 @@ module.exports = {
     baseUrl: 'http://devbox.example.com:3000',
     db: 'mongodb://localhost/local',
     google: {
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientId: 'test',
+      clientSecret: 'test',
       callbackPath: '/auth/google/callback'
     },
     sauceLabs: {
-      username: '',
-      accessKey: ''
+      username: process.env.SAUCE_USERNAME,
+      accessKey: process.env.SAUCE_ACCESS_KEY
     },
     mail: {
       from: {
         name: 'Grogan Burner Services 👥',
-        address: process.env.MAIL_USER
+        address: 'test@example.com'
       },
       server: 'smtp.gmail.com',
       port: 465,
-      username: process.env.MAIL_USER,
-      password: process.env.MAIL_PASS
+      username: 'test@example.com',
+      password: 'test'
     },
     sms: {
       from: 'GrogBurners',
-      username: process.env.SMS_USER,
-      password: process.env.SMS_PASS
+      username: 'test',
+      password: 'test'
     }
   }
 }
