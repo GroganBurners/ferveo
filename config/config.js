@@ -3,6 +3,7 @@ module.exports = {
     port: 3000,
     baseUrl: 'http://devbox.example.com:3000',
     db: 'mongodb://localhost/local',
+    logLevel: 'debug',
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -32,6 +33,7 @@ module.exports = {
     port: 3000,
     baseUrl: 'https://groganburners.ie',
     db: 'mongodb://localhost/gbs',
+    logLevel: 'info',
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -61,6 +63,7 @@ module.exports = {
     port: 3000,
     baseUrl: 'http://devbox.example.com:3000',
     db: 'mongodb://localhost/test',
+    logLevel: 'error',
     google: {
       clientId: 'test',
       clientSecret: 'test',
