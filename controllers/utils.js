@@ -1,3 +1,4 @@
+const env = require('../config').env
 /**
   Returns a function that will write the result as a JSON to the response
 */
@@ -16,7 +17,7 @@ module.exports.ok = function (res) {
 */
 module.exports.fail = function (res) {
   return (error) => {
-    console.log(error)
+    if (env !== 'test') console.log(error)
     res.sendStatus(404).end()
   }
 }

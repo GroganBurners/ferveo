@@ -2,11 +2,12 @@
 var mongoose = require('mongoose')
 var GoogleStrategy = require('passport-google-oauth2').Strategy
 var User = mongoose.model('User')
+var config = require('../')
 
 module.exports = new GoogleStrategy({
-  clientID: process.env.GOOGLE_CLIENT_ID,
-  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-  callbackURL: process.env.BASE_URL + '/auth/google/callback' /* ,
+  clientID: config.google.clientId,
+  clientSecret: config.google.clientSecret,
+  callbackURL: config.baseUrl + config.google.callbackPath /* ,
   passReqToCallback: true */
 },
   function (accessToken, refreshToken, profile, done) {

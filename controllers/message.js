@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer')
 const Router = require('express')
+const config = require('../config')
 var rp = require('request-promise')
 var ok = require('./utils').ok
 var fail = require('./utils').fail
@@ -7,20 +8,20 @@ var fail = require('./utils').fail
 module.exports = class MessageController {
   constructor () {
     this.smtpConfig = {
-      host: 'smtp.gmail.com',
-      port: 465,
+      host: config.mail.server,
+      port: config.mail.port,
       secure: true, // use SSL
       auth: {
-        user: process.env.MAIL_USER,
-        pass: process.env.MAIL_PASS
+        user: config.mail.username,
+        pass: config.mail.password
       }
     }
   }
 
   sendSMS (sms) {
     var data = {
-      'username': process.env.SMS_USER,
-      'password': process.env.SMS_PASS,
+      'username': config.sms.username,
+      'password': config.sms.password,
       'function': 'sendSms',
       'number': sms.number,
       'message': sms.message,
@@ -43,7 +44,7 @@ module.exports = class MessageController {
 
   sendTestEmail (body) {
     const mailOptions = {
-      from: '"Grogan Burner Services 👥" <' + process.env.MAIL_USER + '>', // sender address
+      from: '"' + config.mail.from.name + '" <' + config.mail.from.address + '>', // sender address
       to: body.to, // list of receivers
       subject: body.subject, // Subject line
       text: body.text, // plaintext body

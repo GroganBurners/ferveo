@@ -1,4 +1,4 @@
-require('dotenv').config()
+var config = require('./config')
 var express = require('express')
 var path = require('path')
 var logger = require('morgan')
@@ -19,7 +19,7 @@ var passport = require('passport')
 require('./config/passport')
 
 // connect to Mongo when the app initializes
-mongoose.connect('mongodb://localhost/local')
+mongoose.connect(config.db)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
