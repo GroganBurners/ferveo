@@ -1,16 +1,7 @@
 machine:
   node:
     version: 6.9.2
-  environment:
-    GOOGLE_CLIENT_ID: test
-    GOOGLE_CLIENT_SECRET: test
-    BASE_URL: devbox.example.com
-    MAIL_USER: test@example.com
-    MAIL_PASS: test
-    SMS_USER: test
-    SMS_PASS: test
   pre:
-    - touch ferveo/.env
     - npm install mocha-junit-reporter
 test:
   override:

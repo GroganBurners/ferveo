@@ -20,15 +20,6 @@ before_install:
   fi
 - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then mongod --fork --dbpath $HOME/data/db --logpath
   $HOME/mongo.log; fi
-env:
-  global:
-  - GOOGLE_CLIENT_ID=test
-  - GOOGLE_CLIENT_SECRET=test
-  - BASE_URL=devbox.example.com
-  - MAIL_USER=test@example.com
-  - MAIL_PASS=test
-  - SMS_USER=test
-  - SMS_PASS=test
 after_success:
 - npm run lcov && npm run coveralls; npm run codecov
 notifications:

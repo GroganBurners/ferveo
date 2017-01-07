@@ -1,13 +1,6 @@
 environment:
   matrix:
     - nodejs_version: '6'
-  GOOGLE_CLIENT_ID: test
-  GOOGLE_CLIENT_SECRET: test
-  BASE_URL: devbox.example.com
-  MAIL_USER: test@example.com
-  MAIL_PASS: test
-  SMS_USER: test
-  SMS_PASS: test
 
 services:
   - mongodb
@@ -22,7 +15,6 @@ install:
   - node --version
   - npm --version
   - npm install
-  - echo test>.env 
 
 matrix:
   fast_finish: true
