@@ -31,7 +31,7 @@ module.exports = {
   production: {
     port: 3000,
     baseUrl: 'https://groganburners.ie',
-    db: 'mongodb://localhost/local',
+    db: 'mongodb://localhost/gbs',
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
