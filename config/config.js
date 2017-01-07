@@ -3,6 +3,8 @@ module.exports = {
     port: 3000,
     baseUrl: 'http://devbox.example.com:3000',
     db: 'mongodb://localhost/local',
+    cookieSecret: 'cookie_secret',
+    sessionName: 'test',
     logLevel: 'debug',
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID,
@@ -33,6 +35,8 @@ module.exports = {
     port: 3000,
     baseUrl: 'https://groganburners.ie',
     db: 'mongodb://localhost/gbs',
+    cookieSecret: process.env.GBS_SECRET,
+    sessionName: 'test',
     logLevel: 'info',
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID,
@@ -63,6 +67,8 @@ module.exports = {
     port: 3000,
     baseUrl: 'http://devbox.example.com:3000',
     db: 'mongodb://localhost/test',
+    cookieSecret: 'cookie_secret',
+    sessionName: 'test',
     logLevel: 'error',
     google: {
       clientId: 'test',

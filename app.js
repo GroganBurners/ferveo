@@ -32,8 +32,8 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())
 app.use(session({
-  secret: 'cookie_secret',
-  name: 'test',
+  secret: config.cookieSecret,
+  name: config.sessionName,
   proxy: true,
   resave: true,
   saveUninitialized: true
