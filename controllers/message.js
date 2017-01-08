@@ -1,6 +1,7 @@
 const nodemailer = require('nodemailer')
 const Router = require('express')
 const config = require('../config')
+const logger = require('winston')
 var rp = require('request-promise')
 var ok = require('./utils').ok
 var fail = require('./utils').fail
@@ -31,9 +32,11 @@ module.exports = class MessageController {
     return rp('https://www.my-cool-sms.com/api-socket.php', { json: true, body: data })
             .then((resp) => {
               if (resp.hasOwnProperty('errorcode')) {
-                console.log('Send SMS failed: ' + resp.description)
+                logger.error('Send SMS failed: ' + resp.description)
                 throw new Error('SMS Send failed!')
               } else {
+                logger.info('SMS Sent to: ' + JSON.Stringify(resp))
+                logger.debug('SMS Sent: ' + JSON.Stringify(resp))
                 return { message: 'Message sent' }
               }
             })
