@@ -2,6 +2,7 @@ var mongoose = require('mongoose')
 // mongoose.Promise = global.Promise; // ES6
 mongoose.Promise = require('bluebird')
 var Price = require('../../models/price')
+var logger = require('winston')
 
 var chai = require('chai')
 var server = require('../../app')
@@ -35,7 +36,7 @@ describe('Test Prices API', function () {
   it('should GET all the prices (one in DB)', function (done) {
     var pri = new Price({ name: 'Gas Service' })
     pri.save(function (err, price) {
-      if (err) console.log(err.stack)
+      if (err) logger.error(err.stack)
       chai.request(server)
                 .get(prefix)
                 .end(function (err, res) {
@@ -53,7 +54,7 @@ describe('Test Prices API', function () {
     var pr1 = new Price({ name: 'Gas Service' })
     var pr2 = new Price({ name: 'Oil Service' })
     Price.create(pr1, pr2, function (err, pr1, pr2) {
-      if (err) console.log(err.stack)
+      if (err) logger.error(err.stack)
       chai.request(server)
                 .get(prefix)
                 .end(function (err, res) {
@@ -128,7 +129,7 @@ describe('Test Prices API', function () {
     var pri = new Price({ name: 'Gas Service' })
     var pr2 = { name: 'Gas Service' }
     pri.save(function (err, price) {
-      if (err) console.log(err.stack)
+      if (err) logger.error(err.stack)
       chai.request(server)
                 .post(prefix)
                 .send(pr2)
@@ -145,7 +146,7 @@ describe('Test Prices API', function () {
     var pr = new Price({ name: 'Oil Price' })
 
     pr.save(function (err, price) {
-      if (err) console.log(err.stack)
+      if (err) logger.error(err.stack)
       chai.request(server)
                 .get('/api/prices/' + price._id.toString())
                 .send(price)
@@ -177,7 +178,7 @@ describe('Test Prices API', function () {
     var priceToBeUpdated = new Price({ name: 'Gas Fire Price' })
 
     priceToBeUpdated.save(function (err, price) {
-      if (err) console.log(err.stack)
+      if (err) logger.error(err.stack)
       var updatesForPrice = { name: 'Gas Fire Price Updated' }
       chai.request(server)
                 .put('/api/prices/' + price._id)
@@ -211,7 +212,7 @@ describe('Test Prices API', function () {
     var pr = new Price({ name: 'Gas Fire Price' })
 
     pr.save(function (err, price) {
-      if (err) console.log(err.stack)
+      if (err) logger.error(err.stack)
       chai.request(server)
                 .delete('/api/prices/' + price._id)
                 .send(price)
