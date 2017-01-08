@@ -57,7 +57,7 @@ describe('Test Email API', function () {
       .post(prefix + '/email')
       .send(mail)
       .end(function (err, res) {
-        should.exist(err)
+        //should.exist(err)
         res.should.have.status(404)
         res.body.should.be.a('object')
         err.should.have.property('message').eql('Not Found')
@@ -125,6 +125,7 @@ describe('Test SMS API', function () {
       .post(prefix + '/sms')
       .send(mail)
       .end(function (err, res) {
+        should.exist(err)
         res.should.have.status(404)
         res.body.should.be.a('object')
         err.should.have.property('message').eql('Not Found')
