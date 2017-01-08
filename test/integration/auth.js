@@ -30,7 +30,7 @@ describe('Auth logged out', function () {
     chai.request(server)
       .get('/auth/google')
       .end(function (err, res) {
-        if (err) console.log(err.stack)
+        should.exist(err)
         expect(res.redirects[0]).to.contain('https://accounts.google.com/o/oauth2/auth')
         expect(res).to.redirect
         done()
