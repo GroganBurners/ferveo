@@ -1,9 +1,12 @@
 const env = require('../config').env
+const logger = require('winston')
+
 /**
   Returns a function that will write the result as a JSON to the response
 */
 module.exports.ok = function (res) {
   return (data) => {
+    logger.debug('Returning JSON data to client: ' + data)
     res.json(data)
   }
 }
@@ -17,7 +20,7 @@ module.exports.ok = function (res) {
 */
 module.exports.fail = function (res) {
   return (error) => {
-    if (env !== 'test') console.log(error)
+    logger.error(error)
     res.sendStatus(404).end()
   }
 }
