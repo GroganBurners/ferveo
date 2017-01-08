@@ -28,7 +28,11 @@ app.set('view engine', 'pug')
 
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-app.use(morgan('combined', { stream: { write: message => logger.info(message) } }))
+if (config.env === 'development') {
+  app.use(morgan('dev', { stream: { write: message => logger.info(message) } }))
+} else {
+  app.use(morgan('combined', { stream: { write: message => logger.info(message) } }))
+}
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(cookieParser())

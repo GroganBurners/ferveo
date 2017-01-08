@@ -2,27 +2,16 @@ var winston = require('winston')
 var config = require('./')
 var env = config.env
 
-winston.info('env is set', env)
+const tsFormat = () => '[' + (new Date()).toTimeString().replace(/.*(\d{2}:\d{2}:\d{2}).*/, '$1') + ']'
 
 switch (env) {
   case 'development': {
-    winston.addColors({
-      trace: 'magenta',
-      input: 'grey',
-      verbose: 'cyan',
-      prompt: 'grey',
-      debug: 'blue',
-      info: 'green',
-      data: 'grey',
-      help: 'cyan',
-      warn: 'yellow',
-      error: 'red'
-    })
     winston.remove(winston.transports.Console)
     winston.add(winston.transports.Console, {
       level: config.logLevel,
       prettyPrint: true,
-      colorize: true,
+      colorize: 'all',
+      timestamp: tsFormat,
       humanReadableUnhandledException: true
     })
     break
@@ -42,5 +31,7 @@ switch (env) {
     break
   }
 }
+
+winston.info('ENV=', env)
 
 module.exports = winston
