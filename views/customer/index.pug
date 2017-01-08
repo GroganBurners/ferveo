@@ -1,0 +1,17 @@
+extends ../layout
+
+block head
+  h1= title
+
+block body
+  if (customers.length)
+    table
+        thead
+            tr
+                th ID
+                th Name
+                th Address
+                th Phone
+        tbody
+            each customer in customers
+                include customer

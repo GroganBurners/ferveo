@@ -67,7 +67,7 @@ module.exports = class MessageController {
         }); */
   }
 
-  route () {
+  routeAPI () {
     const router = new Router()
     router.post('/email', (req, res) => {
       this

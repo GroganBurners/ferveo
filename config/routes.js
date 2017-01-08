@@ -7,9 +7,10 @@ const passportConfig = require('./passport')
 
 module.exports = function (app) {
   // API
-  app.use('/api/customers', passportConfig.ensureAuthenticated, new CustomerController().route())
-  app.use('/api/prices', new PriceController().route())
-  app.use('/api/messages', new MessageController().route())
+  app.use('/api/customers', new CustomerController().routeAPI())
+  app.use('/customers', new CustomerController().route())
+  app.use('/api/prices', new PriceController().routeAPI())
+  app.use('/api/messages', new MessageController().routeAPI())
 
   app.use('/auth', new AuthController().route())
 

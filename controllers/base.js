@@ -2,6 +2,7 @@ var Router = require('express')
 var pluralize = require('pluralize')
 var ok = require('./utils').ok
 var fail = require('./utils').fail
+var respond = require('./utils').respond
 
 const MAX_RESULTS = 100
 
@@ -36,12 +37,12 @@ module.exports = class BaseController {
     filter[this.key] = id
 
     return this.model
-    .findOne(filter)
-    .then((modelInstance) => {
-      var response = {}
-      response[this.modelName] = modelInstance
-      return response
-    })
+      .findOne(filter)
+      .then((modelInstance) => {
+        var response = {}
+        response[this.modelName] = modelInstance
+        return response
+      })
   }
 
   list () {
@@ -90,7 +91,7 @@ module.exports = class BaseController {
       })
   }
 
-  route () {
+  routeAPI () {
     const router = new Router()
 
     router.get('/', (req, res) => {
@@ -125,6 +126,29 @@ module.exports = class BaseController {
       this
         .delete(req.params.key)
         .then(ok(res))
+        .then(null, fail(res))
+    })
+
+    return router
+  }
+
+  route () {
+    const router = new Router()
+
+    router.get('/', (req, res) => {
+      this
+        .list()
+        .then((list) => {
+          let pageResp = {
+            title: this.model.modelName
+          }
+          const arr = []
+          for (const obj of list[pluralize(this.modelName)]) {
+            arr.push(obj.toObject())
+          }
+          pageResp[pluralize(this.modelName)] = arr
+          respond(res, this.modelName + '/index', pageResp)
+        })
         .then(null, fail(res))
     })
 
