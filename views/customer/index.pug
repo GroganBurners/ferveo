@@ -1,16 +1,8 @@
 extends ../base
 block body
   if (customers.length)
-    table
-        thead
-            tr
-                th ID
-                th Name
-                th Address
-                th Phone
-        tbody
-            each customer in customers
-                include customer
+    br
+    +table-striped(['ID','Name','Val','Created', 'Updated'], customers)
   else
     br
     +alert-x-danger('No customers present')
