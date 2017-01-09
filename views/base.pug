@@ -1,0 +1,26 @@
+include components/navbar
+doctype html
+html(lang="en")
+	head
+		block head
+			meta(charset="UTF-8")
+			meta(name="viewport",content="width=device-width, initial-scale=1, shrink-to-fit=no")
+			meta(name="description",content="")
+			meta(name="author",content="")
+			link(rel="icon",href="/static/images/favicon.ico")
+			title= title
+			block styles
+				style
+					include ../node_modules/bootstrap/dist/css/bootstrap.min.css
+					include ../public/stylesheets/base.css
+	body
+		div(class="container")
+			+navbar()
+				+nav_item('/', true) Home
+				+nav_item('/#gas', false) Gas
+			block body
+		block scripts
+			script
+				include ../node_modules/jquery-slim/dist/jquery.slim.min.js
+				include ../node_modules/tether/dist/js/tether.min.js 
+				include ../node_modules/bootstrap/dist/js/bootstrap.min.js

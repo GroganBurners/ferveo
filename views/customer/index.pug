@@ -1,8 +1,4 @@
-extends ../layout
-
-block head
-  h1= title
-
+extends ../base
 block body
   if (customers.length)
     table
@@ -15,3 +11,4 @@ block body
         tbody
             each customer in customers
                 include customer
+  h1 test

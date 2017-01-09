@@ -70,7 +70,8 @@
     "extends": "standard",
     "plugins": [
       "standard",
-      "promise"
+      "promise",
+      "pug"
     ]
   }
 }
