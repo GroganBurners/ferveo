@@ -11,4 +11,6 @@ block body
         tbody
             each customer in customers
                 include customer
-  h1 test
+  else
+    br
+    +alert-danger('No customers present')

@@ -1,0 +1,15 @@
+mixin alert(type,message)
+  .alert(role="alert",class="alert-" + type)
+    != message
+
+mixin alert-info(message)
+  +alert("info",message)
+
+mixin alert-success(message)
+  +alert("success",message)
+
+mixin alert-warning(message)
+  +alert("warning",message)
+
+mixin alert-danger(message)
+  +alert("danger",message)
