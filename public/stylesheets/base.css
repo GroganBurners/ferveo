@@ -1,3 +1,8 @@
 body {
   padding-top: 2rem;
 }
+
+.logo{
+  padding-left: 3px;
+  display: inline-block;
+}

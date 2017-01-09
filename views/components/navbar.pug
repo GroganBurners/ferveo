@@ -8,8 +8,8 @@ mixin navbar(name, href, position, style, background, logoUrl)
     nav( role="navigation", class=["navbar", "rounded", position, "navbar-" + style, "bg-" +background] )
         button.navbar-toggler.navbar-toggler-right(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
             span.navbar-toggler-icon
-        a.navbar-brand(href=href)= name
-            //img(class="float-left" itemprop="logo" src=logoUrl)
+        a.navbar-brand.pull-left(href=href)= name
+            img.logo(itemprop="logo" src=logoUrl)
         #navbarSupportedContent.collapse.navbar-collapse
             ul.navbar-nav.mr-auto
                 block
