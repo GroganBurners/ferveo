@@ -1,8 +1,8 @@
-include components/alerts
-include components/buttons
-include components/images
-include components/navbar
-include components/tables
+include ../components/alerts
+include ../components/buttons
+include ../components/images
+include ../components/navbar
+include ../components/tables
 doctype html
 html(lang="en")
 	head
@@ -15,10 +15,10 @@ html(lang="en")
 			title= title
 			block styles
 				style
-					include ../node_modules/bootstrap/dist/css/bootstrap.min.css
-					include ../public/stylesheets/base.css
+					include ../../node_modules/bootstrap/dist/css/bootstrap.min.css
+					include ../../public/stylesheets/base.css
 	body
-		div(class="container")
+		.container
 			+navbar()
 				+nav_item('/', true) Home
 				+nav_item('/#gas', false) Gas Services
@@ -26,9 +26,11 @@ html(lang="en")
 				+nav_item('/#repair', false) Boiler Repair
 				+nav_item('/#contact', false) Contact Us
 				+nav_item('/#about', false) About Us
+			.messages
+				include ../components/messages
 			block body
 		block scripts
 			script
-				include ../node_modules/jquery-slim/dist/jquery.slim.min.js
-				include ../node_modules/tether/dist/js/tether.min.js 
-				include ../node_modules/bootstrap/dist/js/bootstrap.min.js
+				include ../../node_modules/jquery-slim/dist/jquery.slim.min.js
+				include ../../node_modules/tether/dist/js/tether.min.js 
+				include ../../node_modules/bootstrap/dist/js/bootstrap.min.js

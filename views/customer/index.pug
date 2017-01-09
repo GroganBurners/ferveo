@@ -1,7 +1,8 @@
-extends ../base
+extends ../layouts/base
 block body
   if (customers.length)
     br
+    +img-thumbnail('/static/images/carousel/pic.jpg')
     +table-striped(['ID','Name','Val','Created', 'Updated'], customers)
   else
     br
