@@ -40,3 +40,46 @@ mixin marketing(items)
     .row
       each item,index in items
         +teaser(item)
+
+mixin featurette(item)
+  hr.featurette-divider
+  .row.featurette
+    .col
+      +img-center(item.image.src, item.image.alt)
+    .col
+      h2.featurette-heading(id=item.id) #{item.h2}
+        span.text-muted #{item.muted}
+      p.lead #{item.p}
+      unless !item.prices
+        ul
+          each price,index in item.prices
+            li #{price}
+      unless !item.button
+        +a-btn(item.button.href) #{item.button.text}
+
+mixin about-us(item)
+  hr.featurette-divider
+  .row.featurette
+    .col
+      +img-center(item.image.src, item.image.alt)
+      h2.featurette-heading(id=item.id) #{item.h2}
+        span.text-muted #{item.muted}
+      p.lead #{item.p}
+      p.lead
+        | We provide:
+      unless !item.prices
+        ul
+          each price,index in item.prices
+            li #{price}
+      p.lead
+        | Service area includes: parts of Loais, Offaly, Kilkenny, Tipperary, Carlow, Waterford.
+      p
+        | We also take safety as the number one priority. All of our engineers are RGI (gas) and OFTEC (oil) certified and carry work out to the highest standard.
+    .col
+      img(src='/static/images/cert/oftec.jpg')
+      img(src='/static/images/cert/rgii.jpg')
+
+mixin featurettes(items)
+  each item,index in items
+        +featurette(item)
+  

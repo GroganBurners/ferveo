@@ -6,6 +6,75 @@ append styles
 block body
     +carousel("myCarousel",[
         {image:"/static/images/carousel/pic3.jpg",h1:"Winter Deals",p:"Winter is here! Our prices will keep you warm inside, while the cold keeps coming on the outside!",button:{caption:"See Gas offers",url:"#gas"}, button:{caption:"See Oil offers",url:"#oil"}}])
-    +marketing([{image:{url:"/static/images/teasers/gas.jpg",alt:"Gas Hob"},h2:"Gas",p:"We do comprehensive gas boiler, gas burner, gas fire and gas appliance servicing. This includes cleaning out the combustion chamber (to improve efficiency) and a full safety and emissions report. Fully insured and RGI registered for safety.", button:{caption:"View details »", url:"#gas"}},
-    {image:{url:"/static/images/teasers/oil.png",alt:"Oil Barrel"},h2:"Oil",p:"We do a full service of oil boiler and oil burner appliances. 95% of call outs are less then an hour. Fully insured and OFTEC registered for safety.", button:{caption:"View details »", url:"#oil"}},
-    {image:{url:"/static/images/teasers/repair.png",alt:"Repair of Boiler and Burner"},h2:"Repair",p:"We stock a large range of parts for oil and the most most popular parts for gas. Most callouts are under an hour and fixed on the spot.", button:{caption:"View details »", url:"#repair"}}])
+    +marketing([
+        {
+            image:{url:"/static/images/teasers/gas.jpg",alt:"Gas Hob"},
+            h2:"Gas",
+            p:"We do comprehensive gas boiler, gas burner, gas fire and gas appliance servicing. This includes cleaning out the combustion chamber (to improve efficiency) and a full safety and emissions report. Fully insured and RGI registered for safety.", 
+            button:{caption:"View details »", url:"#gas"}
+        },
+        {
+            image:{url:"/static/images/teasers/oil.png",alt:"Oil Barrel"},
+            h2:"Oil",
+            p:"We do a full service of oil boiler and oil burner appliances. 95% of call outs are less then an hour. Fully insured and OFTEC registered for safety.", 
+            button:{caption:"View details »", url:"#oil"}
+        },
+        {
+            image:{url:"/static/images/teasers/repair.png",alt:"Repair of Boiler and Burner"},
+            h2:"Repair",
+            p:"We stock a large range of parts for oil and the most most popular parts for gas. Most callouts are under an hour and fixed on the spot.", 
+            button:{caption:"View details »", url:"#repair"}
+        }
+    ])
+    +featurettes([
+        {
+            id: "gas",
+            image:{src:"/static/images/featurettes/gas.jpg", alt:"Gas Service"},
+            h2: "Gas Servicing. ",
+            muted: "Heat on demand. Value for money",
+            p: "Gas appliance service charges",
+            button: {href:"#contact", text:"Book Now"},
+            prices: ["Gas system Boiler Servicing €80","Gas combi or condensing boiler service €80",
+            "Gas Fire Servicing €65", "Gas Boiler and Fire service together €120"]
+        },
+        {
+            id: "oil",
+            image:{src:"/static/images/featurettes/oil.jpg", alt:"Oil Barrel"},
+            h2: "Oil Service. ",
+            muted: "Save money and increase efficiency.",
+            p: "Oil fired appliance service charges",
+            button: {href:"#contact", text:"Book Now"},
+            prices: ["Oil fired Boiler Servicing €80","Oil combi or condensing boiler servicing €80"]
+        },
+        {
+            id: "repair",
+            image:{src:"/static/images/featurettes/burner.jpg", alt:"Oil and Gas Burner Boiler Repair"},
+            h2: "Repair. ",
+            muted: "For when the unexpected happens.",
+            p: "Repair charges",
+            button: {href:"#contact", text:"Book Now"},
+            prices: ["Repair call out fee is €80 (this includes first hour, most call outs require 1hr or less)",
+            "If parts are required this will be extra",
+            "If a part needs to be ordered there is no extra charge for the return visit to install the part.", 
+            "We stock  a large number of oil boiler parts so 95% of repairs can be fixed at the first visit.",
+            "We do stock some gas boiler parts but due to the large number of makes and models of gas boilers on the market it is impossible to stock all gas parts."]
+        }
+    ])
+    +featurette({
+        id: "contact",
+        image:{src:"/static/images/featurettes/phone.jpg", alt:'Phone us now'},
+        h2: "Book now. ",
+        muted: "A great experience awaits.",
+        p: "<strong>Call us: </strong>087 634 1300 or <strong>email: </strong><a href='mailto:info@groganburners.ie'>info@groganburners.ie</a>"
+    })
+    +about-us({
+        id: "about",
+        image:{src:"/static/images/featurettes/logo.png", alt:'Grogan Burners Logo'},
+        h2: "About us. ",
+        muted: "Over 40 years experience.",
+        p: "Grogan Burners is based in Ballyda, Danesfort, Co. Kilkenny. We serve Kilkenny City and the surrounding counties in the Leinster region. Started over 40 years ago by Milo Grogan, his son Michael now runs the business, after setting up the limited company in 2007. We take pride in our service and many of our customers have been with us for years - we like to keep people loyal!",
+        prices: ["Gas boiler service", "Gas burner service", "Gas boiler repair", "Gas burner repair",
+        "Gas combi boiler service", "Gas fire service", "Oil boiler service", "Oil burner service",
+        "Oil boiler repair", "Oil burner repair", "Oil combi boiler service", "Oil condensing boiler service"
+        ]
+    })
