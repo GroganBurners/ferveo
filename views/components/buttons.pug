@@ -1,3 +1,28 @@
+mixin a-btn(url,style)
+  - var type = (typeof style === 'undefined') ? "primary" : style
+  a.btn(class="btn-" + type,href=url,role="button")
+    block
+
+mixin a-btn-secondary(url)
+  +a-btn(url,"secondary")
+    block
+  
+mixin a-btn-info(url)
+  +a-btn(url,"info")
+    block
+
+mixin a-btn-warning(url)
+  +a-btn(url,"warning")
+    block
+  
+mixin a-btn-danger(url)
+  +a-btn(url,"danger")
+    block
+
+mixin a-btn-success(url)
+  +a-btn(url,"success")
+    block
+
 mixin btn(caption,style,size)
   - var type = (typeof style === 'undefined') ? "primary" : style
   unless size
@@ -7,7 +32,7 @@ mixin btn(caption,style,size)
 
 
 mixin btn-secondary(caption)
-  +btn(caption,"primary")
+  +btn(caption,"secondary")
 
 mixin btn-info(caption)
   +btn(caption,"info")

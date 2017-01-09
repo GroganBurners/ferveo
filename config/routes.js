@@ -19,6 +19,10 @@ module.exports = function (app) {
     res.render('carousel', { title: 'Grogan Burner Services' })
   })
 
+  app.get('/new', function (req, res, next) {
+    res.render('home/home', { title: 'Grogan Burner Services' })
+  })
+
   // Testing Flash messages
   app.get('/flash', function (req, res) {
     req.flash('info', 'Hi there!')

@@ -1,0 +1,11 @@
+extends ../layouts/base
+append styles
+    // Custom styles for this template
+    style
+        include ../../public/stylesheets/carousel-old.css
+block body
+    +carousel("myCarousel",[
+        {image:"/static/images/carousel/pic3.jpg",h1:"Winter Deals",p:"Winter is here! Our prices will keep you warm inside, while the cold keeps coming on the outside!",button:{caption:"See Gas offers",url:"#gas"}, button:{caption:"See Oil offers",url:"#oil"}}])
+    +marketing([{image:{url:"/static/images/teasers/gas.jpg",alt:"Gas Hob"},h2:"Gas",p:"We do comprehensive gas boiler, gas burner, gas fire and gas appliance servicing. This includes cleaning out the combustion chamber (to improve efficiency) and a full safety and emissions report. Fully insured and RGI registered for safety.", button:{caption:"View details »", url:"#gas"}},
+    {image:{url:"/static/images/teasers/oil.png",alt:"Oil Barrel"},h2:"Oil",p:"We do a full service of oil boiler and oil burner appliances. 95% of call outs are less then an hour. Fully insured and OFTEC registered for safety.", button:{caption:"View details »", url:"#oil"}},
+    {image:{url:"/static/images/teasers/repair.png",alt:"Repair of Boiler and Burner"},h2:"Repair",p:"We stock a large range of parts for oil and the most most popular parts for gas. Most callouts are under an hour and fixed on the spot.", button:{caption:"View details »", url:"#repair"}}])

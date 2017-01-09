@@ -1,0 +1,42 @@
+include buttons
+include images
+
+//- carousel caption
+mixin carousel-caption(item)
+  .carousel-caption
+    unless !item.h1
+      h1 #{item.h1}
+    unless !item.p
+      p #{item.p}
+    unless !item.button
+      p
+        a.btn.btn-lg.btn-primary(href=item.button.url role="button") #{item.button.caption}
+
+mixin carousel(id,items)
+  .carousel.slide(id="carousel-" + id ,data-ride="carousel")
+    .carousel-inner(role="listbox")
+      each item,index in items
+        if(index === 0)
+          .item.active
+            img(src=item.image)
+            +carousel-caption(item)
+        else
+          .item
+            img(src=item.image)
+            +carousel-caption(item)
+
+mixin teaser(item)
+  .col-lg-4
+    +img-rounded(item.image.url, item.image.alt)
+    unless !item.h2
+      h2 #{item.h2}
+    unless !item.p
+      p #{item.p}
+    unless !item.button
+      +a-btn-secondary(item.button.url) #{item.button.caption}
+
+mixin marketing(items)
+  .container.marketing
+    .row
+      each item,index in items
+        +teaser(item)
