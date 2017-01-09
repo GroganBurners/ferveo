@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "body-parser": "~1.15.2",
+    "bootstrap": "^4.0.0-alpha.6",
     "connect-flash": "^0.1.1",
     "cookie-parser": "~1.4.3",
     "cross-env": "^3.1.4",
@@ -21,6 +22,7 @@
     "dotenv": "^4.0.0",
     "express": "~4.14.0",
     "express-session": "^1.14.2",
+    "jquery-slim": "^3.0.0",
     "mongoose": "^4.7.4",
     "morgan": "~1.7.0",
     "nodemailer": "^2.7.0",
@@ -32,6 +34,7 @@
     "request": "^2.79.0",
     "request-promise": "^4.1.1",
     "serve-favicon": "~2.3.0",
+    "tether": "^1.4.0",
     "winston": "^2.3.0",
     "xlsx": "^0.8.1"
   },
