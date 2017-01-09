@@ -13,3 +13,22 @@ mixin alert-warning(message)
 
 mixin alert-danger(message)
   +alert("danger",message)
+
+mixin alert-x(type,message)
+  .alert.alert-dismissible.fade.show(role="alert",class="alert-" + type)
+    button.close(type="button",data-dismiss="alert" aria-label="Close")
+      span(aria-hidden="true")  &times;
+    = message
+
+// Dismissable alerts
+mixin alert-x-info(message)
+  +alert-x("info",message)
+
+mixin alert-x-success(message)
+  +alert-x("success",message)
+
+mixin alert-x-warning(message)
+  +alert-x("warning",message)
+
+mixin alert-x-danger(message)
+  +alert-x("danger",message)
