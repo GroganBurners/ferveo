@@ -6,3 +6,7 @@ body {
   padding-left: 3px;
   display: inline-block;
 }
+.carousel-caption {
+  border-radius: 15px;
+  background-color: rgba(0,0,0,0.5);
+}

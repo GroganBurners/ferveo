@@ -1,7 +1,11 @@
-mixin a-btn(url,style)
+mixin a-btn(url,style, size)
   - var type = (typeof style === 'undefined') ? "primary" : style
-  a.btn(class="btn-" + type,href=url,role="button")
-    block
+  unless size
+    a.btn(class="btn-" + type,href=url,role="button")
+      block
+  else
+    a.btn(class="btn-" + type + " btn-" + size, href=url, role="button")
+      block
 
 mixin a-btn-secondary(url)
   +a-btn(url,"secondary")
@@ -23,6 +27,32 @@ mixin a-btn-success(url)
   +a-btn(url,"success")
     block
 
+// large a buttons
+mixin a-btn-lg(url)
+  +a-btn(url,'primary',"lg")
+    block
+
+mixin a-btn-lg-secondary(url)
+  +a-btn(url,"secondary","lg")
+    block
+  
+mixin a-btn-lg-info(url)
+  +a-btn(url,"info","lg")
+    block
+
+mixin a-btn-lg-warning(url)
+  +a-btn(url,"warning","lg")
+    block
+  
+mixin a-btn-lg-danger(url)
+  +a-btn(url,"danger","lg")
+    block
+
+mixin a-btn-lg-success(url)
+  +a-btn(url,"success","lg")
+    block
+
+// normal buttons
 mixin btn(caption,style,size)
   - var type = (typeof style === 'undefined') ? "primary" : style
   unless size

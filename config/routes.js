@@ -16,10 +16,6 @@ module.exports = function (app) {
 
   // Ordinary web pages
   app.get('/', function (req, res, next) {
-    res.render('carousel', { title: 'Grogan Burner Services' })
-  })
-
-  app.get('/new', function (req, res, next) {
     res.render('home/home', { title: 'Grogan Burner Services' })
   })
 

@@ -55,26 +55,44 @@ mixin featurette(item)
           each price,index in item.prices
             li #{price}
       unless !item.button
-        +a-btn(item.button.href) #{item.button.text}
+        +a-btn-lg(item.button.href) #{item.button.text}
+
+mixin contact-us(item)
+  hr.featurette-divider
+  .row.featurette
+    .col
+      +img-center(item.image.src, item.image.alt)
+    .col
+      h2.featurette-heading(id='contact')
+        | Book now. 
+        span.text-muted A great experience awaits.
+      p.lead
+        strong Call us: 
+        | 087 634 1300 or 
+        strong email: 
+        a(href='mailto:info@groganburners.ie') info@groganburners.ie
 
 mixin about-us(item)
   hr.featurette-divider
   .row.featurette
     .col
       +img-center(item.image.src, item.image.alt)
+    .col
       h2.featurette-heading(id=item.id) #{item.h2}
         span.text-muted #{item.muted}
       p.lead #{item.p}
       p.lead
         | We provide:
-      unless !item.prices
+      unless !item.services
         ul
-          each price,index in item.prices
-            li #{price}
+          each service,index in item.services
+            li #{service}
       p.lead
         | Service area includes: parts of Loais, Offaly, Kilkenny, Tipperary, Carlow, Waterford.
       p
         | We also take safety as the number one priority. All of our engineers are RGI (gas) and OFTEC (oil) certified and carry work out to the highest standard.
+  .row.featurette
+    .col
     .col
       img(src='/static/images/cert/oftec.jpg')
       img(src='/static/images/cert/rgii.jpg')
