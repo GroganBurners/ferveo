@@ -150,15 +150,16 @@ module.exports = class BaseController {
           respond(res, this.modelName + '/index', pageResp)
         })
         .then(null, fail(res))
+      })
 
-      router.get('/new', function(req, res) {
+      router.get('/new', (req, res) => {
         res.render(this.modelName + '/new', { title: 'Add New ' + this.model.modelName });
-      });
+      })
 
       router.get('/:key', (req, res) => {
         this
           .read(req.params.key)
-          .then((obj) => {
+          .then(obj => {
             let pageResp = {
               title: this.model.modelName
             }
@@ -167,7 +168,7 @@ module.exports = class BaseController {
           })
           .then(null, fail(res))
       })
-    })
+
 
     router.get('/:key/edit', (req, res) => {
       this
