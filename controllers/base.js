@@ -198,7 +198,7 @@ module.exports = class BaseController {
     }).put((req, res) => {
       logger.info('Will update the object: ' + req.params.id)
       this
-        .update(req.params.id, req.body)
+        .update(req.body.id, req.body)
         .then(res.redirect('/' + pluralize(this.modelName) + '/' + req.params.key))
         .then(null, fail(res))
     })
