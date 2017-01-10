@@ -15,9 +15,9 @@ block body
                     button(type='submit').
                         Delete
                 p 
-                    a(href='/customers/#{customer._id}/edit') Edit
+                    a(href='/customers/'+customer._id+'/edit') Edit
                 p
-                    a(href='/customers/#{customer._id}') Show
+                    a(href='/customers/'+customer._id) Show
   else
     br
     +alert-x-danger('No customers present')

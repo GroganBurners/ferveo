@@ -1,11 +1,11 @@
 extends ../layouts/base
 block body
   h1.
-		Blob ID #{blob._id}
-	form(action='/customers/#{customer._id}/edit',method='post',name='updatecustomer',enctype='application/x-www-form-urlencoded')
-        p ID:
-			input#inputName(type='text', value='#{customer._id}', name='id')
-		p Name:
-			input#inputName(type='text', value='#{customer.name}', name='name')
-		p
-			button#btnSubmit(type='submit').Update
+    Customer ID #{customer._id}
+  form(action='/customers/'+customer._id+'/edit',method='post',name='updatecustomer',enctype='application/x-www-form-urlencoded')
+    p ID:
+      input#inputName(type='text', value=customer._id, name='id')
+    p Name:
+      input#inputName(type='text', value=customer.name, name='name')
+    p
+      button#btnSubmit(type='submit') Update
