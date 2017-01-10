@@ -3,7 +3,7 @@ var pluralize = require('pluralize')
 var ok = require('./utils').ok
 var fail = require('./utils').fail
 var respond = require('./utils').respond
-
+const logger = require('winston')
 const MAX_RESULTS = 100
 
 /**
@@ -162,7 +162,7 @@ module.exports = class BaseController {
             let pageResp = {
               title: this.model.modelName
             }
-            pageResp[this.modelName] = obj.toObject()
+            pageResp[this.modelName] = obj[this.modelName].toObject()
             respond(res, this.modelName + '/show', pageResp)
           })
           .then(null, fail(res))
@@ -176,13 +176,13 @@ module.exports = class BaseController {
           let pageResp = {
             title: this.model.modelName
           }
-          pageResp[this.modelName] = obj.toObject()
+          pageResp[this.modelName] = obj[this.modelName].toObject()
           respond(res, this.modelName + '/edit', pageResp)
         })
         .then(null, fail(res))
     })
     // TODO PUT and DELETE for Edit opeation
-    
+
     return router
   }
 }
