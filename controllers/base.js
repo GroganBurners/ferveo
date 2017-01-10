@@ -16,13 +16,13 @@ module.exports = class BaseController {
     @param key primary key of the model that will be used for searching, removing
     and reading
   */
-  constructor (model, key) {
+  constructor(model, key) {
     this.model = model
     this.modelName = model.modelName.toLowerCase()
     this.key = key
   }
 
-  create (data) {
+  create(data) {
     return this.model
       .create(data)
       .then((modelInstance) => {
@@ -32,7 +32,7 @@ module.exports = class BaseController {
       })
   }
 
-  read (id) {
+  read(id) {
     var filter = {}
     filter[this.key] = id
 
@@ -45,7 +45,7 @@ module.exports = class BaseController {
       })
   }
 
-  list () {
+  list() {
     return this.model
       .find({})
       .limit(MAX_RESULTS)
@@ -56,7 +56,7 @@ module.exports = class BaseController {
       })
   }
 
-  delete (id) {
+  delete(id) {
     const filter = {}
     filter[this.key] = id
 
@@ -69,7 +69,7 @@ module.exports = class BaseController {
 
   /**
    */
-  update (id, data) {
+  update(id, data) {
     var filter = {}
     filter[this.key] = id
 
@@ -91,7 +91,7 @@ module.exports = class BaseController {
       })
   }
 
-  routeAPI () {
+  routeAPI() {
     const router = new Router()
 
     router.get('/', (req, res) => {
@@ -132,7 +132,7 @@ module.exports = class BaseController {
     return router
   }
 
-  route () {
+  route() {
     const router = new Router()
 
     router.get('/', (req, res) => {
@@ -150,24 +150,31 @@ module.exports = class BaseController {
           respond(res, this.modelName + '/index', pageResp)
         })
         .then(null, fail(res))
-      })
+    })
 
-      router.get('/new', (req, res) => {
-        res.render(this.modelName + '/new', { title: 'Add New ' + this.model.modelName });
-      })
+    router.get('/new', (req, res) => {
+      res.render(this.modelName + '/new', { title: 'Add New ' + this.model.modelName });
+    })
 
-      router.get('/:key', (req, res) => {
-        this
-          .read(req.params.key)
-          .then(obj => {
-            let pageResp = {
-              title: this.model.modelName
-            }
-            pageResp[this.modelName] = obj[this.modelName].toObject()
-            respond(res, this.modelName + '/show', pageResp)
-          })
-          .then(null, fail(res))
-      })
+    router.post('/', (req, res) => {
+      this
+        .create(req.body)
+        .then(res.redirect('/' + pluralize(this.modelName)))
+        .then(null, fail(res))
+    })
+
+    router.get('/:key', (req, res) => {
+      this
+        .read(req.params.key)
+        .then(obj => {
+          let pageResp = {
+            title: this.model.modelName
+          }
+          pageResp[this.modelName] = obj[this.modelName].toObject()
+          respond(res, this.modelName + '/show', pageResp)
+        })
+        .then(null, fail(res))
+    })
 
 
     router.get('/:key/edit', (req, res) => {
@@ -182,9 +189,9 @@ module.exports = class BaseController {
         })
         .then(null, fail(res))
     }).delete((req, res) => {
-        this
+      this
         .delete(req.params.key)
-        .then(res.redirect('/'+ this.modelName))
+        .then(res.redirect('/' + pluralize(this.modelName)))
         .then(null, fail(res))
     })
     // TODO PUT and DELETE for Edit opeation
