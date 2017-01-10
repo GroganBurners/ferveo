@@ -23,6 +23,7 @@
     "express": "~4.14.0",
     "express-session": "^1.14.2",
     "jquery-slim": "^3.0.0",
+    "method-override": "^2.3.7",
     "mongoose": "^4.7.4",
     "morgan": "~1.7.0",
     "nodemailer": "^2.7.0",

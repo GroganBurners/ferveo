@@ -157,6 +157,7 @@ module.exports = class BaseController {
     })
 
     router.post('/', (req, res) => {
+      logger.info('Will create the object: ' + JSON.stringify(req.body))
       this
         .create(req.body)
         .then(res.redirect('/' + pluralize(this.modelName)))
@@ -177,7 +178,7 @@ module.exports = class BaseController {
     })
 
 
-    router.get('/:key/edit', (req, res) => {
+    router.route('/:key/edit').get((req, res) => {
       this
         .read(req.params.key)
         .then((obj) => {
@@ -189,9 +190,16 @@ module.exports = class BaseController {
         })
         .then(null, fail(res))
     }).delete((req, res) => {
+      logger.info('Will delete the object: ' + req.body.key)
       this
-        .delete(req.params.key)
+        .delete(req.body.key)
         .then(res.redirect('/' + pluralize(this.modelName)))
+        .then(null, fail(res))
+    }).put((req, res) => {
+      logger.info('Will update the object: ' + req.params.id)
+      this
+        .update(req.params.id, req.body)
+        .then(res.redirect('/' + pluralize(this.modelName) + '/' + req.params.key))
         .then(null, fail(res))
     })
     // TODO PUT and DELETE for Edit opeation

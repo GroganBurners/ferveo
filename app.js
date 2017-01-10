@@ -1,22 +1,23 @@
-var config = require('./config')
-var express = require('express')
-var path = require('path')
-var logger = require('./config/logger')
-var morgan = require('morgan')
-var session = require('express-session')
-var cookieParser = require('cookie-parser')
-var bodyParser = require('body-parser')
-var flash = require('connect-flash')
-var mongoose = require('mongoose')
+const config = require('./config')
+const express = require('express')
+const path = require('path')
+const logger = require('./config/logger')
+const morgan = require('morgan')
+const session = require('express-session')
+const cookieParser = require('cookie-parser')
+const methodOverride = require('method-override')
+const bodyParser = require('body-parser')
+const flash = require('connect-flash')
+const mongoose = require('mongoose')
 
-var app = express()
+const app = express()
 
 require('./models')(app)
 
 /**
  * API keys and Passport configuration.
  */
-var passport = require('passport')
+const passport = require('passport')
 require('./config/passport')
 
 // connect to Mongo when the app initializes
@@ -34,7 +35,16 @@ if (config.env === 'development') {
   app.use(morgan('combined', { stream: { write: message => logger.info(message) } }))
 }
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(methodOverride(function(req, res){
+      if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+        logger.info('In method override')
+        // look in urlencoded POST bodies and delete it
+        var method = req.body._method
+        delete req.body._method
+        return method
+      }
+}))
 app.use(cookieParser())
 app.use(session({
   secret: config.cookieSecret,
