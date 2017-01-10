@@ -135,6 +135,12 @@ module.exports = class BaseController {
   route() {
     const router = new Router()
 
+    // Declare locals to use
+    router.use((req, res, next) => {
+      res.locals.moment = require('moment')
+      next()
+    })
+
     router.get('/', (req, res) => {
       this
         .list()
