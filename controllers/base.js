@@ -181,6 +181,11 @@ module.exports = class BaseController {
           respond(res, this.modelName + '/edit', pageResp)
         })
         .then(null, fail(res))
+    }).delete((req, res) => {
+        this
+        .delete(req.params.key)
+        .then(res.redirect('/'+ this.modelName))
+        .then(null, fail(res))
     })
     // TODO PUT and DELETE for Edit opeation
 
