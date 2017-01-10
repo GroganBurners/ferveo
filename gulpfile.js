@@ -3,6 +3,13 @@
 var gulp = require('gulp')
 var browserSync = require('browser-sync')
 var nodemon = require('gulp-nodemon')
+const imagemin = require('gulp-imagemin');
+ 
+gulp.task('images', () =>
+      gulp.src('public/images/**/*')
+          .pipe(imagemin())
+          .pipe(gulp.dest('dist/images'))
+);
 
 gulp.task('default', ['browser-sync'], function () {
 })
