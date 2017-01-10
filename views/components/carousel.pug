@@ -1,43 +1,103 @@
+include buttons
+include images
+
 //- carousel caption
 mixin carousel-caption(item)
-	.carousel-caption
-		unless !item.h1
-			h1 #{item.h1}
-		unless !item.p
-			p #{item.p}
-		unless !item.button
-			p
-				a.btn.btn-lg.btn-primary(href=item.button.url role="button") #{item.button.caption}
+  .carousel-caption
+    unless !item.h1
+      h1 #{item.h1}
+    unless !item.p
+      p #{item.p}
+    unless !item.button
+      p
+        a.btn.btn-lg.btn-primary(href=item.button.url role="button") #{item.button.caption}
 
-//- carousel
 mixin carousel(id,items)
-	.carousel.slide(id="carousel-" + id ,data-ride="carousel")
-		//- Indicators
-		ol.carousel-indicators
-			each item,index in items
-				if(index === 0)
-					li.active(data-target="#carousel-" + id, data-slide-to=index)
-				else
-					li(data-target="#carousel-" + id, data-slide-to=index)
+  .carousel.slide(id="carousel-" + id ,data-ride="carousel")
+    .carousel-inner(role="listbox")
+      each item,index in items
+        if(index === 0)
+          .item.active
+            img(src=item.image)
+            +carousel-caption(item)
+        else
+          .item
+            img(src=item.image)
+            +carousel-caption(item)
 
+mixin teaser(item)
+  .col-lg-4
+    +img-rounded(item.image.url, item.image.alt)
+    unless !item.h2
+      h2 #{item.h2}
+    unless !item.p
+      p #{item.p}
+    unless !item.button
+      +a-btn-secondary(item.button.url) #{item.button.caption}
 
-		//- Wrapper for slides
-		.carousel-inner(role="listbox")
-			each item,index in items
-				if(index === 0)
-					.item.active
-						img(src=item.image)
-						+carousel-caption(item)
+mixin marketing(items)
+  .container.marketing
+    .row
+      each item,index in items
+        +teaser(item)
 
-				else
-					.item
-						img(src=item.image)
-						+carousel-caption(item)
+mixin featurette(item)
+  hr.featurette-divider
+  .row.featurette
+    .col
+      +img-center(item.image.src, item.image.alt)
+    .col
+      h2.featurette-heading(id=item.id) #{item.h2}
+        span.text-muted #{item.muted}
+      p.lead #{item.p}
+      unless !item.prices
+        ul
+          each price,index in item.prices
+            li #{price}
+      unless !item.button
+        +a-btn-lg(item.button.href) #{item.button.text}
 
-		//-  Controls
-		a.left.carousel-control(href="#carousel-" + id, role="button", data-slide="prev")
-			+icon("chevron-left")
-			span.sr-only Previous
-		a.right.carousel-control(href="#carousel-" + id, role="button", data-slide="next")
-			+icon("chevron-right")
-			span.sr-only Next
+mixin contact-us(item)
+  hr.featurette-divider
+  .row.featurette
+    .col
+      +img-center(item.image.src, item.image.alt)
+    .col
+      h2.featurette-heading(id='contact')
+        | Book now. 
+        span.text-muted A great experience awaits.
+      p.lead
+        strong Call us: 
+        | 087 634 1300 or 
+        strong email: 
+        a(href='mailto:info@groganburners.ie') info@groganburners.ie
+
+mixin about-us(item)
+  hr.featurette-divider
+  .row.featurette
+    .col
+      +img-center(item.image.src, item.image.alt)
+    .col
+      h2.featurette-heading(id=item.id) #{item.h2}
+        span.text-muted #{item.muted}
+      p.lead #{item.p}
+      p.lead
+        | We provide:
+      unless !item.services
+        ul
+          each service,index in item.services
+            li #{service}
+      p.lead
+        | Service area includes: parts of Loais, Offaly, Kilkenny, Tipperary, Carlow, Waterford.
+      p
+        | We also take safety as the number one priority. All of our engineers are RGI (gas) and OFTEC (oil) certified and carry work out to the highest standard.
+  .row.featurette
+    .col
+    .col
+      img(src='/static/images/cert/oftec.jpg')
+      img(src='/static/images/cert/rgii.jpg')
+
+mixin featurettes(items)
+  each item,index in items
+        +featurette(item)
+  

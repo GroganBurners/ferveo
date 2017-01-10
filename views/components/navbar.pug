@@ -1,71 +1,23 @@
-//- Navbar mixins by Kezz Bracey
-//- https://github.com/tutsplus/baking-bootstrap-snippets-with-jade
-//- Author:  http://tutsplus.com/authors/kezz-bracey
-mixin navbar(name, id, style, href)
-	- var style = (typeof style === 'undefined') ? "default" : style
-	- var href = (typeof style === 'undefined') ? "#" : href
-	nav( role="navigation", class=["navbar", "navbar-" + style] )
-		.navbar-header
-			button.navbar-toggle.collapsed( type="button", data-toggle="collapse", data-target="#" + id, aria-expanded="false", aria-controls="navbar")
-				span.sr-only Toggle navigation
-				span.icon-bar
-				span.icon-bar
-				span.icon-bar
-			a.navbar-brand(href=href)= name
-
-		.collapse.navbar-collapse( id=id )
-			ul.nav.navbar-nav
-				block
+mixin navbar(name, href, position, style, background, logoUrl)
+    - var name = (typeof name === 'undefined') ? "Grogan Burner Services" : name
+    - var style = (typeof style === 'undefined') ? "inverse" : style
+    - var position = (typeof position === 'undefined') ? "navbar-toggleable-md" : position
+    - var background = (typeof background === 'undefined') ? "inverse" : background
+    - var href = (typeof href === 'undefined') ? "/" : href
+    - var logoUrl = (typeof logoUrl === 'undefined') ? "/static/images/menu/flames.png" : logoUrl
+    nav( role="navigation", class=["navbar", "rounded", position, "navbar-" + style, "bg-" +background] )
+        button.navbar-toggler.navbar-toggler-right(type='button', data-toggle='collapse', data-target='#navbarSupportedContent', aria-controls='navbarSupportedContent', aria-expanded='false', aria-label='Toggle navigation')
+            span.navbar-toggler-icon
+        a.navbar-brand.pull-left(href=href)= name
+            img.logo(itemprop="logo" src=logoUrl)
+        #navbarSupportedContent.collapse.navbar-collapse
+            ul.navbar-nav.mr-auto
+                block
+            // form.form-inline.my-2.my-lg-0
+                input.form-control.mr-sm-2(type='text', placeholder='Search')
 
 mixin nav_item(href, active)
-
-	if(active)
-		li(class="active"): a( href=href ): block
-	else
-		li: a( href=href ): block
-
-mixin nav_item_dropdown(href, active)
-	- var ddclass = active ? ["dropdown", "active"] : "dropdown"
-	li(class=ddclass)
-		a.dropdown-toggle( href=href, data-toggle="dropdown", role="button", aria-expanded="false" )= attributes.label
-			span.caret
-		ul.dropdown-menu( role="menu" )
-				block
-
-mixin nav_divider
-	li.divider
-
-mixin nav_header
-	li.dropdown-header
-		block
-
-mixin navbar-fixed(name,id,style,href)
-	- var style = (typeof style === 'undefined') ? "default" : style
-	nav( role="navigation", class=["navbar","navbar-fixed-top","navbar-" + style] )
-		.container
-			.navbar-header
-				button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#' + id, aria-expanded='false', aria-controls='navbar')
-					span.sr-only Toggle navigation
-					span.icon-bar
-					span.icon-bar
-					span.icon-bar
-				a.navbar-brand(href=href)= name
-			.collapse.navbar-collapse( id=id )
-				ul.nav.navbar-nav
-					block
-
-mixin navbar-static(name,id,style,href)
-	- var style = (typeof style === 'undefined') ? "default" : style
-	nav( role="navigation", class=["navbar","navbar-static-top","navbar-" + style] )
-		.container
-			.navbar-header
-				button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#' + id, aria-expanded='false', aria-controls='navbar')
-					span.sr-only Toggle navigation
-					span.icon-bar
-					span.icon-bar
-					span.icon-bar
-				a.navbar-brand(href=href)= name
-			.collapse.navbar-collapse( id=id )
-				ul.nav.navbar-nav
-					block
-//- End navbar mixins
+    if(active)
+        li(class="nav-item active"): a(class="nav-link" href=href ): block
+    else
+        li(class="nav-item"): a(class="nav-link" href=href ): block

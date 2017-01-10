@@ -1,0 +1,8 @@
+extends ../layouts/base
+block body
+  h1 #{title}
+  form#formAddBlob(name="addcustomer",method="post",action="/customers")
+    p Name: 
+      input#inputName(type="text", placeholder="Neil Grogan", name="name")
+    p
+      button#btnSubmit(type="submit") Submit

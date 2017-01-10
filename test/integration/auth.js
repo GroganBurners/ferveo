@@ -18,7 +18,7 @@ describe('Auth logged out', function () {
 
   it('Account page logged out redirects', (done) => {
     chai.request(server)
-      .get('/account').end(function (err, res) {
+      .get('/auth/account').end(function (err, res) {
         should.not.exist(err)
         expect(res.redirects[0]).to.match(/\/auth\/login/)
         expect(res).to.redirect
@@ -30,7 +30,7 @@ describe('Auth logged out', function () {
     chai.request(server)
       .get('/auth/google')
       .end(function (err, res) {
-        if (err) console.log(err.stack)
+        should.exist(err)
         expect(res.redirects[0]).to.contain('https://accounts.google.com/o/oauth2/auth')
         expect(res).to.redirect
         done()
@@ -82,7 +82,7 @@ describe('GET /auth/google/callback', () => {
       agent
         .get('/auth/google/callback?code=xxxxxxxx&authuser=0&session_state=xxxxxxxx&prompt=consent')
         .then(function (res) {
-          return agent.get('/account')
+          return agent.get('/auth/account')
             .then(function (res) {
               res.should.have.status(200)
               res.text.should.include('Test User')

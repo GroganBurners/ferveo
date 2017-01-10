@@ -1,5 +1,6 @@
 var chai = require('chai')
 var chaiHttp = require('chai-http')
+var logger = require('winston')
 var expect = chai.expect
 var server = server = require('../../app')
 
@@ -19,9 +20,8 @@ describe('Testing Grogan Burners', function () {
     chai.request(server)
       .get('/')
       .end(function (err, res) {
-        if (err) {
-          console.log(err.stack)
-        }
+        if (err) logger.error(err.stack)
+
         expect(res).to.have.status(200)
         done()
       })
