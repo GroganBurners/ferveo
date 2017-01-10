@@ -150,8 +150,39 @@ module.exports = class BaseController {
           respond(res, this.modelName + '/index', pageResp)
         })
         .then(null, fail(res))
+
+      router.get('/new', function(req, res) {
+        res.render(this.modelName + '/new', { title: 'Add New ' + this.model.modelName });
+      });
+
+      router.get('/:key', (req, res) => {
+        this
+          .read(req.params.key)
+          .then((obj) => {
+            let pageResp = {
+              title: this.model.modelName
+            }
+            pageResp[this.modelName] = obj.toObject()
+            respond(res, this.modelName + '/show', pageResp)
+          })
+          .then(null, fail(res))
+      })
     })
 
+    router.get('/:key/edit', (req, res) => {
+      this
+        .read(req.params.key)
+        .then((obj) => {
+          let pageResp = {
+            title: this.model.modelName
+          }
+          pageResp[this.modelName] = obj.toObject()
+          respond(res, this.modelName + '/edit', pageResp)
+        })
+        .then(null, fail(res))
+    })
+    // TODO PUT and DELETE for Edit opeation
+    
     return router
   }
 }
