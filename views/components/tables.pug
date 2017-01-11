@@ -31,14 +31,17 @@ mixin edit-table(header,fieldsToShow,data,type)
               td #{row[field]}
 
           td
-            a(href='/customers/'+row._id) Show
+            a.btn.btn-primary.btn-xs(href='/customers/'+row._id)
+              i.fa.fa-eye(aria-hidden="true")
           td
-            +a-btn-info('/customers/'+row._id+'/edit') Edit
+            a.btn.btn-primary.btn-xs(href='/customers/'+row._id+'/edit')
+              i.fa.fa-pencil(aria-hidden="true")
           td
             form(action='/customers/'+row._id+'/edit',method='post',enctype='application/x-www-form-urlencoded')
               input(type='hidden',value='DELETE',name='_method')
               input(type='hidden',value=row._id,name='key')
-              button.btn.btn-sm.btn-outline-danger(type=submit) Delete
+              button.btn.btn-danger.btn-xs(type=submit)
+                i.fa.fa-trash(aria-hidden="true")
 
 mixin edit-table-striped(header,fieldsToShow,data)
   +edit-table(header,fieldsToShow,data,"table-striped")

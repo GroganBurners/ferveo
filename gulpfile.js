@@ -24,7 +24,17 @@ gulp.task('images', () =>
               interlaced: true,
             }))
     .pipe(gulp.dest('public/images'))
-);
+)
+
+gulp.task('fa', ['fa-css'], function() {
+  return gulp.src('node_modules/font-awesome/fonts/*')
+    .pipe(gulp.dest('public/fonts'))
+})
+
+gulp.task('fa-css', function() {
+  return gulp.src('node_modules/font-awesome/css/font-awesome.min.css')
+    .pipe(gulp.dest('public/stylesheets'))
+})
 
 gulp.task('default', ['browser-sync'], function () {
 })
