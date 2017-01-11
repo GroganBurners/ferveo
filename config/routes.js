@@ -5,6 +5,13 @@ const MessageController = cont.Message
 const AuthController = cont.Auth
 const passportConfig = require('./passport')
 
+function cacheMiddleware(seconds){
+  return function (req, res, next) {
+    res.setHeader("Cache-Control", "public, max-age="+seconds)
+    next()
+  }
+}
+
 module.exports = function (app) {
   // API
   app.use('/api/customers', new CustomerController().routeAPI())
@@ -15,7 +22,7 @@ module.exports = function (app) {
   app.use('/auth', new AuthController().route())
 
   // Ordinary web pages
-  app.get('/', function (req, res, next) {
+  app.get('/', cacheMiddleware(5 * 60), function (req, res, next) {
     res.render('home/home', { title: 'Grogan Burner Services' })
   })
 
