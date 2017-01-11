@@ -11,6 +11,34 @@ mixin table(header,data,type)
           each col,k in row
             td #{col}
 
+mixin edit-table(header,fieldsToShow,data,type)
+  - var type = type || ""
+  table.table(class=type)
+    thead
+      tr
+        each head, i in header
+          th #{head}
+        th Show
+        th Edit
+        th Delete
+    tbody
+      each row,j in data
+        tr
+          each field, i in fieldsToShow
+            td #{row[field]}
+          td
+            a(href='/customers/'+row._id) Show
+          td
+            +a-btn-info('/customers/'+row._id+'/edit') Edit
+          td
+            form(action='/customers/'+row._id+'/edit',method='post',enctype='application/x-www-form-urlencoded')
+              input(type='hidden',value='DELETE',name='_method')
+              input(type='hidden',value=row._id,name='key')
+              button.btn.btn-sm.btn-outline-danger(type=submit) Delete
+
+mixin edit-table-striped(header,fieldsToShow,data)
+  +edit-table(header,fieldsToShow,data,"table-striped")
+
 mixin table-striped(header,data)
   +table(header,data,"table-striped")
 
