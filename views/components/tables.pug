@@ -25,7 +25,11 @@ mixin edit-table(header,fieldsToShow,data,type)
       each row,j in data
         tr
           each field, i in fieldsToShow
-            td #{row[field]}
+            if (typeof(row[field]) === 'object')
+              td !{JSON.stringify(row[field])} 
+            else
+              td #{row[field]}
+
           td
             a(href='/customers/'+row._id) Show
           td
