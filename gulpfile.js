@@ -9,17 +9,21 @@ const pngquant = require('imagemin-pngquant')
 
 gulp.task('images', () =>
   gulp.src('public/images/**/*')
-    .pipe(imagemin({
-      progressive: true,
-      use: [mozjpeg({
+    .pipe(imagemin(
+        [mozjpeg({
                 'quality' : '60',
                 'quantTable': 2
               }),
               pngquant({
                 'quality': '60'
-              })]
-    }))
-    .pipe(gulp.dest('dist/images'))
+              })],
+              
+            {
+              optimizationLevel: 3,
+              progressive: true,
+              interlaced: true,
+            }))
+    .pipe(gulp.dest('public/images'))
 );
 
 gulp.task('default', ['browser-sync'], function () {
