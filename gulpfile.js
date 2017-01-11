@@ -36,6 +36,30 @@ gulp.task('fa-css', function() {
     .pipe(gulp.dest('public/stylesheets'))
 })
 
+gulp.task('bs', ['bs-css', 'bs-jquery', 'bs-tether', 'bs-js'], function() {
+})
+
+gulp.task('bs-css', function() {
+  return gulp.src('node_modules/bootstrap/dist/css/bootstrap.min.css')
+    .pipe(gulp.dest('public/stylesheets'))
+})
+
+gulp.task('bs-jquery', function() {
+  return gulp.src('node_modules/jquery-slim/dist/jquery.slim.min.js')
+    .pipe(gulp.dest('public/javascripts'))
+})
+
+gulp.task('bs-tether', function() {
+  return gulp.src('node_modules/tether/dist/js/tether.min.js')
+    .pipe(gulp.dest('public/javascripts'))
+})
+
+gulp.task('bs-js', function() {
+  return gulp.src('node_modules/bootstrap/dist/js/bootstrap.min.js')
+    .pipe(gulp.dest('public/javascripts'))
+})
+
+
 gulp.task('default', ['browser-sync'], function () {
 })
 
