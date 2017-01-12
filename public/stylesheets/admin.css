@@ -5,12 +5,6 @@
     border-top-left-radius: 0.5em;
 }
 
-.filterable {
-    margin-top: 15px;
-}
-.filterable .panel-heading .pull-right {
-    margin-top: -20px;
-}
 .filterable .filters input[disabled] {
     background-color: transparent;
     font-weight: bold;
