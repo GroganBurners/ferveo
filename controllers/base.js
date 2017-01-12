@@ -91,6 +91,30 @@ module.exports = class BaseController {
       })
   }
 
+  search(text) {
+    var queryArray = []
+
+    for (var property in this.model.schema.paths) {
+      if (this.model.schema.paths.hasOwnProperty(property) && this.model.schema.paths[property]["instance"] === "String") {
+        queryArray.push(JSON.parse('{\"' + property + '\": { \"$regex\": "' + text + '", \"$options\": \"i\"} }'))
+      }
+    }
+
+    var query = {
+      $or: queryArray
+    }
+
+    return this.model.find(query).exec().then((modelInstances) => {
+      var response = {}
+      response[pluralize(this.modelName)] = modelInstances
+      return response
+    })
+  }
+
+  /**
+   *  ROUTERS
+   */
+
   routeAPI() {
     const router = new Router()
 
@@ -107,6 +131,14 @@ module.exports = class BaseController {
         .then(ok(res))
         .then(null, fail(res))
     })
+
+    router.post('/search', (req, res) => {
+      this
+        .search(req.body.text)
+        .then(ok(res))
+        .then(null, fail(res))
+    })
+
 
     router.get('/:key', (req, res) => {
       this
