@@ -15,10 +15,10 @@ mixin edit-table(header,fieldsToShow,data,type)
   - var type = type || ""
   .container.filterable
     .bg-primary.table-edit.text-white.row
-        .col-12.col-sm-6.col-md-8
+        .col-6.col-sm-6.col-md-8
           h4 Customers
         .col-6.col-md-4
-          a.btn.btn-secondary.btn-sm(href='/customers/new') 
+          btn.btn-secondary.btn-sm(data-toggle="modal" data-target="#new") 
             i.fa.fa-plus(aria-hidden="true") 
             | &nbsp; Add Customer
           | &nbsp;
