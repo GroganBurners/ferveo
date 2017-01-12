@@ -4,6 +4,8 @@ block body
     br
     br
     +edit-table-striped(['Name', 'Address'], ['name', 'primaryAddress'], customers)
+    include new
+    // include edit
   else
     br
     +alert-x-danger('No customers present')

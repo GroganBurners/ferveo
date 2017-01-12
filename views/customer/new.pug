@@ -1,27 +1,27 @@
-extends ../layouts/base
-block body
-  h2 #{title}
-  form#formAddBlob(name="addcustomer",method="post",action="/customers")
-    .form-group.row
-      label.col-2.col-form-label(for="inputName") Name: 
-      input.form-control.col-5#inputName(type="text", placeholder="Neil Grogan", name="name")
-    .form-group.row
-      label.col-2.col-form-label(for="inputAddressStreet") Street: 
-      input.form-control.col-5#inputAddressStreet(type="text", placeholder="1 New Street", name="address[][street]")
-    .form-group.row
-      label.col-2.col-form-label(for="inputAddressTown") Town: 
-      input.form-control.col-5#inputAddressTown(type="text", placeholder="Ballyhale", name="address[][town]")
-    .form-group.row
-      label.col-2.col-form-label(for="inputAddressCounty") County: 
-      input.form-control.col-5#inputAddressCounty(type="text", placeholder="Kilkenny", name="address[][county]")
-    .form-group.row
-      label.col-2.col-form-label(for="inputAddressPostalCode") Eircode: 
-      input.form-control.col-5#inputAddressPostalCode(type="text", placeholder="D01 12345", name="address[][postalCode]")
-    .form-group.row
-      label.col-2.col-form-label(for="inputAddressCountry") Country: 
-      input.form-control.col-5#inputAddressCountry(type="text", placeholder="Ireland", name="address[][country]")
-    .form-group.row
-      label.col-2.col-form-label(for="inputPhone") Phone: 
-      input.form-control.col-5#inputPhone(type="number", placeholder="087 123 4567", name="phone[][number]")
-    p
-      button#btnSubmit(type="submit") Submit
+include ../components/modals
+append body
+  +modal(title,'new')
+    form#formAddBlob(name="addcustomer",method="post",action="/customers")
+      .form-group.row
+        label.col-2.col-form-label(for="inputName") Name: 
+        input.form-control.col-5#inputName(type="text", placeholder="Neil Grogan", name="name")
+      .form-group.row
+        label.col-2.col-form-label(for="inputAddressStreet") Street: 
+        input.form-control.col-5#inputAddressStreet(type="text", placeholder="1 New Street", name="address[][street]")
+      .form-group.row
+        label.col-2.col-form-label(for="inputAddressTown") Town: 
+        input.form-control.col-5#inputAddressTown(type="text", placeholder="Ballyhale", name="address[][town]")
+      .form-group.row
+        label.col-2.col-form-label(for="inputAddressCounty") County: 
+        input.form-control.col-5#inputAddressCounty(type="text", placeholder="Kilkenny", name="address[][county]")
+      .form-group.row
+        label.col-2.col-form-label(for="inputAddressPostalCode") Eircode: 
+        input.form-control.col-5#inputAddressPostalCode(type="text", placeholder="D01 12345", name="address[][postalCode]")
+      .form-group.row
+        label.col-2.col-form-label(for="inputAddressCountry") Country: 
+        input.form-control.col-5#inputAddressCountry(type="text", placeholder="Ireland", name="address[][country]")
+      .form-group.row
+        label.col-2.col-form-label(for="inputPhone") Phone: 
+        input.form-control.col-5#inputPhone(type="number", placeholder="087 123 4567", name="phone[][number]")
+      p
+        button#btnSubmit(type="submit") Submit
