@@ -20,13 +20,8 @@ html(lang="en")
 					include ../../public/stylesheets/base.css
 	body
 		.container
-			+navbar()
-				+nav_item('/', true) Home
-				+nav_item('/#gas', false) Gas Services
-				+nav_item('/#oil', false) Oil Services
-				+nav_item('/#repair', false) Boiler Repair
-				+nav_item('/#contact', false) Contact Us
-				+nav_item('/#about', false) About Us
+			block nav
+				include ../includes/navbar-public
 			.messages
 				include ../includes/messages
 			block body
