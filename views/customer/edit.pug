@@ -1,16 +1,17 @@
-extends ../layouts/base
-block body
-  h1.
-    Customer ID #{customer._id}
-  form(action='/customers/'+customer._id+'/edit',method='post',name='updatecustomer',enctype='application/x-www-form-urlencoded')
-    p ID:
-      input#inputName(type='text', value=customer._id, name='id')
-    p Name:
-      input#inputName(type='text', value=customer.name, name='name')
-    p Date Created: 
-      input#inputCreatedOn(type="date", value=moment(customer.createdOn).format('YYYY-MM-DD'), name="createdOn")
-    p Date Updated: 
-      input#inputUpdatedOn(type="date", value=moment(customer.updatedOn).format('YYYY-MM-DD'), name="updatedOn", disabled)
-    p
-      input(type='hidden',value='PUT',name='_method')
-      button#btnSubmit(type='submit') Update
+include ../components/modals
+append body
+  +modal(title,'edit')
+    h1.
+      Customer ID #{customer._id}
+    form(action='/customers/'+customer._id+'/edit',method='post',name='updatecustomer',enctype='application/x-www-form-urlencoded')
+      p ID:
+        input#inputName(type='text', value=customer._id, name='id')
+      p Name:
+        input#inputName(type='text', value=customer.name, name='name')
+      p Date Created: 
+        input#inputCreatedOn(type="date", value=moment(customer.createdOn).format('YYYY-MM-DD'), name="createdOn")
+      p Date Updated: 
+        input#inputUpdatedOn(type="date", value=moment(customer.updatedOn).format('YYYY-MM-DD'), name="updatedOn", disabled)
+      p
+        input(type='hidden',value='PUT',name='_method')
+        button#btnSubmit(type='submit') Update
