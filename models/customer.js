@@ -5,8 +5,10 @@ var phoneSchema = require('./common/phone')
 
 var customerSchema = new Schema({
   name: { type: String, required: true },
-  address: [ addressSchema ],
-  phone: [ phoneSchema ],
+  address: [addressSchema],
+  phone: [phoneSchema],
+  primaryAddress: { type: String, default: '' },
+  primaryPhone: { type: String, default: '' },
   createdOn: { type: Date, default: Date.now },
   updatedOn: { type: Date, default: Date.now }
 })
@@ -14,6 +16,20 @@ var customerSchema = new Schema({
 customerSchema.pre('save', function (next) {
   // change the updatedOn field to current date
   this.updatedOn = new Date()
+  const address = this.address.toObject()
+  if (typeof address !== 'undefined' && address.length > 0) {
+    if (typeof address[0] !== 'undefined') {
+      var values = ["street", "town", "county", "postCode", "country"];
+      this.primaryAddress = values.filter(function (value, k) {
+        if (address[0][value]) {
+          return true; // skip
+        }
+        return false;
+      }).map(function (k) { return address[0][k] }).join(", ")
+    }
+  }
+
+  console.log(this)
   next()
 })
 

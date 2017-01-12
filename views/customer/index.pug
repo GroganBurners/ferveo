@@ -7,7 +7,7 @@ block body
       | &nbsp; Add Customer
     br
     br
-    +edit-table-striped(['Name', 'Address'], ['name', 'address'], customers)
+    +edit-table-striped(['Name', 'Address'], ['name', 'primaryAddress'], customers)
   else
     br
     +alert-x-danger('No customers present')
