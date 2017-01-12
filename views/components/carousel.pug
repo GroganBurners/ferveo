@@ -44,9 +44,9 @@ mixin marketing(items)
 mixin featurette(item)
   hr.featurette-divider
   .row.featurette
-    .col
+    .col-sm
       +img-center(item.image.src, item.image.alt)
-    .col
+    .col-sm
       h2.featurette-heading(id=item.id) #{item.h2}
         span.text-muted #{item.muted}
       p.lead #{item.p}
@@ -60,9 +60,9 @@ mixin featurette(item)
 mixin contact-us(item)
   hr.featurette-divider
   .row.featurette
-    .col
+    .col-sm
       +img-center(item.image.src, item.image.alt)
-    .col
+    .col-sm
       h2.featurette-heading(id='contact')
         | Book now. 
         span.text-muted A great experience awaits.
@@ -75,9 +75,9 @@ mixin contact-us(item)
 mixin about-us(item)
   hr.featurette-divider
   .row.featurette
-    .col
+    .col-sm
       +img-center(item.image.src, item.image.alt)
-    .col
+    .col-sm
       h2.featurette-heading(id=item.id) #{item.h2}
         span.text-muted #{item.muted}
       p.lead #{item.p}
@@ -92,8 +92,8 @@ mixin about-us(item)
       p
         | We also take safety as the number one priority. All of our engineers are RGI (gas) and OFTEC (oil) certified and carry work out to the highest standard.
   .row.featurette
-    .col
-    .col
+    .col-sm
+    .col-sm
       img(src='/static/images/cert/oftec.jpg')
       img(src='/static/images/cert/rgii.jpg')
 
