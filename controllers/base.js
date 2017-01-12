@@ -194,6 +194,23 @@ module.exports = class BaseController {
       res.render(this.modelName + '/new', { title: 'Add New ' + this.model.modelName });
     })
 
+    router.post('/search', (req, res) => {
+      this
+        .search(req.body.text)
+        .then((list) => {
+          let pageResp = {
+            title: this.model.modelName + " search for: " + req.body.text
+          }
+          const arr = []
+          for (const obj of list[pluralize(this.modelName)]) {
+            arr.push(obj.toObject())
+          }
+          pageResp[pluralize(this.modelName)] = arr
+          respond(res, this.modelName + '/index', pageResp)
+        })
+        .then(null, fail(res))
+    })
+
     router.post('/', (req, res) => {
       logger.info('Will create the object: ' + JSON.stringify(req.body))
       this

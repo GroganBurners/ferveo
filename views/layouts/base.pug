@@ -21,7 +21,13 @@ html(lang="en")
 	body
 		.container
 			block nav
-				include ../includes/navbar-public
+				+navbar()
+					+nav_item('/', true) Home
+					+nav_item('/#gas', false) Gas Services
+					+nav_item('/#oil', false) Oil Services
+					+nav_item('/#repair', false) Boiler Repair
+					+nav_item('/#contact', false) Contact Us
+					+nav_item('/#about', false) About Us
 			.messages
 				include ../includes/messages
 			block body

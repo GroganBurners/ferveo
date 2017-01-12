@@ -1,4 +1,5 @@
-mixin navbar(name, href, position, style, background, logoUrl)
+mixin navbar(admin, name, href, position, style, background, logoUrl)
+    - var admin = (typeof admin === 'undefined') ? false : admin
     - var name = (typeof name === 'undefined') ? "Grogan Burner Services" : name
     - var style = (typeof style === 'undefined') ? "inverse" : style
     - var position = (typeof position === 'undefined') ? "navbar-toggleable-md" : position
@@ -13,8 +14,10 @@ mixin navbar(name, href, position, style, background, logoUrl)
         #navbarSupportedContent.collapse.navbar-collapse
             ul.navbar-nav.mr-auto
                 block
-            // form.form-inline.my-2.my-lg-0
-                input.form-control.mr-sm-2(type='text', placeholder='Search')
+            unless !admin
+                form.form-inline.my-2.my-lg-0(action='/customers/search',method='post',enctype='application/x-www-form-urlencoded')
+                    input.form-control.mr-sm-2(type='text', placeholder='Search', name="text")
+                    button.btn.btn-outline-success.my-2.my-sm-0(type="submit") Search
 
 mixin nav_item(href, active)
     if(active)
