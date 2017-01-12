@@ -48,6 +48,7 @@ module.exports = class BaseController {
   list() {
     return this.model
       .find({})
+      .lean()
       .limit(MAX_RESULTS)
       .then((modelInstances) => {
         var response = {}
@@ -104,7 +105,7 @@ module.exports = class BaseController {
       $or: queryArray
     }
 
-    return this.model.find(query).exec().then((modelInstances) => {
+    return this.model.find(query).lean().exec().then((modelInstances) => {
       var response = {}
       response[pluralize(this.modelName)] = modelInstances
       return response
@@ -177,15 +178,10 @@ module.exports = class BaseController {
       this
         .list()
         .then((list) => {
-          let pageResp = {
+          let pageProps = {
             title: this.model.modelName
           }
-          const arr = []
-          for (const obj of list[pluralize(this.modelName)]) {
-            arr.push(obj.toObject())
-          }
-          pageResp[pluralize(this.modelName)] = arr
-          respond(res, this.modelName + '/index', pageResp)
+          respond(res, this.modelName + '/index', Object.assign(pageProps, list))
         })
         .then(null, fail(res))
     })
@@ -198,15 +194,10 @@ module.exports = class BaseController {
       this
         .search(req.body.text)
         .then((list) => {
-          let pageResp = {
+          let pageProps = {
             title: this.model.modelName + " search for: " + req.body.text
           }
-          const arr = []
-          for (const obj of list[pluralize(this.modelName)]) {
-            arr.push(obj.toObject())
-          }
-          pageResp[pluralize(this.modelName)] = arr
-          respond(res, this.modelName + '/index', pageResp)
+          respond(res, this.modelName + '/index', Object.assign(pageProps, list))
         })
         .then(null, fail(res))
     })

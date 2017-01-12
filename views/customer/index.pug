@@ -1,6 +1,6 @@
 extends ../layouts/admin
 block body
-  if (customers.length)
+  unless !customers
     h1 #{title}
     a.btn.btn-primary.btn-sm(href='/customers/new') 
       i.fa.fa-pencil(aria-hidden="true") 
