@@ -38,6 +38,7 @@ module.exports = class BaseController {
 
     return this.model
       .findOne(filter)
+      .lean()
       .then((modelInstance) => {
         var response = {}
         response[this.modelName] = modelInstance
@@ -214,11 +215,10 @@ module.exports = class BaseController {
       this
         .read(req.params.key)
         .then(obj => {
-          let pageResp = {
+          let pageProps = {
             title: this.model.modelName
           }
-          pageResp[this.modelName] = obj[this.modelName].toObject()
-          respond(res, this.modelName + '/show', pageResp)
+          respond(res, this.modelName + '/show', Object.assign(pageProps, obj))
         })
         .then(null, fail(res))
     })
