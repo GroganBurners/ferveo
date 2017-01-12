@@ -2,9 +2,14 @@ extends base
 append styles
   // Custom styles for this template
   link(href='/static/stylesheets/font-awesome.min.css', rel='stylesheet')
+  style
+    include ../../public/stylesheets/admin.css
 block nav
   +navbar(true)
     +nav_item('/', true) Home
     +nav_item('/customers', false) Customers
     +nav_item('/expenses', false) Expenses
     +nav_item('/invoices', false) Invoices
+append scripts
+  script
+    include ../../public/javascripts/admin.js

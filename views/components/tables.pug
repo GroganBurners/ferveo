@@ -13,35 +13,49 @@ mixin table(header,data,type)
 
 mixin edit-table(header,fieldsToShow,data,type)
   - var type = type || ""
-  table.table(class=type)
-    thead
-      tr
-        each head, i in header
-          th #{head}
-        th Show
-        th Edit
-        th Delete
-    tbody
-      each row,j in data
-        tr
-          each field, i in fieldsToShow
-            if (typeof(row[field]) === 'object')
-              td !{JSON.stringify(row[field])} 
-            else
-              td #{row[field]}
+  .container.filterable
+    .bg-primary.table-edit.text-white.row
+        .col-12.col-sm-6.col-md-8
+          h4 Customers
+        .col-6.col-md-4
+          a.btn.btn-secondary.btn-sm(href='/customers/new') 
+            i.fa.fa-plus(aria-hidden="true") 
+            | &nbsp; Add Customer
+          | &nbsp;
+          button.btn.btn-secondary.btn-sm.btn-filter(href='/customers/new') 
+            i.fa.fa-filter(aria-hidden="true") 
+            | &nbsp; Filter
+    .row
+      table.table(class=type)
+        thead
+          tr.filters
+            each head, i in header
+              th 
+                input.form-control(type="text" placeholder=head, disabled)
+            th Show
+            th Edit
+            th Delete
+        tbody
+          each row,j in data
+            tr
+              each field, i in fieldsToShow
+                if (typeof(row[field]) === 'object')
+                  td !{JSON.stringify(row[field])} 
+                else
+                  td #{row[field]}
 
-          td
-            a.btn.btn-secondary.btn-sm(href='/customers/'+row._id)
-              i.fa.fa-eye(aria-hidden="true")
-          td
-            a.btn.btn-outline-primary.btn-sm(href='/customers/'+row._id+'/edit')
-              i.fa.fa-pencil(aria-hidden="true")
-          td
-            form(action='/customers/'+row._id+'/edit',method='post',enctype='application/x-www-form-urlencoded')
-              input(type='hidden',value='DELETE',name='_method')
-              input(type='hidden',value=row._id,name='key')
-              button.btn.btn-danger.btn-sm(type=submit)
-                i.fa.fa-trash(aria-hidden="true")
+              td
+                a.btn.btn-secondary.btn-sm(href='/customers/'+row._id)
+                  i.fa.fa-eye(aria-hidden="true")
+              td
+                a.btn.btn-outline-primary.btn-sm(href='/customers/'+row._id+'/edit')
+                  i.fa.fa-pencil(aria-hidden="true")
+              td
+                form(action='/customers/'+row._id+'/edit',method='post',enctype='application/x-www-form-urlencoded')
+                  input(type='hidden',value='DELETE',name='_method')
+                  input(type='hidden',value=row._id,name='key')
+                  button.btn.btn-danger.btn-sm(type=submit)
+                    i.fa.fa-trash(aria-hidden="true")
 
 mixin edit-table-striped(header,fieldsToShow,data)
   +edit-table(header,fieldsToShow,data,"table-striped")
