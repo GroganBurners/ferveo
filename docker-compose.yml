@@ -1,0 +1,25 @@
+version: '2'
+services:
+  web:
+    container_name: gbsweb
+    image: nginx
+    #volumes:
+    #  - ./mysite.template:/etc/nginx/conf.d/mysite.template
+    ports:
+      - "8080:80"
+    volumes_from:
+      - nodejs
+  mongodb:
+    container_name: gbsdb
+    image: mongo:3.4
+    ports:
+      - "27017:27017"
+    command: "--smallfiles --logpath=/dev/null"
+  nodejs:
+    container_name: gbsser
+    build: ./
+    command: node ./bin/www
+    ports:
+      - "3000:3000"
+    links:
+      - mongodb
