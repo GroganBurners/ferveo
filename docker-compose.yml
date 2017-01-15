@@ -7,7 +7,7 @@ services:
     #  - ./mysite.template:/etc/nginx/conf.d/mysite.template
     ports:
       - "8080:80"
-    volumes_from:
+    links:
       - nodejs
   mongodb:
     container_name: gbsdb
