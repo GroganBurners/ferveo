@@ -5,6 +5,8 @@ services:
     image: nginx
     #volumes:
     #  - ./mysite.template:/etc/nginx/conf.d/mysite.template
+    volumes_from:
+      - nodejs
     ports:
       - "8080:80"
     links:
@@ -21,5 +23,7 @@ services:
     command: node ./bin/www
     ports:
       - "3000:3000"
+    volumes:
+      - /usr/src/app/public
     links:
       - mongodb
