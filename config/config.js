@@ -3,9 +3,13 @@ module.exports = {
     port: 3000,
     baseUrl: 'http://devbox.example.com:3000',
     db: 'mongodb://localhost/local',
-    cookieSecret: 'cookie_secret',
     sessionName: 'test',
     logLevel: 'debug',
+    secure: {
+        privateKey: '37LvDSm4XvjYOh9Y',
+        cookieSecret: 'cookie_secret',
+        tokenExpiry: 1 * 30 * 1000 * 60 //1 hour
+    },
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -35,9 +39,13 @@ module.exports = {
     port: 3000,
     baseUrl: 'https://groganburners.ie',
     db: 'mongodb://localhost/gbs',
-    cookieSecret: process.env.GBS_SECRET,
     sessionName: 'test',
     logLevel: 'info',
+    secure: {
+        privateKey: process.env.GBS_PRIVATE_KEY,
+        cookieSecret: process.env.GBS_COOKIE_SECRET,
+        tokenExpiry: 1 * 30 * 1000 * 60 //1 hour
+    },
     google: {
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -67,9 +75,13 @@ module.exports = {
     port: 3000,
     baseUrl: 'http://devbox.example.com:3000',
     db: 'mongodb://localhost/test',
-    cookieSecret: 'cookie_secret',
     sessionName: 'test',
     logLevel: 'error',
+    secure: {
+        privateKey: '37LvDSm4XvjYOh9Y',
+        cookieSecret: 'cookie_secret',
+        tokenExpiry: 1 * 30 * 1000 * 60 //1 hour
+    },
     google: {
       clientId: 'test',
       clientSecret: 'test',
