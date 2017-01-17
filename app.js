@@ -47,8 +47,8 @@ app.use(methodOverride(function(req, res){
 }))
 app.use(cookieParser())
 app.use(session({
-  secret: config.cookieSecret,
-  name: config.sessionName,
+  secret: config.secure.privateKey,
+  name: config.secure.sessionName,
   proxy: true,
   resave: true,
   saveUninitialized: true
