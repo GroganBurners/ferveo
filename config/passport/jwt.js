@@ -9,7 +9,6 @@ module.exports = new JwtStrategy({
         jwtFromRequest: ExtractJwt.fromAuthHeader(),
         secretOrKey: config.secure.privateKey
     }, (jwt_payload, done) => {
-    let opts = 
     User.findOne({
         id: jwt_payload.id
     }, (err, user) => {
