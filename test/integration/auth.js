@@ -82,14 +82,9 @@ describe('GET /auth/google/callback', () => {
       agent
         .get('/auth/google/callback?code=xxxxxxxx&authuser=0&session_state=xxxxxxxx&prompt=consent')
         .then(function (res) {
-          return agent.get('/auth/account')
-            .then(function (res) {
               res.should.have.status(200)
               res.text.should.include('Test User')
               done()
-            }).catch((error) => {
-              done(error)
-            })
         }).catch((error) => {
           done(error)
         })
