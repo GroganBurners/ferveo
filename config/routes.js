@@ -4,22 +4,18 @@ const PriceController = cont.Price
 const MessageController = cont.Message
 const AuthController = cont.Auth
 const passportConfig = require('./passport')
-
-function cacheMiddleware(seconds){
-  return function (req, res, next) {
-    res.setHeader("Cache-Control", "public, max-age="+seconds)
-    next()
-  }
-}
+const authMiddleware = require('../middlewares/auth')
+const cacheMiddleware = require('../middlewares/cache')
 
 module.exports = function (app) {
   // API
-  app.use('/api/customers', new CustomerController().routeAPI())
-  app.use('/customers', new CustomerController().route())
-  app.use('/api/prices', new PriceController().routeAPI())
-  app.use('/api/messages', new MessageController().routeAPI())
+  app.use('/api/customers', authMiddleware.secureAPI, new CustomerController().routeAPI())
+  app.use('/api/prices', authMiddleware.secureAPI, new PriceController().routeAPI())
+  app.use('/api/messages', authMiddleware.secureAPI, new MessageController().routeAPI())
+  app.use('/api/auth',  new AuthController().routeAPI()) // Login via route, no security needed
 
   app.use('/auth', new AuthController().route())
+  app.use('/customers', new CustomerController().route())
 
   // Ordinary web pages
   app.get('/', cacheMiddleware(5 * 60), function (req, res, next) {

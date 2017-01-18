@@ -2,6 +2,7 @@ var mongoose = require('mongoose')
 // mongoose.Promise = global.Promise; // ES6
 mongoose.Promise = require('bluebird')
 var Price = require('../../models/price')
+var User = require('../../models/user')
 var logger = require('winston')
 
 var chai = require('chai')
@@ -22,15 +23,16 @@ describe('Test Prices API', function () {
 
   it('should GET all the prices (none in DB)', function (done) {
     chai.request(server)
-            .get(prefix)
-            .end(function (err, res) {
-              should.not.exist(err)
-              res.should.have.status(200)
-              res.body.should.be.a('object')
-              res.body.prices.should.be.a('array')
-              res.body.prices.length.should.be.eql(0)
-              done()
-            })
+      .get(prefix)
+      .set('Authorization', 'JWT ' + global.token)
+      .end(function (err, res) {
+        should.not.exist(err)
+        res.should.have.status(200)
+        res.body.should.be.a('object')
+        res.body.prices.should.be.a('array')
+        res.body.prices.length.should.be.eql(0)
+        done()
+      })
   })
 
   it('should GET all the prices (one in DB)', function (done) {
@@ -38,15 +40,16 @@ describe('Test Prices API', function () {
     pri.save(function (err, price) {
       if (err) logger.error(err.stack)
       chai.request(server)
-                .get(prefix)
-                .end(function (err, res) {
-                  should.not.exist(err)
-                  res.should.have.status(200)
-                  res.body.should.be.a('object')
-                  res.body.prices.should.be.a('array')
-                  res.body.prices.length.should.be.eql(1)
-                  done()
-                })
+        .get(prefix)
+        .set('Authorization', 'JWT ' + global.token)
+        .end(function (err, res) {
+          should.not.exist(err)
+          res.should.have.status(200)
+          res.body.should.be.a('object')
+          res.body.prices.should.be.a('array')
+          res.body.prices.length.should.be.eql(1)
+          done()
+        })
     })
   })
 
@@ -56,15 +59,16 @@ describe('Test Prices API', function () {
     Price.create(pr1, pr2, function (err, pr1, pr2) {
       if (err) logger.error(err.stack)
       chai.request(server)
-                .get(prefix)
-                .end(function (err, res) {
-                  should.not.exist(err)
-                  res.should.have.status(200)
-                  res.body.should.be.a('object')
-                  res.body.prices.should.be.a('array')
-                  res.body.prices.length.should.be.eql(2)
-                  done()
-                })
+        .get(prefix)
+        .set('Authorization', 'JWT ' + global.token)
+        .end(function (err, res) {
+          should.not.exist(err)
+          res.should.have.status(200)
+          res.body.should.be.a('object')
+          res.body.prices.should.be.a('array')
+          res.body.prices.length.should.be.eql(2)
+          done()
+        })
     })
   })
 
@@ -73,16 +77,17 @@ describe('Test Prices API', function () {
       name: 'Gas Service'
     }
     chai.request(server)
-            .post(prefix)
-            .send(pri)
-            .end(function (err, res) {
-              should.not.exist(err)
-              res.should.have.status(200)
-              res.body.should.be.a('object')
-              res.body.should.have.property('price')
-              res.body.price.should.be.a('object')
-              done()
-            })
+      .post(prefix)
+      .send(pri)
+      .set('Authorization', 'JWT ' + global.token)
+      .end(function (err, res) {
+        should.not.exist(err)
+        res.should.have.status(200)
+        res.body.should.be.a('object')
+        res.body.should.have.property('price')
+        res.body.price.should.be.a('object')
+        done()
+      })
   })
 
   it('should POST a price and get a DB error', function (done) {
@@ -94,15 +99,16 @@ describe('Test Prices API', function () {
       name: 'Gas Service'
     }
     chai.request(server)
-            .post(prefix)
-            .send(pri)
-            .end(function (err, res) {
-              should.exist(err)
-              res.should.have.status(500)
-              err.should.have.property('message').eql('Internal Server Error')
-              createStub.restore()
-              done()
-            })
+      .post(prefix)
+      .send(pri)
+      .set('Authorization', 'JWT ' + global.token)
+      .end(function (err, res) {
+        should.exist(err)
+        res.should.have.status(500)
+        err.should.have.property('message').eql('Internal Server Error')
+        createStub.restore()
+        done()
+      })
   })
 
   it('should POST a price with junk property and it\'s not persisted', function (done) {
@@ -111,18 +117,19 @@ describe('Test Prices API', function () {
       fake_property: 'ignored'
     }
     chai.request(server)
-            .post(prefix)
-            .send(pri)
-            .end(function (err, res) {
-              should.not.exist(err)
-              res.should.have.status(200)
-              res.body.should.be.a('object')
-              res.body.should.have.property('price')
-              res.body.price.should.be.a('object')
-              res.body.price.should.have.property('name').eql('Gas Service')
-              res.body.price.should.not.have.property('fake_property')
-              done()
-            })
+      .post(prefix)
+      .send(pri)
+      .set('Authorization', 'JWT ' + global.token)
+      .end(function (err, res) {
+        should.not.exist(err)
+        res.should.have.status(200)
+        res.body.should.be.a('object')
+        res.body.should.have.property('price')
+        res.body.price.should.be.a('object')
+        res.body.price.should.have.property('name').eql('Gas Service')
+        res.body.price.should.not.have.property('fake_property')
+        done()
+      })
   })
 
   it('should POST a price with same name and it\'s an error', function (done) {
@@ -131,14 +138,15 @@ describe('Test Prices API', function () {
     pri.save(function (err, price) {
       if (err) logger.error(err.stack)
       chai.request(server)
-                .post(prefix)
-                .send(pr2)
-                .end(function (err, res) {
-                  should.exist(err)
-                  res.should.have.status(404)
-                  err.should.have.property('message').eql('Not Found')
-                  done()
-                })
+        .post(prefix)
+        .send(pr2)
+        .set('Authorization', 'JWT ' + global.token)
+        .end(function (err, res) {
+          should.exist(err)
+          res.should.have.status(404)
+          err.should.have.property('message').eql('Not Found')
+          done()
+        })
     })
   })
 
@@ -148,30 +156,32 @@ describe('Test Prices API', function () {
     pr.save(function (err, price) {
       if (err) logger.error(err.stack)
       chai.request(server)
-                .get('/api/prices/' + price._id.toString())
-                .send(price)
-                .end(function (err, res) {
-                  should.not.exist(err)
-                  res.should.have.status(200)
-                  res.body.should.be.a('object')
-                  res.body.should.have.property('price')
-                  res.body.price.should.have.property('name')
-                  res.body.price.should.have.property('_id').eql(price._id.toString())
-                  done()
-                })
+        .get('/api/prices/' + price._id.toString())
+        .send(price)
+        .set('Authorization', 'JWT ' + global.token)
+        .end(function (err, res) {
+          should.not.exist(err)
+          res.should.have.status(200)
+          res.body.should.be.a('object')
+          res.body.should.have.property('price')
+          res.body.price.should.have.property('name')
+          res.body.price.should.have.property('_id').eql(price._id.toString())
+          done()
+        })
     })
   })
 
   it('should fail to GET a price by non-existing id', function (done) {
     chai.request(server)
-            .get('/api/prices/' + 'non-existing-id')
-            .send({})
-            .end(function (err, res) {
-              should.exist(err)
-              res.should.have.status(404)
-              err.should.have.property('message').eql('Not Found')
-              done()
-            })
+      .get('/api/prices/' + 'non-existing-id')
+      .send({})
+      .set('Authorization', 'JWT ' + global.token)
+      .end(function (err, res) {
+        should.exist(err)
+        res.should.have.status(404)
+        err.should.have.property('message').eql('Not Found')
+        done()
+      })
   })
 
   it('should UPDATE a price by the given id', function (done) {
@@ -181,16 +191,17 @@ describe('Test Prices API', function () {
       if (err) logger.error(err.stack)
       var updatesForPrice = { name: 'Gas Fire Price Updated' }
       chai.request(server)
-                .put('/api/prices/' + price._id)
-                .send(updatesForPrice)
-                .end(function (err, res) {
-                  should.not.exist(err)
-                  res.should.have.status(200)
-                  res.body.should.be.a('object')
-                  res.body.price.should.have.property('_id').eql(price._id.toString())
-                  res.body.price.should.have.property('name').eql('Gas Fire Price Updated')
-                  done()
-                })
+        .put('/api/prices/' + price._id)
+        .send(updatesForPrice)
+        .set('Authorization', 'JWT ' + global.token)
+        .end(function (err, res) {
+          should.not.exist(err)
+          res.should.have.status(200)
+          res.body.should.be.a('object')
+          res.body.price.should.have.property('_id').eql(price._id.toString())
+          res.body.price.should.have.property('name').eql('Gas Fire Price Updated')
+          done()
+        })
     })
   })
 
@@ -198,14 +209,15 @@ describe('Test Prices API', function () {
     var pr = { name: 'Gas Fire Price' }
 
     chai.request(server)
-            .put('/api/prices/' + '41224d776a326fb40f000001')
-            .send(pr)
-            .end(function (err, res) {
-              should.exist(err)
-              res.should.have.status(404)
-              err.should.have.property('message').eql('Not Found')
-              done()
-            })
+      .put('/api/prices/' + '41224d776a326fb40f000001')
+      .send(pr)
+      .set('Authorization', 'JWT ' + global.token)
+      .end(function (err, res) {
+        should.exist(err)
+        res.should.have.status(404)
+        err.should.have.property('message').eql('Not Found')
+        done()
+      })
   })
 
   it('should DELETE a price by the given id', function (done) {
@@ -214,27 +226,29 @@ describe('Test Prices API', function () {
     pr.save(function (err, price) {
       if (err) logger.error(err.stack)
       chai.request(server)
-                .delete('/api/prices/' + price._id)
-                .send(price)
-                .end(function (err, res) {
-                  should.not.exist(err)
-                  res.should.have.status(200)
-                  res.body.should.be.a('object')
-                  res.body.should.not.have.property('price')
-                  done()
-                })
+        .delete('/api/prices/' + price._id)
+        .send(price)
+        .set('Authorization', 'JWT ' + global.token)
+        .end(function (err, res) {
+          should.not.exist(err)
+          res.should.have.status(200)
+          res.body.should.be.a('object')
+          res.body.should.not.have.property('price')
+          done()
+        })
     })
   })
 
   it('should try to DELETE a price by non-existing id', function (done) {
     chai.request(server)
-            .delete('/api/prices/' + 'non-existing-id')
-            .send({})
-            .end(function (err, res) {
-              should.exist(err)
-              res.should.have.status(404)
-              err.should.have.property('message').eql('Not Found')
-              done()
-            })
+      .delete('/api/prices/' + 'non-existing-id')
+      .send({})
+      .set('Authorization', 'JWT ' + global.token)
+      .end(function (err, res) {
+        should.exist(err)
+        res.should.have.status(404)
+        err.should.have.property('message').eql('Not Found')
+        done()
+      })
   })
 })

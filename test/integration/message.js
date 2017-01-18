@@ -28,6 +28,7 @@ describe('Test Email API', function () {
     chai.request(server)
       .post(prefix + '/email')
       .send(mail)
+      .set('Authorization', 'JWT ' + global.token)
       .end(function (err, res) {
         should.not.exist(err)
         res.should.have.status(200)
@@ -56,6 +57,7 @@ describe('Test Email API', function () {
     chai.request(server)
       .post(prefix + '/email')
       .send(mail)
+      .set('Authorization', 'JWT ' + global.token)
       .end(function (err, res) {
         //should.exist(err)
         res.should.have.status(404)
@@ -124,6 +126,7 @@ describe('Test SMS API', function () {
     chai.request(server)
       .post(prefix + '/sms')
       .send(mail)
+      .set('Authorization', 'JWT ' + global.token)
       .end(function (err, res) {
         should.exist(err)
         res.should.have.status(404)
