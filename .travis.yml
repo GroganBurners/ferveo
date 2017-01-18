@@ -15,6 +15,8 @@ addons:
     username: "groganburners"
   jwt:
     secure: WJdXhGmUf/b29XlLuenYImfDzVikBy19ZUk8S6GhV98f3FJZLf1cO9vOG+m8vSTzoqwDg4BDJ3jNhexZU2Bx4wUpDDr2vG8gefTtkGQ6XevphoCuXGMaXQ8pUmv/arTBKbvAY5TOILE3CGrfQ2pqvg2w8u3agMqdOVQwIdtpvYbhTJNB+OcSeafbn40vFwtWvqn/ez9fAGGadbW1diVJlD803ha2XvoZnQLW8pYL8GSDmY5msXYd2RBv0Ai7pHhwycd//Ht0Uj6J36JfM7SFJaxlRPq22a0UTKTqPY7DWsy0yj+ltsKAaBSyvtZm5mJkdhGTpyVVA5PP8yB9wHeIvVOyUijTzUYzOzHPXwFwJDjg/CxtgkYH0j/AmLC2J0lq7nri8ajjvTyRxB/aoYa60P+YG8jpZTau/kb19xRyWcmxnkuUzf63WM+tO5TQ/mBkEs4nTUtUSuXbpqLKCJChdSx+M/UkJuKjt4ioIgi6E7M9b7dBv3/dJ4j5RbuJkT14eBTaKIKy2G/BOE8b2jc6+n7FJ6s98awhFKcHowRpfUqQqnxbpsq3ZdddAHZZdI/jL5i7CiEs6jprBiW350SdnYpoN2nBoVwiSxOxH6oyswuApZ6yAfE0nBZ8EvLF2Qxt3579pfuLw870rLvSOJt8i6OPyfHLHfM/DkdruxHJB3A=
+env:
+  - CXX=g++-4.8
 language: node_js
 node_js:
 - '6'
