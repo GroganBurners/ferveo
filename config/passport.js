@@ -14,8 +14,3 @@ passport.deserializeUser((id, cb) => User.load({ criteria: { _id: id } }, cb))
 passport.use(jwt)
 passport.use(local)
 passport.use(google)
-
-exports.ensureAuthenticated = function (req, res, next) {
-  if (req.isAuthenticated()) { return next() }
-  res.redirect('/auth/login')
-}
