@@ -76,7 +76,7 @@ describe('GET /auth/google/callback', () => {
     nock.cleanAll()
   })
 
-  it('Login works and shows account', (done) => {
+  xit('Login works and shows account', (done) => {
     var agent = chai.request.agent(server)
     try {
       agent
