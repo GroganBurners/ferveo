@@ -87,7 +87,11 @@ describe('GET /auth/google/callback', () => {
               res.should.have.status(200)
               res.text.should.include('Test User')
               done()
+            }).catch((error) => {
+              done(error)
             })
+        }).catch((error) => {
+          done(error)
         })
     } catch (error) {
       done(error)
