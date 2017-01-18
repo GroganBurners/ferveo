@@ -8,11 +8,9 @@ var userSchema = new Schema({
   email: { type: String, default: '' },
   username: { type: String, default: '' },
   provider: { type: String, default: '' },
-  hashed_password: { type: String, default: '' },
-  salt: { type: String, default: '' },
+  password: { type: String, default: '' },
   authToken: { type: String, default: '' },
-  google: {},
-  isAdmin: Boolean
+  google: {}
 })
 
 userSchema.statics = {
