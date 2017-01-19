@@ -1,8 +1,17 @@
 // globals
+/* eslint-disable no-unused-vars */
 global.assert = require('assert')
 global.chai = require('chai')
+global.expect = chai.expect
 global.should = chai.should()
-var server = require('../../app')
+var chaiHttp = require('chai-http')
+chai.use(chaiHttp)
+global.nock = require('nock')
+global.server = require('../../app')
+global.mongoose = require('mongoose')
+global.mongoose.Promise = require('bluebird')
+global.logger = require('winston')
+global.sinon = require('sinon')
 const User = require('../../models/user')
 
 // setup

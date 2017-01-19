@@ -1,15 +1,5 @@
-var mongoose = require('mongoose')
-// mongoose.Promise = global.Promise; // ES6
-mongoose.Promise = require('bluebird')
 var Price = require('../../models/price')
 var User = require('../../models/user')
-var logger = require('winston')
-
-var chai = require('chai')
-var server = require('../../app')
-/* eslint-disable no-unused-vars */
-var should = chai.should()
-var sinon = require('sinon')
 
 describe('Test Prices API', function () {
   const prefix = '/api/prices'

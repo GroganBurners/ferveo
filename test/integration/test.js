@@ -1,11 +1,3 @@
-var chai = require('chai')
-var chaiHttp = require('chai-http')
-var logger = require('winston')
-var expect = chai.expect
-var server = server = require('../../app')
-
-chai.use(chaiHttp)
-
 describe('Testing Grogan Burners', function () {
   it('fails, as expected', function (done) {
     chai.request(server)

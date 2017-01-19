@@ -1,9 +1,5 @@
-'use strict'
-var mongoose = require('mongoose')
 var Company = mongoose.model('Company')
 var Expense = mongoose.model('Expense')
-var chai = require('chai')
-var expect = chai.expect
 
 describe('Unit Test Expense Model', function () {
   it('should fail with invalid company', function (done) {

@@ -1,11 +1,4 @@
-var chai = require('chai')
-var server = require('../../app')
-/* eslint-disable no-unused-vars */
-var should = chai.should()
-var nock = require('nock')
 var nodemailer = require('nodemailer')
-var sinon = require('sinon')
-var expect = require('chai').expect
 var prefix = '/api/messages'
 
 describe('Test Email API', function () {

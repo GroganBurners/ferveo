@@ -1,10 +1,3 @@
-var chai = require('chai')
-var server = require('../../app')
-var expect = chai.expect
-var nock = require('nock')
-/* eslint-disable no-unused-vars */
-var should = chai.should()
-
 describe('Auth logged out', function () {
   it('login page loads correctly', function (done) {
     chai.request(server)
