@@ -16,10 +16,13 @@ module.exports = new LocalStrategy({
       if (!user) {
         return done(null, false, { message: 'Unknown user' })
       }
-      if (!user.comparePassword(password)) {
-        return done(null, false, { message: 'Invalid password' })
-      }
-      return done(null, user)
+      user.comparePassword(password, function (err, isMatch) {
+        if (isMatch && !err) {
+          return done(null, user)
+        } else{
+          return done(null, false, { message: 'Invalid password' })
+        }
+      })
     })
   }
 )

@@ -2,18 +2,18 @@ extends ../layouts/admin
 
 block body
     a(href='/auth/google') Login with Google
-    form.form-horizontal.form-signin(action="/users/session", method="post", role="form")
-    input(type="hidden", name="_csrf", value="#{csrf_token}")
+    form.form-horizontal.form-signin(action="/auth/session", method="post", role="form")
+        input(type="hidden", name="_csrf", value="#{csrf_token}")
 
-    p.col-sm-offset-2.error= message
+        p.col-sm-offset-2.error= message
 
-    input#email.form-control(type="email", placeholder="Email", name="email")
+        input#email.form-control(type="email", placeholder="Email", name="email")
 
-    input#password.form-control(type="password", placeholder="Password", name="password")
+        input#password.form-control(type="password", placeholder="Password", name="password")
 
-    br
-    button.btn.btn-primary.btn-block(type="submit") Log in
-    br
+        br
+        button.btn.btn-primary.btn-block(type="submit") Log in
+        br
 
     .text-center
       a.show-signup(href="/signup") Sign up

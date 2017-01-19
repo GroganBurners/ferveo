@@ -32,6 +32,13 @@ module.exports = class AuthController {
         failureRedirect: '/auth/login'
       }))
 
+    router.post('/session',
+      passport.authenticate('local', {
+        successRedirect: '/auth/account',
+        failureRedirect: '/auth/login',
+        failureFlash: 'Invalid email or password.'
+      }))
+
     router.get('/account', authMiddleware.ensureAuthenticated, function (req, res) {
       res.render('auth/account', { user: req.user })
     })
