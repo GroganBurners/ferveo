@@ -33,11 +33,11 @@ module.exports = class AuthController {
       }))
 
     router.get('/account', authMiddleware.ensureAuthenticated, function (req, res) {
-      res.render('account', { user: req.user })
+      res.render('auth/account', { user: req.user })
     })
 
     router.get('/login', function (req, res) {
-      res.render('login', { user: req.user })
+      res.render('auth/login', { user: req.user })
     })
 
     router.get('/logout', function (req, res) {
@@ -76,6 +76,7 @@ module.exports = class AuthController {
                 token
               })
             } else {
+              res.status(401)
               res.send({
                 success: false,
                 message: 'Authentication failed. Passwords did not match.'
