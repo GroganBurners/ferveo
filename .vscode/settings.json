@@ -1,3 +1,9 @@
 {
-    "eslint.enable": true
+    "eslint.enable": true,
+    "files.exclude": {
+        "node_modules/": true
+    },
+    "search.exclude": {
+        "**/node_modules": true
+    }
 }
