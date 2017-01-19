@@ -9,7 +9,8 @@ const methodOverride = require('method-override')
 const bodyParser = require('body-parser')
 const flash = require('connect-flash')
 const mongoose = require('mongoose')
-
+const csrf = require('csurf')
+const cors = require('cors')
 const app = express()
 
 require('./models')(app)
@@ -54,6 +55,8 @@ app.use(session({
   saveUninitialized: true
 }))
 app.use(flash())
+//app.use(csrf())
+//app.use(cors())
 app.use('/static', express.static(path.join(__dirname, 'public')))
 app.use(passport.initialize())
 app.use(passport.session())
