@@ -9,15 +9,14 @@ module.exports = new LocalStrategy({
 },
   function (email, password, done) {
     const options = {
-      criteria: { email: email },
-      select: 'name username email hashed_password salt'
+      criteria: { email: email }
     }
-    User.load(options, function (err, user) {
+    User.findOne(options.criteria, function (err, user) {
       if (err) return done(err)
       if (!user) {
         return done(null, false, { message: 'Unknown user' })
       }
-      if (!user.authenticate(password)) {
+      if (!user.comparePassword(password)) {
         return done(null, false, { message: 'Invalid password' })
       }
       return done(null, user)

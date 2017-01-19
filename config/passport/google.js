@@ -15,7 +15,7 @@ module.exports = new GoogleStrategy({
     const options = {
       criteria: { 'google.id': profile.id }
     }
-    User.load(options, function (err, user) {
+    User.findOne(options.criteria, function (err, user) {
       if (err) return done(err)
       if (!user) {
         user = new User({

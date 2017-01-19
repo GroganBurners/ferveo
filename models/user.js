@@ -18,7 +18,7 @@ var userSchema = new Schema({
 userSchema.statics = {
 
   /**
-   * Load
+   * Load - DEPRECATED TODO: REMOVE
    *
    * @param {Object} options
    * @param {Function} cb
@@ -26,7 +26,7 @@ userSchema.statics = {
    */
 
   load: function (options, cb) {
-    options.select = options.select || 'name username'
+    options.select = options.select || 'name username email'
     return this.findOne(options.criteria)
       .select(options.select)
       .exec(cb)
