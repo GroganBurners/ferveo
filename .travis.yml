@@ -32,3 +32,4 @@ after_success:
 notifications:
   on_success: change
   on_failure: change
+  irc: "chat.freenode.net#dueyfinster"
