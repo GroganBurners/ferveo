@@ -51,7 +51,7 @@ mixin edit-table(header,fieldsToShow,data,type)
                     form(action='/customers/'+row._id+'/edit',method='post',enctype='application/x-www-form-urlencoded')
                       input(type='hidden',value='DELETE',name='_method')
                       input(type='hidden',value=row._id,name='key')
-                    a.dropdown-item(role="button" type=submit) Delete
+                      button.btn.dropdown-item(role="button" type=submit) Delete
                       i.fa.fa-trash(aria-hidden="true")
 
 mixin edit-table-striped(header,fieldsToShow,data)
