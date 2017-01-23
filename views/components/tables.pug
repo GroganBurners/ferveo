@@ -32,9 +32,7 @@ mixin edit-table(header,fieldsToShow,data,type)
             each head, i in header
               th 
                 input.form-control(type="text" placeholder=head, disabled)
-            th Show
-            th Edit
-            th Delete
+            th Actions
         tbody
           each row,j in data
             tr
@@ -45,17 +43,16 @@ mixin edit-table(header,fieldsToShow,data,type)
                   td #{row[field]}
 
               td
-                a.btn.btn-secondary.btn-sm(href='/customers/'+row._id)
-                  i.fa.fa-eye(aria-hidden="true")
-              td
-                a.btn.btn-outline-primary.btn-sm(href='/customers/'+row._id+'/edit')
-                  i.fa.fa-pencil(aria-hidden="true")
-              td
-                form(action='/customers/'+row._id+'/edit',method='post',enctype='application/x-www-form-urlencoded')
-                  input(type='hidden',value='DELETE',name='_method')
-                  input(type='hidden',value=row._id,name='key')
-                  button.btn.btn-danger.btn-sm(type=submit)
-                    i.fa.fa-trash(aria-hidden="true")
+                .btn-group(role="group" aria-label="Button group with nested dropdown")
+                  button.btn.btn-secondary.dropdown-toggle(id="btnGroupDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Actions
+                  .dropdown-menu(aria-labelledby="btnGroupDrop1")
+                    a.dropdown-item(href='/customers/'+row._id+'/edit') Edit
+                      i.fa.fa-pencil(aria-hidden="true")
+                    form(action='/customers/'+row._id+'/edit',method='post',enctype='application/x-www-form-urlencoded')
+                      input(type='hidden',value='DELETE',name='_method')
+                      input(type='hidden',value=row._id,name='key')
+                    a.dropdown-item(role="button" type=submit) Delete
+                      i.fa.fa-trash(aria-hidden="true")
 
 mixin edit-table-striped(header,fieldsToShow,data)
   +edit-table(header,fieldsToShow,data,"table-striped")
