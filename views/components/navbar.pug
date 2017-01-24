@@ -16,6 +16,7 @@ mixin navbar(admin, name, href, position, style, background, logoUrl)
                 block
             unless !admin
                 form.form-inline.my-2.my-lg-0(action='/customers/search',method='post',enctype='application/x-www-form-urlencoded')
+                    input(type='hidden', name='_csrf', value=csrfToken)
                     input.form-control.mr-sm-2(type='text', placeholder='Search', name="text")
                     button.btn.btn-outline-success.my-2.my-sm-0(type="submit") Search
 

@@ -4,6 +4,7 @@ var ok = require('./utils').ok
 var fail = require('./utils').fail
 var respond = require('./utils').respond
 const logger = require('winston')
+const csrfProtection = require('../middlewares/csrf')
 const MAX_RESULTS = 100
 
 /**
@@ -175,12 +176,13 @@ module.exports = class BaseController {
       next()
     })
 
-    router.get('/', (req, res) => {
+    router.get('/', csrfProtection, (req, res) => {
       this
         .list()
         .then((list) => {
           let pageProps = {
-            title: this.model.modelName
+            title: this.model.modelName,
+            csrfToken: req.csrfToken()
           }
           respond(res, this.modelName + '/index', Object.assign(pageProps, list))
         })
@@ -191,7 +193,7 @@ module.exports = class BaseController {
       res.render(this.modelName + '/new', { title: 'Add New ' + this.model.modelName });
     })
 
-    router.post('/search', (req, res) => {
+    router.post('/search', csrfProtection, (req, res) => {
       this
         .search(req.body.text)
         .then((list) => {
