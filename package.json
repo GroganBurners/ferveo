@@ -26,6 +26,7 @@
     "express": "~4.14.0",
     "express-session": "^1.14.2",
     "font-awesome": "^4.7.0",
+    "helmet-csp": "^2.3.0",
     "jquery-slim": "^3.0.0",
     "jsonwebtoken": "^7.2.1",
     "method-override": "^2.3.7",

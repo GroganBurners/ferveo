@@ -9,8 +9,6 @@ const methodOverride = require('method-override')
 const bodyParser = require('body-parser')
 const flash = require('connect-flash')
 const mongoose = require('mongoose')
-const csrf = require('csurf')
-const cors = require('cors')
 const app = express()
 
 require('./models')(app)
