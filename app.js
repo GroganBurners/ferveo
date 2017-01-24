@@ -9,9 +9,11 @@ const methodOverride = require('method-override')
 const bodyParser = require('body-parser')
 const flash = require('connect-flash')
 const mongoose = require('mongoose')
+const csp = require('./middlewares/csp')
 const app = express()
 
 require('./models')(app)
+//csp(app)
 
 /**
  * API keys and Passport configuration.
