@@ -3,6 +3,7 @@ const CustomerController = cont.Customer
 const PriceController = cont.Price
 const MessageController = cont.Message
 const AuthController = cont.Auth
+const logger = require('winston')
 const passportConfig = require('./passport')
 const authMiddleware = require('../middlewares/auth')
 const cacheMiddleware = require('../middlewares/cache')
@@ -12,7 +13,7 @@ module.exports = function (app) {
   app.use('/api/customers', authMiddleware.secureAPI, new CustomerController().routeAPI())
   app.use('/api/prices', authMiddleware.secureAPI, new PriceController().routeAPI())
   app.use('/api/messages', authMiddleware.secureAPI, new MessageController().routeAPI())
-  app.use('/api/auth',  new AuthController().routeAPI()) // Login via route, no security needed
+  app.use('/api/auth', new AuthController().routeAPI()) // Login via route, no security needed
 
   app.use('/auth', new AuthController().route())
   app.use('/customers', new CustomerController().route())
@@ -35,5 +36,23 @@ module.exports = function (app) {
   app.get('/multiple-flash', function (req, res) {
     req.flash('info', ['Welcome', 'Please Enjoy'])
     res.redirect('/')
+  })
+
+  // catch 404 and forward to error handler
+  app.use(function (req, res, next) {
+    var err = new Error('Not Found')
+    err.status = 404
+    next(err)
+  })
+
+  // error handler
+  app.use(function (err, req, res, next) {
+    // set locals, only providing error in development
+    res.locals.message = err.message
+    res.locals.error = req.app.get('env') === 'development' ? err : {}
+    logger.error(err.stack)
+    // render the error page
+    res.status(err.status || 500)
+    res.render('error')
   })
 }
