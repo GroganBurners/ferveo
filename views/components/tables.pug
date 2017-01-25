@@ -46,7 +46,7 @@ mixin edit-table(header,fieldsToShow,data,type)
                 .btn-group(role="group" aria-label="Button group with nested dropdown")
                   button.btn.btn-secondary.dropdown-toggle(id="btnGroupDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Actions
                   .dropdown-menu(aria-labelledby="btnGroupDrop1")
-                    a.dropdown-item(href='/customers/'+row._id+'/edit') Edit
+                    btn.dropdown-item(data-toggle="modal" data-target="#edit") Edit
                       i.fa.fa-pencil(aria-hidden="true")
                     form(action='/customers/'+row._id+'/edit',method='post',enctype='application/x-www-form-urlencoded')
                       input(type='hidden',value='DELETE',name='_method')
