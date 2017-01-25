@@ -5,13 +5,15 @@ append body
       Customer Edit
     form(action='/customers/edit',method='post',name='updatecustomer',enctype='application/x-www-form-urlencoded')
       p ID:
-        input#inputName(type='text', name='id')
+        input#input_id(type='text', name='_id')
       p Name:
-        input#inputName(type='text', name='name')
+        input#inputname(type='text', name='name')
+      p Street:
+        input#inputname(type='text', name='address.street')
       p Date Created: 
-        input#inputCreatedOn(type="date", name="createdOn")
+        input#inputcreatedOn(type="date", name="createdOn")
       p Date Updated: 
-        input#inputUpdatedOn(type="date", name="updatedOn", disabled)
+        input#inputupdatedOn(type="date", name="updatedOn", disabled)
       p
         input(type='hidden',value='PUT',name='_method')
         button#btnSubmit(type='submit') Update

@@ -35,12 +35,12 @@ mixin edit-table(header,fieldsToShow,data,type)
             th Actions
         tbody
           each row,j in data
-            tr
+            tr(data-obj=row)
               each field, i in fieldsToShow
                 if (typeof(row[field]) === 'object')
                   td !{JSON.stringify(row[field])} 
                 else
-                  td #{row[field]}
+                  td(data-id=field) #{row[field]}
 
               td
                 .btn-group(role="group" aria-label="Button group with nested dropdown")
