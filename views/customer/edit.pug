@@ -1,6 +1,6 @@
 include ../components/modals
 append body
-  +modal(title,'edit')
+  +edit-modal(title,'edit')
     h1.
       Customer Edit
     form(action='/customers/edit',method='post',name='updatecustomer',enctype='application/x-www-form-urlencoded')

@@ -1,6 +1,6 @@
 include ../components/modals
 append body
-  +modal(title,'new')
+  +edit-modal(title,'new')
     form#formAddBlob(name="addcustomer",method="post",action="/customers")
       .form-group.row
         label.col-2.col-form-label(for="inputName") Name: 
