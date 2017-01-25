@@ -40,7 +40,11 @@ mixin edit-table(header,fieldsToShow,data,type)
                 if (typeof(row[field]) === 'object')
                   td !{JSON.stringify(row[field])} 
                 else
-                  td(data-id=field) #{row[field]}
+                  if(i===0)
+                    td(data-id=field) 
+                      a.btn(role="button" data-toggle="modal" data-target="#show") #{row[field]}
+                  else
+                    td(data-id=field) #{row[field]}
 
               td
                 .btn-group(role="group" aria-label="Button group with nested dropdown")

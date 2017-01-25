@@ -58,4 +58,23 @@ $(document).ready(function () {
         modal.find('.modal-title').text('Edit ' + recipient)
         modal.find('.modal-body input#name').val('Neil')
     })
+
+
+    $('#show').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var recipient = button.data('whatever') // Extract info from data-* attributes
+        var showObj = $(event.relatedTarget).closest('tr').data('obj');
+        console.log(showObj)
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        for (var key in showObj) {
+            console.log('SETTING: ',key,' to ',showObj[key])
+            var search = '#'+key
+            //moment(customer.updatedOn).format('YYYY-MM-DD')
+            modal.find(search).text(showObj[key])
+        }
+        modal.find('.modal-title').text('Edit ' + recipient)
+        modal.find('.modal-body input#name').val('Neil')
+    })
 });
