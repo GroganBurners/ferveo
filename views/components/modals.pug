@@ -1,28 +1,28 @@
 mixin view-modal(title,id)
-	.modal.fade(id=id,tabindex="-1",role="dialog",aria-labelledby=id+"Label" aria-hidden="true")
-		.modal-dialog
-			.modal-content
-				.modal-header
-					button.close(type="button",data-dismiss="modal")
-						span(aria-hidden="true") &times;
-						span.sr-only Close
-					h4.modal-title(id=id+"Label")= title
-				.modal-body
-					block
-				.modal-footer
-					button.btn.btn-default(type="button",data-dismiss="modal") Close
+    .modal.fade(id=id,tabindex="-1",role="dialog",aria-labelledby=id+"Label" aria-hidden="true")
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    button.close(type="button",data-dismiss="modal")
+                        span(aria-hidden="true") &times;
+                        span.sr-only Close
+                    h4.modal-title(id=id+"Label")= title
+                .modal-body
+                    block
+                .modal-footer
+                    button.btn.btn-default(type="button",data-dismiss="modal") Close
 
 mixin edit-modal(title,id,type)
-	.modal.fade(id=id,tabindex="-1",role="dialog",aria-labelledby=id+"Label" aria-hidden="true")
-		.modal-dialog
-			.modal-content
-				.modal-header
-					button.close(type="button",data-dismiss="modal")
-						span(aria-hidden="true") &times;
-						span.sr-only Close
-					h4.modal-title(id=id+"Label")= title
-				.modal-body
-					block
-				.modal-footer
-					button.btn.btn-default(type="button",data-dismiss="modal") Close
-					label.btn.btn-primary(for=type+'-form-submit') Save changes
+    .modal.fade(id=id,tabindex="-1",role="dialog",aria-labelledby=id+"Label" aria-hidden="true")
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    button.close(type="button",data-dismiss="modal")
+                        span(aria-hidden="true") &times;
+                        span.sr-only Close
+                    h4.modal-title(id=id+"Label")= title
+                .modal-body
+                    block
+                .modal-footer
+                    button.btn.btn-default(type="button",data-dismiss="modal") Close
+                    label.btn.btn-primary(for=type+'-form-submit') Save changes
