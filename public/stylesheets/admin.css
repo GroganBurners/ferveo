@@ -27,3 +27,7 @@
 .hidden {
     display: none;
 }
+
+.modal-footer label {
+    margin-bottom: 0;
+}
