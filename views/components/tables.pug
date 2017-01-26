@@ -53,13 +53,15 @@ mixin edit-table(tname,smodel,header,fieldsToShow,data,type)
                 .btn-group(role="group" aria-label="Button group with nested dropdown")
                   button.btn.btn-secondary.dropdown-toggle(id="btnGroupDrop1" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false") Actions
                   .dropdown-menu(aria-labelledby="btnGroupDrop1")
-                    btn.dropdown-item(data-toggle="modal" data-target="#edit") Edit
+                    btn.dropdown-item(data-toggle="modal" data-target="#edit")
                       i.fa.fa-pencil(aria-hidden="true")
+                      |  Edit
                     form(action='/customers/'+row._id+'/edit',method='post',enctype='application/x-www-form-urlencoded')
                       input(type='hidden',value='DELETE',name='_method')
                       input(type='hidden',value=row._id,name='key')
-                      button.btn.dropdown-item(role="button" type=submit) Delete
-                      i.fa.fa-trash(aria-hidden="true")
+                      button.btn.dropdown-item(role="button" type=submit)
+                        i.fa.fa-trash(aria-hidden="true")
+                        |  Delete
 
 mixin edit-table-striped(tname,smodel,header,fieldsToShow,data)
   +edit-table(tname,smodel,header,fieldsToShow,data,"table-striped")
