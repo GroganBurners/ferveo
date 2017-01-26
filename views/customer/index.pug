@@ -3,7 +3,7 @@ block body
   unless !customers
     br
     br
-    +edit-table-striped(['Name', 'Address'], ['name', 'primaryAddress'], customers)
+    +edit-table-striped(pmodel,['Name', 'Address'], ['name', 'primaryAddress'], customers)
     include new
     include edit
     include show

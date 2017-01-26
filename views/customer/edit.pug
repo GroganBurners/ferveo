@@ -1,8 +1,6 @@
 include ../components/modals
 append body
-  +edit-modal(title,'edit')
-    h1.
-      Customer Edit
+  +edit-modal('Edit ' + smodel,'edit')
     form(action='/customers/edit',method='post',name='updatecustomer',enctype='application/x-www-form-urlencoded')
       p ID:
         input#input_id(type='text', name='_id')

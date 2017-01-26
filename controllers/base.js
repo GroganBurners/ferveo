@@ -181,7 +181,9 @@ module.exports = class BaseController {
         .list()
         .then((list) => {
           let pageProps = {
-            title: this.model.modelName,
+            title: 'All ' + pluralize(this.model.modelName),
+            smodel: this.model.modelName,
+            pmodel: pluralize(this.model.modelName),
             csrfToken: req.csrfToken()
           }
           respond(res, this.modelName + '/index', Object.assign(pageProps, list))

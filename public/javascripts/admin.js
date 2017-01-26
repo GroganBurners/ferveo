@@ -55,8 +55,6 @@ $(document).ready(function () {
             //moment(customer.updatedOn).format('YYYY-MM-DD')
             modal.find(search).val(editObj[key])
         }
-        modal.find('.modal-title').text('Edit ' + recipient)
-        modal.find('.modal-body input#name').val('Neil')
     })
 
 
@@ -74,7 +72,5 @@ $(document).ready(function () {
             //moment(customer.updatedOn).format('YYYY-MM-DD')
             modal.find(search).text(showObj[key])
         }
-        modal.find('.modal-title').text('Edit ' + recipient)
-        modal.find('.modal-body input#name').val('Neil')
     })
 });

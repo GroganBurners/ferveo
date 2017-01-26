@@ -11,12 +11,13 @@ mixin table(header,data,type)
           each col,k in row
             td #{col}
 
-mixin edit-table(header,fieldsToShow,data,type)
+mixin edit-table(tname,header,fieldsToShow,data,type)
   - var type = type || ""
+  - var tname = tname || ""
   .container.filterable
     .bg-primary.table-edit.text-white.row
         .col-6.col-sm-6.col-md-8
-          h4 Customers
+          h4=tname
         .col-6.col-md-4
           btn.btn-secondary.btn-sm(data-toggle="modal" data-target="#new") 
             i.fa.fa-plus(aria-hidden="true") 
@@ -58,8 +59,8 @@ mixin edit-table(header,fieldsToShow,data,type)
                       button.btn.dropdown-item(role="button" type=submit) Delete
                       i.fa.fa-trash(aria-hidden="true")
 
-mixin edit-table-striped(header,fieldsToShow,data)
-  +edit-table(header,fieldsToShow,data,"table-striped")
+mixin edit-table-striped(tname,header,fieldsToShow,data)
+  +edit-table(tname,header,fieldsToShow,data,"table-striped")
 
 mixin table-striped(header,data)
   +table(header,data,"table-striped")
