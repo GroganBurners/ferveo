@@ -1,5 +1,6 @@
 const cont = require('../controllers')
 const CustomerController = cont.Customer
+const ExpenseController = cont.Expense
 const PriceController = cont.Price
 const MessageController = cont.Message
 const AuthController = cont.Auth
@@ -17,6 +18,7 @@ module.exports = function (app) {
 
   app.use('/auth', new AuthController().route())
   app.use('/customers', new CustomerController().route())
+  app.use('/expenses', new ExpenseController().route())
 
   // Ordinary web pages
   app.get('/', cacheMiddleware(5 * 60), function (req, res, next) {

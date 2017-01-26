@@ -1,5 +1,6 @@
 const BaseController = require('./base')
 const Customer = require('../models/customer')
+const Expense = require('../models/expense')
 const Price = require('../models/price')
 const MessageController = require('./message')
 const AuthController = require('./auth')
@@ -7,6 +8,12 @@ const AuthController = require('./auth')
 module.exports.Customer = class CustomerController extends BaseController {
   constructor () {
     super(Customer, '_id')
+  }
+}
+
+module.exports.Expense = class ExpenseController extends BaseController {
+  constructor () {
+    super(Expense, '_id')
   }
 }
 
