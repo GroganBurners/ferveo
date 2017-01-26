@@ -1,7 +1,8 @@
 include ../components/modals
 append body
-  +edit-modal(title,'new')
-    form#formAddBlob(name="addcustomer",method="post",action="/customers")
+  - var type = 'new'
+  +edit-modal('New ' + smodel,type,type)
+    form#formAddBlob(name="addcustomer",method="post",action=baseurl)
       .form-group.row
         label.col-2.col-form-label(for="inputName") Name: 
         input.form-control.col-5#inputName(type="text", placeholder="Neil Grogan", name="name")
@@ -23,5 +24,4 @@ append body
       .form-group.row
         label.col-2.col-form-label(for="inputPhone") Phone: 
         input.form-control.col-5#inputPhone(type="number", placeholder="087 123 4567", name="phone[][number]")
-      p
-        button#btnSubmit(type="submit") Submit
+        input.hidden(type="submit" id=type+'-form-submit')

@@ -182,6 +182,7 @@ module.exports = class BaseController {
         .then((list) => {
           let pageProps = {
             title: 'All ' + pluralize(this.model.modelName),
+            baseurl: '/' + pluralize(this.modelName),
             smodel: this.model.modelName,
             pmodel: pluralize(this.model.modelName),
             csrfToken: req.csrfToken()
@@ -248,8 +249,8 @@ module.exports = class BaseController {
     }).put((req, res) => {
       logger.info('Will update the object: ' + req.params.id)
       this
-        .update(req.body.id, req.body)
-        .then(res.redirect('/' + pluralize(this.modelName) + '/' + req.params.key))
+        .update(req.body._id, req.body)
+        .then(res.redirect('/' + pluralize(this.modelName)))
         .then(null, fail(res))
     })
     // TODO PUT and DELETE for Edit opeation

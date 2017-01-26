@@ -49,6 +49,10 @@ $(document).ready(function () {
         // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
         // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
         var modal = $(this)
+        var form = modal.find('#edit-form')
+        var formOrigAction = form.attr('action')
+        form.attr('action', formOrigAction + '/' + editObj['_id'] + '/edit')
+
         for (var key in editObj) {
             console.log('SETTING: ',key,' to ',editObj[key])
             var search = 'input[name='+key+']'
