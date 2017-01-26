@@ -19,13 +19,14 @@ mixin edit-table(tname,header,fieldsToShow,data,type)
         .col-6.col-sm-6.col-md-8
           h4=tname
         .col-6.col-md-4
-          btn.btn-secondary.btn-sm(data-toggle="modal" data-target="#new") 
-            i.fa.fa-plus(aria-hidden="true") 
-            | &nbsp; Add Customer
-          | &nbsp;
-          button.btn.btn-secondary.btn-sm.btn-filter(href='/customers/new') 
-            i.fa.fa-filter(aria-hidden="true") 
-            | &nbsp; Filter
+          .btn-group(role="group" aria-label="Basic example")
+            button.btn.btn-secondary.btn-sm(data-toggle="modal" data-target="#new") 
+              i.fa.fa-plus(aria-hidden="true") 
+              | &nbsp; Add Customer
+            | &nbsp;
+            button.btn.btn-secondary.btn-sm.btn-filter 
+              i.fa.fa-filter(aria-hidden="true") 
+              | &nbsp; Filter
     .row
       table.table(class=type)
         thead
