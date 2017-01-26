@@ -11,9 +11,10 @@ mixin table(header,data,type)
           each col,k in row
             td #{col}
 
-mixin edit-table(tname,header,fieldsToShow,data,type)
+mixin edit-table(tname,smodel,header,fieldsToShow,data,type)
   - var type = type || ""
   - var tname = tname || ""
+  - var add_smodel = " Add " + smodel
   .container.filterable
     .bg-primary.table-edit.text-white.row
         .col-6.col-sm-6.col-md-8
@@ -21,8 +22,8 @@ mixin edit-table(tname,header,fieldsToShow,data,type)
         .col-6.col-md-4
           .btn-group(role="group" aria-label="Basic example")
             button.btn.btn-secondary.btn-sm(data-toggle="modal" data-target="#new") 
-              i.fa.fa-plus(aria-hidden="true") 
-              | &nbsp; Add Customer
+              i.fa.fa-plus(aria-hidden="true")
+              =add_smodel
             | &nbsp;
             button.btn.btn-secondary.btn-sm.btn-filter 
               i.fa.fa-filter(aria-hidden="true") 
@@ -60,8 +61,8 @@ mixin edit-table(tname,header,fieldsToShow,data,type)
                       button.btn.dropdown-item(role="button" type=submit) Delete
                       i.fa.fa-trash(aria-hidden="true")
 
-mixin edit-table-striped(tname,header,fieldsToShow,data)
-  +edit-table(tname,header,fieldsToShow,data,"table-striped")
+mixin edit-table-striped(tname,smodel,header,fieldsToShow,data)
+  +edit-table(tname,smodel,header,fieldsToShow,data,"table-striped")
 
 mixin table-striped(header,data)
   +table(header,data,"table-striped")
