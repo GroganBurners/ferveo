@@ -35,7 +35,7 @@ mixin edit-table(tname,smodel,header,fieldsToShow,data,type)
             each head, i in header
               th 
                 input.form-control(type="text" placeholder=head, disabled)
-            th Actions
+            th
         tbody
           each row,j in data
             tr(data-obj=row)
