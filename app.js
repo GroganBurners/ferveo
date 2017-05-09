@@ -9,6 +9,7 @@ const methodOverride = require('method-override')
 const bodyParser = require('body-parser')
 const flash = require('connect-flash')
 const mongoose = require('mongoose')
+const MongoStore = require('connect-mongo')(session)
 const helper = require('./middlewares/helper')
 const csp = require('./middlewares/csp')
 const app = express()
@@ -51,9 +52,9 @@ app.use(cookieParser())
 app.use(session({
   secret: config.secure.privateKey,
   name: config.secure.sessionName,
-  proxy: true,
-  resave: true,
-  saveUninitialized: true
+  resave: false,
+  saveUninitialized: false,
+  store: new MongoStore({ mongooseConnection: mongoose.connection })
 }))
 
 app.use(flash())
