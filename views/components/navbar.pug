@@ -1,6 +1,6 @@
 mixin navbar(admin, name, href, position, style, background, logoUrl)
     - var admin = (typeof admin === 'undefined') ? false : admin
-    - var name = (typeof name === 'undefined') ? "Grogan Burner Services" : name
+    - var name = h.siteName
     - var style = (typeof style === 'undefined') ? "inverse" : style
     - var position = (typeof position === 'undefined') ? "navbar-toggleable-md" : position
     - var background = (typeof background === 'undefined') ? "inverse" : background
