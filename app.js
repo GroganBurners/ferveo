@@ -9,7 +9,7 @@ const methodOverride = require('method-override')
 const bodyParser = require('body-parser')
 const flash = require('connect-flash')
 const mongoose = require('mongoose')
-const helper = require('./controllers/helper')
+const helper = require('./middlewares/helper')
 const csp = require('./middlewares/csp')
 const app = express()
 
