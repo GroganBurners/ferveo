@@ -22,4 +22,12 @@ invoiceSchema.pre('save', function (next) {
   next()
 })
 
+function autopopulate (next) {
+  this.populate('customer')
+  next()
+}
+
+invoiceSchema.pre('find', autopopulate)
+invoiceSchema.pre('findOne', autopopulate)
+
 module.exports = mongoose.model('Invoice', invoiceSchema)
