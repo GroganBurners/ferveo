@@ -41,7 +41,11 @@ mixin edit-table(tname,smodel,header,fieldsToShow,data,type)
             tr(data-obj=row)
               each field, i in fieldsToShow
                 if (typeof(row[field]) === 'object')
-                  td !{JSON.stringify(row[field])} 
+                  // if object has a name, use it!
+                  if row[field].hasOwnProperty('name') 
+                    td #{row[field]['name']}
+                  else
+                    td !{JSON.stringify(row[field])} 
                 else
                   if(i===0)
                     td(data-id=field) 

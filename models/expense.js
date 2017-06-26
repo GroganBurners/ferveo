@@ -26,4 +26,12 @@ expenseSchema.pre('save', function (next) {
   next()
 })
 
+function autopopulate (next) {
+  this.populate('company')
+  next()
+}
+
+expenseSchema.pre('find', autopopulate)
+expenseSchema.pre('findOne', autopopulate)
+
 module.exports = mongoose.model('Expense', expenseSchema)
