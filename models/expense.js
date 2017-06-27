@@ -27,7 +27,7 @@ expenseSchema.pre('save', function (next) {
 })
 
 function autopopulate (next) {
-  this.populate('company')
+  this.populate('supplier')
   next()
 }
 
