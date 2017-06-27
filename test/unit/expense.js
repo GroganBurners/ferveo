@@ -1,22 +1,22 @@
-var Company = mongoose.model('Company')
+var Supplier = mongoose.model('Supplier')
 var Expense = mongoose.model('Expense')
 
 describe('Unit Test Expense Model', function () {
-  it('should fail with invalid company', function (done) {
+  it('should fail with invalid supplier', function (done) {
     var expense = new Expense({
-      company: 'test',
+      supplier: 'test',
       items: [{ desc: 'Boiler Service and Repair', total: 80.00 }]
     })
 
     expense.validate(function (err) {
-      expect(err.errors.company).to.exist
+      expect(err.errors.supplier).to.exist
       done()
     })
   })
 
   it('should fail with invalid line items', function (done) {
     var expense = new Expense({
-      company: new Company({name: 'ABC Oil Gas Company'}),
+      supplier: new Supplier({name: 'ABC Oil Gas Company'}),
       items: [{test: 'test'}]
     })
 
@@ -28,7 +28,7 @@ describe('Unit Test Expense Model', function () {
 
   it('should be valid with minimal data', function (done) {
     var expense = new Expense({
-      company: new Company({name: 'ABC Oil Gas Company'}),
+      supplier: new Supplier({name: 'ABC Oil Gas Supplier'}),
       items: [{ desc: 'Boiler Service and Repair', total: 80.00 }]
     })
 
