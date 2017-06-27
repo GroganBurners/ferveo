@@ -3,7 +3,7 @@ var expenseItem = require('./common/line-item')
 
 var expenseSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now },
-  company: { type: mongoose.Schema.Types.ObjectId, ref: 'Company', required: true },
+  supplier: { type: mongoose.Schema.Types.ObjectId, ref: 'Supplier', required: true },
   category: ['Purchases', 'Motor Fuel', 'Motor Serv/Repair',
     'Motor Tax/Ins', 'Van DOE', 'Public Laibility Insurance',
     'Advertising', 'Tele/bband', 'Training', 'Office Expenses',
