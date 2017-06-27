@@ -10,7 +10,9 @@
     "dev": "gulp",
     "lcov": "cross-env NODE_ENV=test istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- -R spec test/integration test/unit",
     "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "codecov": "codecov"
+    "codecov": "codecov",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "bcrypt": "^1.0.2",
@@ -33,7 +35,7 @@
     "method-override": "^2.3.7",
     "moment": "^2.17.1",
     "mongoose": "^4.7.4",
-    "morgan": "~1.7.0",
+    "morgan": "~1.8.2",
     "nodemailer": "^2.7.0",
     "passport": "^0.3.2",
     "passport-google-oauth2": "^0.1.6",
@@ -46,7 +48,8 @@
     "serve-favicon": "~2.4.3",
     "tether": "^1.4.0",
     "winston": "^2.3.0",
-    "xlsx": "^0.8.1"
+    "xlsx": "^0.8.1",
+    "snyk": "^1.30.1"
   },
   "devDependencies": {
     "bluebird": "^3.4.7",
@@ -85,5 +88,6 @@
       "promise",
       "pug"
     ]
-  }
+  },
+  "snyk": true
 }
