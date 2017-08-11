@@ -1,5 +1,5 @@
 var phone = {
-  number: { type: Number, required: true, default: '' }
-}
+  number: { type: Number, required: true, default: "" }
+};
 
-module.exports = phone
+module.exports = phone;

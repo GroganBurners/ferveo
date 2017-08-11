@@ -1,6 +1,6 @@
-var mongoose = require('mongoose')
-var addressSchema = require('./common/address')
-var phoneSchema = require('./common/phone')
+var mongoose = require("mongoose");
+var addressSchema = require("./common/address");
+var phoneSchema = require("./common/phone");
 
 var supplierSchema = new mongoose.Schema({
   name: { type: String, required: true, unique: true },
@@ -10,13 +10,13 @@ var supplierSchema = new mongoose.Schema({
   phone: [phoneSchema],
   createdOn: { type: Date, default: Date.now },
   updatedOn: { type: Date, default: Date.now }
-})
+});
 
 // on every save, add the date
-supplierSchema.pre('save', function (next) {
+supplierSchema.pre("save", function(next) {
   // change the updated_at field to current date
-  this.updatedOn = new Date()
-  next()
-})
+  this.updatedOn = new Date();
+  next();
+});
 
-module.exports = mongoose.model('Supplier', supplierSchema)
+module.exports = mongoose.model("Supplier", supplierSchema);
