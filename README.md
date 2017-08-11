@@ -1,3 +1,5 @@
+[![styled with
+prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![Github Issues](https://img.shields.io/github/issues/groganburners/ferveo.svg)](https://github.com/GroganBurners/ferveo/issues)
 [![DavidDM Dependencies](https://img.shields.io/david/groganburners/ferveo.svg)](https://david-dm.org/groganburners/ferveo)
 [![DavidDM Dev Dependencies](https://img.shields.io/david/dev/groganburners/ferveo.svg)](https://david-dm.org/groganburners/ferveo?type=dev)
