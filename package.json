@@ -5,11 +5,14 @@
   "scripts": {
     "start": "node ./bin/www",
     "test": "cross-env NODE_ENV=test mocha test/integration test/unit",
-    "functest": "./node_modules/.bin/nightwatch --env local --config=config/nightwatch/nightwatch.conf.js",
+    "functest":
+      "./node_modules/.bin/nightwatch --env local --config=config/nightwatch/nightwatch.conf.js",
     "lint": "eslint app.js bin/ config/ models/ controllers/ test/",
     "dev": "gulp",
-    "lcov": "cross-env NODE_ENV=test istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- -R spec test/integration test/unit",
-    "coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "lcov":
+      "cross-env NODE_ENV=test istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- -R spec test/integration test/unit",
+    "coveralls":
+      "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "codecov": "codecov"
   },
   "dependencies": {
@@ -71,7 +74,7 @@
     "nightwatch": "^0.9.12",
     "nock": "^9.0.2",
     "nodemon": "^1.11.0",
-    "prettier": "^1.5.3",
+    "prettier": "^1.8.2",
     "selenium-download": "^2.0.9",
     "sinon": "^1.17.7"
   },
@@ -80,15 +83,13 @@
       "node": true,
       "mocha": true
     },
-    "extends": [
-      "prettier"
-    ],
-    "plugins": [
-      "prettier",
-      "pug"
-    ],
+    "extends": ["prettier"],
+    "plugins": ["prettier", "pug"],
     "rules": {
       "prettier/prettier": "error"
+    },
+    "parserOptions": {
+      "ecmaVersion": 6
     }
   }
 }
