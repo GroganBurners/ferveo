@@ -9,6 +9,6 @@ module.exports = function(app) {
       return;
     }
     var name = file.substr(0, file.indexOf("."));
-    require("./" + name)(app);
+    require("./" + name);
   });
 };

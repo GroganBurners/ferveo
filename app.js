@@ -24,7 +24,10 @@ const passport = require("passport");
 require("./config/passport");
 
 // connect to Mongo when the app initializes
-mongoose.connect(config.db);
+mongoose.connect(
+  config.db,
+  { useMongoClient: true }
+);
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));

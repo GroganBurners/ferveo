@@ -7,7 +7,7 @@ var User = mongoose.model("User");
 
 module.exports = new JwtStrategy(
   {
-    jwtFromRequest: ExtractJwt.fromAuthHeader(),
+    jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme("jwt"),
     secretOrKey: config.secure.privateKey
   },
   (jwt_payload, done) => {
